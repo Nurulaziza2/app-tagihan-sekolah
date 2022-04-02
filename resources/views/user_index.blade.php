@@ -8,6 +8,7 @@
                 <div class="card-header">Data User</div>
 
                 <div class="card-body">
+                <a href="{{ route('user.create') }}" class="btn btn-primary">Tambah Data</a>
                 <table class="table table-striped table-bordered">
                     <thead>
                         <th>No</th>
@@ -24,6 +25,13 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->created_at->format('d/m/Y H:i') }}</td>
+                            <td>
+                                <a href="{{ route('user.edit',$item->id) }}" class="btn btn-warning">Edit</a>
+                                {!! Form::open(['route'=>['user.destroy',$item->id],
+                                'method'=>'DELETE']) !!}
+                                {!! Form::submit('Hapus', ['class'=>'btn btn-danger','d-inline']) !!}
+                                {!! Form::close() !!}
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

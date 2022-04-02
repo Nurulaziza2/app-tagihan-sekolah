@@ -26,7 +26,12 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $model = new Model();
+        $data['model'] = $model;
+        $data['method'] = 'POST';
+        $data['route'] = 'user.store';
+        $data['namaTombol']= 'Simpan';
+        return view('user_form',$data);
     }
 
     /**
@@ -37,7 +42,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email|unique:users',
+            'password'=> 'required|confirmed'
+        ]);
+        $model=new Model();
+        $model->name=$request->name;
+        $model->email=$request->email;
+        $model->password=bcrypt($request->password);
+        $model->save();
+        flash("Data berhasil disimpan");
+        return back();
+
     }
 
     /**
