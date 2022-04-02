@@ -99,6 +99,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if($id==1){
+            flash("Admin tidak dapat dihapus")->error();
+            return back();
+        }
+        $model =  Model::find($id);
+        $model->delete();
+        flash("Data berhasil dihapus")->success();
+        return back();
     }
 }
