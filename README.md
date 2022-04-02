@@ -1,9 +1,9 @@
 <p align="center"><a href="https://unama.ac.id" target="_blank"><img src="https://1.bp.blogspot.com/-hsCK6CkTq18/X7O-InfiBqI/AAAAAAAAKXs/zp6il-kdFK0jclMR53PvMV2H3iTd7GJ-gCLcBGAsYHQ/s0/Unama.png" width="400"></a></p>
 
 <p align="center">
-8020190049
-8020190325
-8020190279
+<b>8020190049</b>|
+<b>8020190325</b>|
+<b>8020190279</b>
 </p>
 
 ## About 
