@@ -8,7 +8,7 @@
                 <div class="card-header">Tabel Data User</div>
 
                 <div class="card-body">
-                <a href="{{ route('user.create') }}" class="btn btn-primary">Tambah Data</a>
+                <a href="{{ route('user.create') }}" class="btn btn-primary mb-2">Tambah Data</a>
                 <table class="table table-striped table-bordered">
                     <thead>
                         <th>No</th>
@@ -27,6 +27,8 @@
                             <td>{{ $item->created_at->format('d/m/Y H:i') }}</td>
                             <td>
                                 {!! Form::open(['route'=>['user.destroy',$item->id],'method'=>'DELETE','onsubmit'=>'return confirm("Anda Yakin?")']) !!}
+                                <a href="{{ route('user.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('user.show', $item->id) }}" class="btn btn-info ml-1 mr-1">Detail</a>
                                 {!! Form::submit('Hapus', ['class'=>'btn btn-danger']) !!}
                                 {!! Form::close() !!}
                             </td>
