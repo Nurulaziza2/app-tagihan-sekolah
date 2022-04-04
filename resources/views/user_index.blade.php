@@ -15,7 +15,7 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Tanggal Buat</th>
-                        <th>Aksii</th>
+                        <th>Aksi</th>
                     </thead>
                     <tbody>
                         
