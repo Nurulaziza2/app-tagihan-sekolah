@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Tambah Data Userr</div>
+                <div class="card-header">Tambah Data User</div>
 
                 <div class="card-body">
                 {!! Form::model($model, ['route'=>$route, 'method'=>$method]) !!}
