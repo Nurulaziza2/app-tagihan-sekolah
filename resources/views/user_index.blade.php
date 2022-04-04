@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Tabel Data Userrr</div>
+                <div class="card-header">Tabel User</div>
 
                 <div class="card-body">
                 <a href="{{ route('user.create') }}" class="btn btn-primary mb-2">Tambah Data</a>
@@ -15,7 +15,7 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Tanggal Buat</th>
-                        <th>Aksi</th>
+                        <th>Aksii</th>
                     </thead>
                     <tbody>
                         
