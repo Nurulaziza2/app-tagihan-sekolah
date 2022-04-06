@@ -27,6 +27,8 @@
                             </tr>
                         </thead>
                     </table>
+                <a href="{{ url('user', []) }}" class="ml-2 btn-primary btn">Kembali</a>
+
                 </div>
             </div>
         </div>
