@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Tampil Data {{ strtoupper($model->name) }}</div>
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <td>ID</td>
