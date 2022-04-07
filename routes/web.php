@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// kalkulator
+Route::get('/kalkulator', function() {
+    return view('kalkulator');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
