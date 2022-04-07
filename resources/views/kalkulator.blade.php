@@ -13,24 +13,18 @@
 	}
 	body {
         font-family: consolas;
+		/* background-color: #222; */
 	}
-	input {
-		outline: 0;
-		/*border: 1px solid rgba(0,0,0, 0.5);*/
-		border: 0;
-		background-color: rgba(0, 0, 0, 0.4);
-		color: #fff;
-		width: 100%;
-		border-radius: 10px;
-		height: 55px;
-	}
+
     nav {
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 20px 60px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        padding: 15px 60px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+		position: fixed;
+		top: 0;
         /* background-color: red; */
     }
     nav ul li {
@@ -41,68 +35,72 @@
     }
     nav ul li a {
         text-decoration: none;
-        font-size: 17px;
+        font-size: 16px;
         color: #f8f8f8;
     }
     nav h3 {
         color: #555;
     }
-	.kalkulator {
-		/*border: 2px solid #222;*/
-        margin: auto;
-        margin-top: 40px;
-        width: 45%;
-		padding: 20px;
+	.content {
+		width: 100%;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.kalku {
+		position: relative;
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		text-align: center;
-		gap: 12px;
-		box-shadow: -3px -3px 15px rgba(0, 0, 0, 0.06),	
-					0 0 20px rgba(0,0,0, 0.2);
+		width: 50%;
+		gap: 5px;
+		padding: 20px;
+		box-shadow: -5px 5px 10px rgba(0,0,0,0.3);
 		border-radius: 10px;
 	}
-	.text {
-		grid-column: 1/5;
-		grid-row: 1/2;
-	}
-	.item {
-		padding: 20px;
+	.kalku .value {
+		grid-column: span 4;
+		height: 100px;
+		text-align: right;
+		border: 1px solid rgba(0,0,0,0.05);
+		outline: none;
+		padding: 10px;
+		font-size: 18px;
 		border-radius: 10px;
 		background-color: #ddd;
+	}
+	.kalku span {
+		display: grid;
+		width: 100%;
+		height: 60px;
+		color: #333;
+		background-color: ;
+		place-items: center;
+		box-shadow: 0 0 10px rgba(0,0,0,0.3);
+		/* border: 1px solid rgba(0,0,0,0.3); */
 		cursor: pointer;
-		transition: .1s;
-		box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
-		font-family: consolas;
-		/*font-weight: bold;*/
+		border-radius: 10px;
 	}
-	.item:hover {
-		transform: scale(1.1);
+	.kalku span:active {
+		background: #74ff3b;
+		color: #111;
 	}
-	.i1 {
-		background-color: salmon;
+	.kalku span.clear {
+		width: 1fr;
+		background: salmon;
+		grid-column: span 2;
 		color: #fff;
-		grid-column: 1/3;
-		box-shadow: 0 0 3px salmon;
-		grid-row: 2/3;
 	}
-	.i4 {
+	.kalku span.tambah {
 		grid-column: 4/5;
-		grid-row: 4/5;
+		grid-row: 4/6;
+		height: 100%;
+
 	}
-	.i5 {
-		grid-column: 4/5;
-		grid-row: 3/4;
-	}
-	.i6 {
-		grid-column: 4/5;
-		grid-row: 5/7;
+	.kalku span.hasil {
+		color: #fff;
 		background-color: royalblue;
-		color: #fff;
 	}
-	.i16 {
-		grid-column: 1/3;
-		grid-row: 6/7;
-	}
+
 </style>
 <body>
     <nav>
@@ -113,26 +111,27 @@
     </nav>
 
     <div class="content">
-        <form class="kalkulator">
-            <input class="text" type="text" name="text">
-            <div class="item i1">AC</div>
-            <div class="item">/</div>
-            <div class="item">X</div>
-            <div class="item i4">-</div>
-            <div class="item i5">+</div>
-            <div class="item i6">=</div>
-            <div class="item">7</div>
-            <div class="item">8</div>
-            <div class="item">9</div>
-            <div class="item">4</div>
-            <div class="item">5</div>
-            <div class="item">6</div>
-            <div class="item">1</div>
-            <div class="item">2</div>
-            <div class="item">3</div>
-            <div class="item i16">0</div>
-            <div class="item">.</div>
-        </form>
+        <form class="kalku" name="kalk">
+			<input type="text" class="value" name="txt" readonly="">
+			<span class="num clear" onclick="document.kalk.txt.value =''">c</span>
+			<span class="num" onclick="document.kalk.txt.value +='/'">/</span>
+			<span class="num" onclick="document.kalk.txt.value +='*'">*</span>
+			<span class="num" onclick="document.kalk.txt.value +='7'">7</span>
+			<span class="num" onclick="document.kalk.txt.value +='8'">8</span>
+			<span class="num" onclick="document.kalk.txt.value +='9'">9</span>
+			<span class="num" onclick="document.kalk.txt.value +='-'">-</span>
+			<span class="num" onclick="document.kalk.txt.value +='4'">4</span>
+			<span class="num" onclick="document.kalk.txt.value +='5'">5</span>
+			<span class="num" onclick="document.kalk.txt.value +='6'">6</span>
+			<span class="num tambah" onclick="document.kalk.txt.value +='+'">+</span>
+			<span class="num" onclick="document.kalk.txt.value +='3'">3</span>
+			<span class="num" onclick="document.kalk.txt.value +='2'">2</span>
+			<span class="num" onclick="document.kalk.txt.value +='1'">1</span>
+			<span class="num" onclick="document.kalk.txt.value +='0'">0</span>
+			<span class="num" onclick="document.kalk.txt.value +='00'">00</span>
+			<span class="num" onclick="document.kalk.txt.value +='.'">.</span>
+			<span class="num hasil" onclick="document.kalk.txt.value= eval(kalk.txt.value)">=</span>
+		</form>
     </div>
 	
 
