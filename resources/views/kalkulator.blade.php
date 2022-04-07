@@ -13,7 +13,6 @@
 	}
 	body {
         font-family: consolas;
-		/* background-color: #222; */
 	}
 
     nav {
@@ -25,7 +24,6 @@
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
 		position: fixed;
 		top: 0;
-        /* background-color: red; */
     }
     nav ul li {
         list-style: none;
@@ -76,7 +74,6 @@
 		background-color: ;
 		place-items: center;
 		box-shadow: 0 0 10px rgba(0,0,0,0.3);
-		/* border: 1px solid rgba(0,0,0,0.3); */
 		cursor: pointer;
 		border-radius: 10px;
 	}
@@ -135,12 +132,5 @@
     </div>
 	
 
-	<script type="text/javascript">
-		const induk = document.querySelector('.kalkulator');
-		function klik(){
-			alert('kalkulator belum bisa bekerja, sabar ya!. nanti dilanjutin');
-		}
-		induk.onclick = klik;
-	</script>
 </body>
 </html>
