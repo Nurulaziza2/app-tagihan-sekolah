@@ -26,9 +26,9 @@
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->created_at->format('d/m/Y H:i') }}</td>
                             <td>
-                                {!! Form::open(['route'=>['user.destroy',$item->id],'method'=>'DELETE','onsubmit'=>'return confirm("Anda Yakin?")']) !!}
-                                <a href="{{ route('user.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                                <a href="{{ route('user.show', $item->id) }}" class="btn btn-info ml-1 mr-1">Detail</a>
+                                {!! Form::open(['route'=>[$routePrefix . '.destroy',$item->id],'method'=>'DELETE','onsubmit'=>'return confirm("Anda Yakin?")']) !!}
+                                <a href="{{ route($routePrefix . '.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                <a href="{{ route($routePrefix . '.show', $item->id) }}" class="btn btn-info ml-1 mr-1">Detail</a>
                                 {!! Form::submit('Hapus', ['class'=>'btn btn-danger']) !!}
                                 {!! Form::close() !!}
                             </td>

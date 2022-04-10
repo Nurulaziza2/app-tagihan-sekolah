@@ -10,8 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// menggabungkan route, agar dapat diakses ketika user login
+Route::middleware(['auth'])->group(function(){
+    Route::resource('user', 'UserController');
+    
+});
 
-Route::resource('user', 'UserController');
 
 Route::get('/', function () {
     return view('welcome');
