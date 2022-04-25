@@ -30,6 +30,7 @@
                     <span class="text-danger">{{ $errors->first('password_confirmation') }} </span>
                 </div>
                 {!! Form::submit($namaTombol, ['class'=>'btn btn-primary']) !!}
+                <a href="{{ url('user', []) }}" class="ml-2 btn-primary btn">Kembali</a>
                 {!! Form::close() !!}
                 </div>
             </div>
