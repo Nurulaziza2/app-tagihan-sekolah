@@ -12,7 +12,7 @@
 */
 // menggabungkan route, agar dapat diakses ketika user login
 Route::middleware(['auth'])->group(function(){
-    Route::resource('user', 'UserController');
+    Route::resource('user', 'UserController')->middleware('admin');
     
 });
 
@@ -25,7 +25,9 @@ Route::get('/', function () {
 Route::get('/kalkulator', function() {
     return view('kalkulator');
 });
-
+Route::get('/contoh', function() {
+    return view('bahan.blank');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

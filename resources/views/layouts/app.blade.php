@@ -40,6 +40,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/kalkulator">Kalkulator</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contoh">contoh</a>
+                            </li>
                         @endauth    
                     </ul>
 
