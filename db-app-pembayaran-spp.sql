@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2022 at 09:54 AM
+-- Generation Time: May 24, 2022 at 10:02 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -95,6 +95,11 @@ CREATE TABLE `siswa` (
   `nama` varchar(255) NOT NULL,
   `nis` int(11) NOT NULL,
   `program_studi` varchar(255) NOT NULL,
+  `tanggal_masuk` date NOT NULL,
+  `jenis_kelamin` varchar(11) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `no_hp` varchar(20) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
