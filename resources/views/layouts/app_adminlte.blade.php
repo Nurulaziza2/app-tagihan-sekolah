@@ -201,10 +201,18 @@
             </a>
           </li>
           <li class="nav-item mt-2">
-            <a href= "#" class="nav-link {{ request()->is('operator*') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-users"></i>
+            <a href= "{{ route ('siswa.index') }}" class="nav-link {{ request()->is('siswa*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-user"></i>
               <p>
-                Data Operator
+                Data Siswa
+              </p>
+            </a>
+          </li>
+          <li class="nav-item mt-2">
+            <a href= "{{ route ('biaya.index') }}" class="nav-link {{ request()->is('biaya*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-money-check"></i>
+              <p>
+                Data Biaya
               </p>
             </a>
           </li>
@@ -233,7 +241,15 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        @include('flash::message')
+      </div><!-- /.container-fluid -->
+    </section>
     @yield('content')
+  </div>
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">

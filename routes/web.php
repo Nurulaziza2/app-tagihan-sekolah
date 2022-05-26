@@ -20,6 +20,8 @@ Route::get('logout', function () {
 // menggabungkan route, agar dapat diakses ketika user login
 Route::middleware(['auth'])->group(function(){
     Route::resource('user', 'UserController')->middleware('admin');
+    Route::resource('siswa', 'SiswaController');
+    Route::resource('biaya', 'BiayaController');
     
 });
 

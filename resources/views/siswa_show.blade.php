@@ -16,19 +16,31 @@
                             </tr>
                             <tr>
                                 <td>NAMA</td>
-                                <td>: {{ $model->name }}</td>
+                                <td>: {{ $model->nama }}</td>
                             </tr>
                             <tr>
-                                <td>EMAIL</td>
-                                <td>: {{ $model->email }}</td>
+                                <td>NISN</td>
+                                <td>: {{ $model->nisn }}</td>
                             </tr>
                             <tr>
-                                <td>TGL BUAT</td>
-                                <td>: {{ $model->created_at->format('d/m/Y H:i') }}</td>
+                                <td>Prodi</td>
+                                <td>: {{ $model->program_studi }}</td>
+                            </tr>
+                            <tr>
+                                <td>Angkatan</td>
+                                <td>: {{ $model->angkatan }}</td>
+                            </tr>
+                            <tr>
+                                <td>Jenis Kelamin</td>
+                                <td>: {{ $model->jk }}</td>
+                            </tr>
+                            <tr>
+                                <td>User Input</td>
+                                <td>: {{ $model->user->name }}</td>
                             </tr>
                         </thead>
                     </table>
-                <a href="{{ url('user', []) }}" class="ml-2 btn-primary btn">Kembali</a>
+                <a href="{{ url('siswa', []) }}" class="ml-2 btn-primary btn">Kembali</a>
 
                 </div>
             </div>

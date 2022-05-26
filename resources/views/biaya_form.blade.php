@@ -1,0 +1,31 @@
+@extends('layouts.app_adminlte')
+
+@section('content')
+
+
+    <!-- Main content -->
+    <section class="content">
+            <div class="card">
+                <div class="card-header">Tambah Biaya</div>
+
+                <div class="card-body">
+                {!! Form::model($model, ['route'=>$route, 'method'=>$method]) !!}
+                <div class="form-group">
+                    <label for="nama">Nama</label>
+                    {!! Form::text('nama', null, ['class'=>'form-control','autofocus'=>true]) !!}
+                    <span class="text-danger">{{ $errors->first('nama') }} </span>
+                </div>
+                <div class="form-group">
+                    <label for="nisn">Jumlah Biaya</label>
+                    {!! Form::text('nisn', null, ['class'=>'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('nisn') }} </span>
+                </div>
+                
+                {!! Form::submit($namaTombol, ['class'=>'btn btn-primary']) !!}
+                <a href="{{ url('biaya', []) }}" class="ml-2 btn-primary btn">Kembali</a>
+                {!! Form::close() !!}
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+@endsection
