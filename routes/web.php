@@ -10,6 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// rute logout
+Route::get('logout', function () {
+    Auth::logout();
+    return redirect('login');
+});
+
+
 // menggabungkan route, agar dapat diakses ketika user login
 Route::middleware(['auth'])->group(function(){
     Route::resource('user', 'UserController')->middleware('admin');
