@@ -8,7 +8,7 @@ use Auth;
 
 class BiayaController extends Controller
 {
-    private $viewPrefix = "biaya"; 
+    private $viewPrefix = "admin.biaya"; 
     private $routePrefix = "biaya";  
     /**
      * Display a listing of the resource.
@@ -20,8 +20,7 @@ class BiayaController extends Controller
         $models = Model::latest()->paginate(10);
         $data['models'] = $models;
         $data['routePrefix'] = $this->routePrefix;
-        // return view($this->viewPrefix . '_index', $data);
-        return view( 'admin.biaya_index', $data);
+        return view($this->viewPrefix . '_index', $data);
     }
 
     /**

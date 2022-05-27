@@ -7,7 +7,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Tambah Data User</h4>
+                <h4 class="card-title">Tambah User</h4>
             </div>               
             <div class="card-body">
                 {!! Form::model($model, ['route'=>$route, 'method'=>$method]) !!}

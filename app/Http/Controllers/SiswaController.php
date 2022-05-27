@@ -8,7 +8,7 @@ use Auth;
 
 class SiswaController extends Controller
 {
-    private $viewPrefix = "siswa"; 
+    private $viewPrefix = "operator.siswa"; 
     private $routePrefix = "siswa";  
     /**
      * Display a listing of the resource.

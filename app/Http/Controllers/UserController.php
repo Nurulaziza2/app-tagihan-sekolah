@@ -7,7 +7,7 @@ use \App\User as Model;
 
 class UserController extends Controller
 {
-    private $viewPrefix = "user"; 
+    private $viewPrefix = "admin.user"; 
     private $routePrefix = "user";  
     /**
      * Display a listing of the resource.
@@ -19,8 +19,7 @@ class UserController extends Controller
         $models = Model::latest()->paginate(100);
         $data['models'] = $models;
         $data['routePrefix'] = $this->routePrefix;
-        // return view($this->viewPrefix . '_index', $data);
-        return view('admin.user_index', $data);
+        return view($this->viewPrefix . '_index', $data);
     }
 
     /**
@@ -35,8 +34,7 @@ class UserController extends Controller
         $data['method'] = 'POST';
         $data['route'] = $this->routePrefix .'.store';
         $data['namaTombol']= 'Simpan';
-        // return view($this->viewPrefix . '_form', $data);
-        return view('admin.user_form', $data);
+        return view($this->viewPrefix . '_form', $data);
 
     }
 
@@ -121,13 +119,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        if($id==1){
-            flash("Admin tidak dapat dihapus")->error();
-            return back();
-        }
         $model =  Model::findOrFail($id);
         $model->delete();
-        flash("Data berhasil dihapus")->success();
+        flash("Data berhasil dihapus")->danger();
         return back();
     }
 }

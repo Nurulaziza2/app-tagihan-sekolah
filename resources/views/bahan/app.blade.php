@@ -139,9 +139,9 @@
 				</div>
 				<ul class="metismenu" id="menu">
 					<li class="nav-label first">Main Menu</li>
-                    <li><a class="ai-icon" href="{{ asset('template') }}/javascript:void()" aria-expanded="false">
+                    <li><a class="ai-icon" href="{{ route ('home') }}" class="nav-link {{ request()->is('home*') ? 'active' : '' }}">
 							<i class="flaticon-144-layout"></i>
-							<span class="nav-text">Dashboard</span>
+							<span class="nav-text">Beranda</span>
 						</a>
                     </li>
 
@@ -155,7 +155,17 @@
                         <span class="nav-text">Data Biaya</span>
                     </a>
                     </li>
-
+                    <li><a class=" ai-icon" href="{{ route('siswa.index') }}" aria-expanded="false">
+                        <i class="flaticon-144-layout"></i>
+                        <span class="nav-text">Data Siswa</span>
+                    </a>
+                    </li>
+                    <li>
+                        <a class=" ai-icon" href="{{ route ('logout') }}" class="nav-link {{ request()->is('logout*') ? 'active' : '' }}" aria-expanded="false">
+                        <i class="flaticon-144-layout"></i>
+                        <span class="nav-text">Logout</span>
+                    </li>
+                    
                     <li><a class=" ai-icon" href="/kalkulator" aria-expanded="false">
                         <i class="flaticon-144-layout"></i>
                         <span class="nav-text">Calculator</span>
