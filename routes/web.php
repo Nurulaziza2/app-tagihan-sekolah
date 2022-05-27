@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function(){
 
 
 Route::get('/', function () {
-    return view('auth.login2');
+    return view('welcome');
 });
 
 // kalkulator
