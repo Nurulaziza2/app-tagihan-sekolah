@@ -19,7 +19,8 @@ class UserController extends Controller
         $models = Model::latest()->paginate(100);
         $data['models'] = $models;
         $data['routePrefix'] = $this->routePrefix;
-        return view($this->viewPrefix . '_index', $data);
+        // return view($this->viewPrefix . '_index', $data);
+        return view('admin.user_index', $data);
     }
 
     /**
@@ -34,7 +35,8 @@ class UserController extends Controller
         $data['method'] = 'POST';
         $data['route'] = $this->routePrefix .'.store';
         $data['namaTombol']= 'Simpan';
-        return view($this->viewPrefix . '_form', $data);
+        // return view($this->viewPrefix . '_form', $data);
+        return view('admin.user_form', $data);
 
     }
 

@@ -117,16 +117,7 @@
                         </ul>
                     </div>
                 </nav>
-				<div class="sub-header">
-					<div class="d-flex align-items-center flex-wrap mr-auto">
-						<h5 class="dashboard_bar">Dashboard</h5>
-					</div>
-					<div class="d-flex align-items-center">
-						<a href="{{ asset('template') }}/javascript:void(0);" class="btn btn-xs btn-primary light mr-1">Today</a>
-						<a href="{{ asset('template') }}/javascript:void(0);" class="btn btn-xs btn-primary light mr-1">Month</a>
-						<a href="{{ asset('template') }}/javascript:void(0);" class="btn btn-xs btn-primary light">Year</a>
-					</div>
-				</div>
+				
 			</div>
         </div>
         <!--**********************************
@@ -148,25 +139,20 @@
 				</div>
 				<ul class="metismenu" id="menu">
 					<li class="nav-label first">Main Menu</li>
-                    <li><a class="has-arrow ai-icon" href="{{ asset('template') }}/javascript:void()" aria-expanded="false">
+                    <li><a class="ai-icon" href="{{ asset('template') }}/javascript:void()" aria-expanded="false">
 							<i class="flaticon-144-layout"></i>
 							<span class="nav-text">Dashboard</span>
 						</a>
-                        <ul aria-expanded="false">
-							<li><a href="{{ asset('template') }}/index.html">Dashboard Light</a></li>
-							<li><a href="{{ asset('template') }}/index-2.html">Dashboard Dark</a></li>
-							<li><a href="{{ asset('template') }}/my-wallets.html">Wallet</a></li>
-							<li><a href="{{ asset('template') }}/tranasactions.html">Transactions</a></li>
-							<li><a href="{{ asset('template') }}/coin-details.html">Coin Details</a></li>
-							<li><a href="{{ asset('template') }}/portofolio.html">Portofolio</a></li>
-							<li><a href="{{ asset('template') }}/market-capital.html">Market Capital</a></li>
-						</ul>
-
                     </li>
 
                     <li><a class=" ai-icon" href="{{ route('user.index') }}" aria-expanded="false">
                         <i class="flaticon-144-layout"></i>
                         <span class="nav-text">Data User</span>
+                    </a>
+                    </li>
+                    <li><a class=" ai-icon" href="{{ route('biaya.index') }}" aria-expanded="false">
+                        <i class="flaticon-144-layout"></i>
+                        <span class="nav-text">Data Biaya</span>
                     </a>
                     </li>
 
@@ -207,17 +193,6 @@
 				</div>
 			</div> -->
 			<div class="container-fluid">
-				<div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
-					<h2 class="font-w600 title mb-2 mr-auto ">Dashboard</h2>
-					<div class="weather-btn mb-2">
-						<span class="mr-3 font-w600 text-black"><i class="fa fa-cloud mr-2"></i>21</span>
-						<select class="form-control style-1 default-select  mr-3 ">
-							<option>Medan, IDN</option>
-							<option>Jakarta, IDN</option>
-							<option>Surabaya, IDN</option>
-						</select>
-					</div>
-					<a href="{{ asset('template') }}/javascript:void(0);" class="btn btn-secondary mb-2"><i class="las la-calendar scale5 mr-3"></i>Filter Periode</a>
 					@include('flash::message')
 					@yield('content')
 				</div>

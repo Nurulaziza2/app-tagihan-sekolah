@@ -20,7 +20,8 @@ class BiayaController extends Controller
         $models = Model::latest()->paginate(10);
         $data['models'] = $models;
         $data['routePrefix'] = $this->routePrefix;
-        return view($this->viewPrefix . '_index', $data);
+        // return view($this->viewPrefix . '_index', $data);
+        return view( 'admin.biaya_index', $data);
     }
 
     /**
