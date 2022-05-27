@@ -25,20 +25,6 @@
 </head>
 <body>
 
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader">
-        <div class="sk-three-bounce">
-            <div class="sk-child sk-bounce1"></div>
-            <div class="sk-child sk-bounce2"></div>
-            <div class="sk-child sk-bounce3"></div>
-        </div>
-    </div>
-    <!--*******************
-        Preloader end
-    ********************-->
-
     <!--**********************************
         Main wrapper start
     ***********************************-->
@@ -190,153 +176,6 @@
                     </a>
                     </li>
                     
-					<li class="nav-label">Apps</li>
-                    <li><a class="has-arrow ai-icon" href="{{ asset('template') }}/javascript:void()" aria-expanded="false">
-						<i class="flaticon-077-menu-1"></i>
-							<span class="nav-text">Apps</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ asset('template') }}/app-profile.html">Profile</a></li>
-							<li><a href="{{ asset('template') }}/post-details.html">Post Details</a></li>
-							<li><a href="{{ asset('template') }}/page-chat.html">Chat<span class="badge badge-xs badge-danger">New</span></a></li>
-							<li><a class="has-arrow" href="{{ asset('template') }}/javascript:void(0);" aria-expanded="false">Project<span class="badge badge-xs badge-danger">New</span></a>
-                                <ul aria-expanded="false">
-                                    <li><a href="{{ asset('template') }}/project-list.html">Project List</a></li>
-                                    <li><a href="{{ asset('template') }}/project-card.html">Project Card</a></li>
-                                </ul>
-                            </li>
-							<li><a class="has-arrow" href="{{ asset('template') }}/javascript:void(0);" aria-expanded="false">User<span class="badge badge-xs badge-danger">New</span></a>
-                                <ul aria-expanded="false">
-                                    <li><a href="{{ asset('template') }}/user-list-datatable.html">User List</a></li>
-                                    <li><a href="{{ asset('template') }}/user-list-column.html">User Card</a></li>
-                                </ul>
-                            </li>
-							<li><a class="has-arrow" href="{{ asset('template') }}/javascript:void(0);" aria-expanded="false">Contact<span class="badge badge-xs badge-danger">New</span></a>
-                                <ul aria-expanded="false">
-                                    <li><a href="{{ asset('template') }}/contact-list.html">Contact List</a></li>
-                                    <li><a href="{{ asset('template') }}/contact-card.html">Contact Card</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="has-arrow" href="{{ asset('template') }}/javascript:void()" aria-expanded="false">Email</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="{{ asset('template') }}/email-compose.html">Compose</a></li>
-                                    <li><a href="{{ asset('template') }}/email-inbox.html">Inbox</a></li>
-                                    <li><a href="{{ asset('template') }}/email-read.html">Read</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="{{ asset('template') }}/app-calender.html">Calendar</a></li>
-							<li><a class="has-arrow" href="{{ asset('template') }}/javascript:void()" aria-expanded="false">Shop</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="{{ asset('template') }}/ecom-product-grid.html">Product Grid</a></li>
-									<li><a href="{{ asset('template') }}/ecom-product-list.html">Product List</a></li>
-									<li><a href="{{ asset('template') }}/ecom-product-detail.html">Product Details</a></li>
-									<li><a href="{{ asset('template') }}/ecom-product-order.html">Order</a></li>
-									<li><a href="{{ asset('template') }}/ecom-checkout.html">Checkout</a></li>
-									<li><a href="{{ asset('template') }}/ecom-invoice.html">Invoice</a></li>
-									<li><a href="{{ asset('template') }}/ecom-customers.html">Customers</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-					
-                    <li><a class="has-arrow ai-icon" href="{{ asset('template') }}/javascript:void()" aria-expanded="false">
-							<i class="flaticon-061-puzzle"></i>
-							<span class="nav-text">Charts</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ asset('template') }}/chart-flot.html">Flot</a></li>
-                            <li><a href="{{ asset('template') }}/chart-morris.html">Morris</a></li>
-                            <li><a href="{{ asset('template') }}/chart-chartjs.html">Chartjs</a></li>
-                            <li><a href="{{ asset('template') }}/chart-chartist.html">Chartist</a></li>
-                            <li><a href="{{ asset('template') }}/chart-sparkline.html">Sparkline</a></li>
-                            <li><a href="{{ asset('template') }}/chart-peity.html">Peity</a></li>
-                        </ul>
-                    </li>
-					<li class="nav-label">components</li>
-                    <li><a class="has-arrow ai-icon" href="{{ asset('template') }}/javascript:void()" aria-expanded="false">
-							<i class="flaticon-003-diamond"></i>
-							<span class="nav-text">Bootstrap</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ asset('template') }}/ui-accordion.html">Accordion</a></li>
-                            <li><a href="{{ asset('template') }}/ui-alert.html">Alert</a></li>
-                            <li><a href="{{ asset('template') }}/ui-badge.html">Badge</a></li>
-                            <li><a href="{{ asset('template') }}/ui-button.html">Button</a></li>
-                            <li><a href="{{ asset('template') }}/ui-modal.html">Modal</a></li>
-                            <li><a href="{{ asset('template') }}/ui-button-group.html">Button Group</a></li>
-                            <li><a href="{{ asset('template') }}/ui-list-group.html">List Group</a></li>
-                            <li><a href="{{ asset('template') }}/ui-media-object.html">Media Object</a></li>
-                            <li><a href="{{ asset('template') }}/ui-card.html">Cards</a></li>
-                            <li><a href="{{ asset('template') }}/ui-carousel.html">Carousel</a></li>
-                            <li><a href="{{ asset('template') }}/ui-dropdown.html">Dropdown</a></li>
-                            <li><a href="{{ asset('template') }}/ui-popover.html">Popover</a></li>
-                            <li><a href="{{ asset('template') }}/ui-progressbar.html">Progressbar</a></li>
-                            <li><a href="{{ asset('template') }}/ui-tab.html">Tab</a></li>
-                            <li><a href="{{ asset('template') }}/ui-typography.html">Typography</a></li>
-                            <li><a href="{{ asset('template') }}/ui-pagination.html">Pagination</a></li>
-                            <li><a href="{{ asset('template') }}/ui-grid.html">Grid</a></li>
-
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow ai-icon" href="{{ asset('template') }}/javascript:void()" aria-expanded="false">
-							<i class="flaticon-053-heart"></i>
-							<span class="nav-text">Plugins</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ asset('template') }}/uc-select2.html">Select 2</a></li>
-                            <li><a href="{{ asset('template') }}/uc-nestable.html">Nestedable</a></li>
-                            <li><a href="{{ asset('template') }}/uc-noui-slider.html">Noui Slider</a></li>
-                            <li><a href="{{ asset('template') }}/uc-sweetalert.html">Sweet Alert</a></li>
-                            <li><a href="{{ asset('template') }}/uc-toastr.html">Toastr</a></li>
-                            <li><a href="{{ asset('template') }}/map-jqvmap.html">Jqv Map</a></li>
-							<li><a href="{{ asset('template') }}/uc-lightgallery.html">Light Gallery</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{ asset('template') }}/widget-basic.html" class="ai-icon" aria-expanded="false">
-							<i class="flaticon-381-settings-2"></i>
-							<span class="nav-text">Widget</span>
-						</a>
-					</li>
-                    <li><a class="has-arrow ai-icon" href="{{ asset('template') }}/javascript:void()" aria-expanded="false">
-							<i class="flaticon-044-file"></i>
-							<span class="nav-text">Forms</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ asset('template') }}/form-element.html">Form Elements</a></li>
-                            <li><a href="{{ asset('template') }}/form-wizard.html">Wizard</a></li>
-                            <li><a href="{{ asset('template') }}/form-editor-summernote.html">Summernote</a></li>
-                            <li><a href="{{ asset('template') }}/form-pickers.html">Pickers</a></li>
-                            <li><a href="{{ asset('template') }}/form-validation-jquery.html">Jquery Validate</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow ai-icon" href="{{ asset('template') }}/javascript:void()" aria-expanded="false">
-							<i class="flaticon-381-network"></i>
-							<span class="nav-text">Table</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ asset('template') }}/table-bootstrap-basic.html">Bootstrap</a></li>
-                            <li><a href="{{ asset('template') }}/table-datatable-basic.html">Datatable</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow ai-icon" href="{{ asset('template') }}/javascript:void()" aria-expanded="false">
-							<i class="flaticon-049-copy"></i>
-							<span class="nav-text">Pages</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ asset('template') }}/page-register.html">Register</a></li>
-                            <li><a href="{{ asset('template') }}/page-login.html">Login</a></li>
-                            <li><a class="has-arrow" href="{{ asset('template') }}/javascript:void()" aria-expanded="false">Error</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="{{ asset('template') }}/page-error-400.html">Error 400</a></li>
-                                    <li><a href="{{ asset('template') }}/page-error-403.html">Error 403</a></li>
-                                    <li><a href="{{ asset('template') }}/page-error-404.html">Error 404</a></li>
-                                    <li><a href="{{ asset('template') }}/page-error-500.html">Error 500</a></li>
-                                    <li><a href="{{ asset('template') }}/page-error-503.html">Error 503</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="{{ asset('template') }}/page-lock-screen.html">Lock Screen</a></li>
-                        </ul>
-                    </li>
                 </ul>
 				<div class="copyright">
 					<p><strong>Zenix Crypto Admin Dashboard</strong> © 2021 All Rights Reserved</p>
@@ -440,7 +279,6 @@
     <script src="{{ asset('template') }}/js/custom.min.js"></script>
 	<script src="{{ asset('template') }}/js/deznav-init.js"></script>
     <script src="{{ asset('template') }}/js/demo.js"></script>
-    <script src="{{ asset('template') }}/js/styleSwitcher.js"></script>
 
 </body>
 </html>

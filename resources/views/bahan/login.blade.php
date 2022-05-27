@@ -57,7 +57,7 @@
                                         </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
-                                               <div class="custom-control custom-checkbox ml-1">
+                                            <div class="custom-control custom-checkbox ml-1">
 													<input type="checkbox" class="custom-control-input" id="basic_checkbox_1 remember" {{ old('remember') ? 'checked' : '' }}>
 													<label class="custom-control-label" for="basic_checkbox_1">Remember my preference</label>
 												</div>

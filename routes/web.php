@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function(){
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login2');
 });
 
 // kalkulator
@@ -37,6 +37,7 @@ Route::get('/kalkulator', function() {
 Route::get('/contoh', function() {
     return view('bahan.blank');
 });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

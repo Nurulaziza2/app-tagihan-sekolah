@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2022 at 10:02 AM
+-- Generation Time: May 27, 2022 at 09:09 AM
 -- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.28
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,11 +30,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `biaya` (
   `id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
-  `nominal` double NOT NULL,
+  `jumlah` double NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `biaya`
+--
+
+INSERT INTO `biaya` (`id`, `nama`, `jumlah`, `user_id`, `created_at`, `updated_at`) VALUES
+(4, 'SPP 2021', 100000, 1, '2022-05-27 06:29:08', '2022-05-27 06:29:25');
 
 -- --------------------------------------------------------
 
@@ -93,17 +100,24 @@ CREATE TABLE `password_resets` (
 CREATE TABLE `siswa` (
   `id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
-  `nis` int(11) NOT NULL,
+  `nisn` varchar(15) NOT NULL,
   `program_studi` varchar(255) NOT NULL,
-  `tanggal_masuk` date NOT NULL,
-  `jenis_kelamin` varchar(11) NOT NULL,
-  `tanggal_lahir` date NOT NULL,
-  `alamat` varchar(255) NOT NULL,
-  `no_hp` varchar(20) NOT NULL,
+  `angkatan` int(4) NOT NULL,
+  `jk` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `siswa`
+--
+
+INSERT INTO `siswa` (`id`, `nama`, `nisn`, `program_studi`, `angkatan`, `jk`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'yuda', '8020190325', 'FASHION DESIGN', 2019, 'Laki-laki', 1, '2022-05-26 05:17:54', '2022-05-26 04:25:36'),
+(2, 'surya', '123123123', 'MENJAHIT', 2019, 'Laki-laki', 0, '2022-05-26 05:19:04', '2022-05-26 05:19:04'),
+(4, 'Jijah', '8020190034', 'FASHION DESIGN', 2019, 'Perempuan', 1, '2022-05-26 04:03:27', '2022-05-26 04:03:27'),
+(6, 'abas', '8020190001', 'MENJAHIT', 2022, 'Laki-laki', 1, '2022-05-27 03:24:40', '2022-05-27 03:24:40');
 
 -- --------------------------------------------------------
 
@@ -115,9 +129,9 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `akses` varchar(12) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `akses` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -127,9 +141,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `akses`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', NULL, '$2y$10$XMdGlSCWqTLn3JHrhw1TSOEpButessFjy8tduWAMi0wsTM6DUtU/2', 'admin', NULL, '2022-04-04 21:07:00', '2022-04-04 21:07:00'),
-(3, 'operator', 'operator@gmail.com', NULL, '$2y$10$PsETM3F2WEBvIKznYAwFxOXcEDZOH/oi3i9C9P.klLxclm01I.wma', 'operator', NULL, '2022-05-23 23:45:27', '2022-05-23 23:45:27');
+INSERT INTO `users` (`id`, `name`, `email`, `akses`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@gmail.com', 'admin', NULL, '$2y$10$r8NmS8uPryFpcRBObZQPBOrWF2yDqBV6iBQc3RuOsgNkNesy/NyqO', NULL, '2022-04-03 23:45:53', '2022-04-03 23:45:53'),
+(6, 'operator', 'operator@gmail.com', 'operator', NULL, '$2y$10$wMTv2VctmPHVJ0gb.Dae1OnDr9AA33vbh6LfLTzokDTtIvaxzWyHi', NULL, '2022-05-25 18:01:24', '2022-05-25 18:01:24');
 
 --
 -- Indexes for dumped tables
@@ -180,7 +194,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `biaya`
 --
 ALTER TABLE `biaya`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -198,13 +212,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

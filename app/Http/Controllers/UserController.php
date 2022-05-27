@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $models = Model::latest()->paginate(10);
+        $models = Model::latest()->paginate(100);
         $data['models'] = $models;
         $data['routePrefix'] = $this->routePrefix;
         return view($this->viewPrefix . '_index', $data);

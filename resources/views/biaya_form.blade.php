@@ -16,9 +16,9 @@
                     <span class="text-danger">{{ $errors->first('nama') }} </span>
                 </div>
                 <div class="form-group">
-                    <label for="nisn">Jumlah Biaya</label>
-                    {!! Form::text('nisn', null, ['class'=>'form-control']) !!}
-                    <span class="text-danger">{{ $errors->first('nisn') }} </span>
+                    <label for="jumlah">Jumlah Biaya</label>
+                    {!! Form::text('jumlah', null, ['class'=>'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('jumlah') }} </span>
                 </div>
                 
                 {!! Form::submit($namaTombol, ['class'=>'btn btn-primary']) !!}

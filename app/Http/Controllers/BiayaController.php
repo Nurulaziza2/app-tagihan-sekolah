@@ -51,9 +51,9 @@ class BiayaController extends Controller
             'nama' => 'required',
             'jumlah' => 'required',
         ]);
+
     
         $requestData['user_id'] = Auth::user()->id;
-
         Model::create($requestData);
         flash("Data berhasil disimpan");
         return back();
@@ -99,10 +99,9 @@ class BiayaController extends Controller
     {
         
         $requestData = $request->validate([
-            'nama' => 'required',
             'jumlah' => 'required'
         ]);
-      
+    
         $requestData['user_id'] = Auth::user()->id;
         
         Model::where('id', $id)->update($requestData);
@@ -118,10 +117,6 @@ class BiayaController extends Controller
      */
     public function destroy($id)
     {
-        if($id==1){
-            flash("Admin tidak dapat dihapus")->error();
-            return back();
-        }
         $model =  Model::findOrFail($id);
         $model->delete();
         flash("Data berhasil dihapus")->success();
