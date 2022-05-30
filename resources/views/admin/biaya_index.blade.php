@@ -1,4 +1,4 @@
-@extends('bahan.app')
+@extends('bahan.app-stisla')
 
 @section('content')
 

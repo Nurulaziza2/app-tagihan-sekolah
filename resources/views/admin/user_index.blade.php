@@ -1,24 +1,22 @@
-@extends('bahan.app')
+@extends('bahan.app-stisla')
 
 @section('content')
-
-    <!-- Main content -->
-    <div class="col-lg-12">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Data User</h4>
+                    <h4 class="card-title">Table Data User</h4>
                 </div>               
                 <div class="card-body">
                     <a href="{{ route('user.create') }}" class="btn btn-primary mb-2">Tambah Data</a>
                     <div class="table-responsive">
-                    <table class="table table-responsive-md">
-                        <thead>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Tanggal Buat</th>
-                            <th>Aksi</th>
-                        </thead>
+                        <table class="table table-hover">
+                            <thead>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Tanggal Buat</th>
+                        <th>Aksi</th>
+                    </thead>
                     <tbody>
                         
                         @foreach ($models as $item)
@@ -41,6 +39,9 @@
                 </div>
             </div>
             </div>
+        </div>
+    <!-- Main content -->
+    
 
         <!-- /.content -->
 @endsection
