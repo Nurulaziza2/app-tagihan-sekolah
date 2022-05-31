@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2022 at 09:09 AM
+-- Generation Time: May 31, 2022 at 07:43 AM
 -- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `biaya` (
   `id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
-  `jumlah` double NOT NULL,
+  `nominal` double NOT NULL,
+  `tahun` int(4) NOT NULL,
+  `deskripsi` varchar(255) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
@@ -40,8 +42,9 @@ CREATE TABLE `biaya` (
 -- Dumping data for table `biaya`
 --
 
-INSERT INTO `biaya` (`id`, `nama`, `jumlah`, `user_id`, `created_at`, `updated_at`) VALUES
-(4, 'SPP 2021', 100000, 1, '2022-05-27 06:29:08', '2022-05-27 06:29:25');
+INSERT INTO `biaya` (`id`, `nama`, `nominal`, `tahun`, `deskripsi`, `user_id`, `created_at`, `updated_at`) VALUES
+(2, 'SPP DESAIN 2022', 100000, 2022, NULL, 1, '2022-05-31 05:23:00', '2022-05-31 05:23:00'),
+(3, 'SPP Fashion', 100000, 2022, NULL, 1, '2022-05-31 05:41:51', '2022-05-31 05:41:51');
 
 -- --------------------------------------------------------
 
@@ -61,6 +64,31 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kelas`
+--
+
+CREATE TABLE `kelas` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `program_kursus` varchar(20) NOT NULL,
+  `durasi_kursus` varchar(20) NOT NULL,
+  `detail` varchar(255) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kelas`
+--
+
+INSERT INTO `kelas` (`id`, `nama`, `program_kursus`, `durasi_kursus`, `detail`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'Menjahit 01', 'Menjahit', '3 Bulan', '', 0, '2022-05-31 05:13:17', '2022-05-31 05:13:17'),
+(2, '01DS', 'Fashion Design', '6 Bulan', NULL, 1, '2022-05-31 03:47:49', '2022-05-31 03:47:49');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -75,9 +103,9 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1);
+(4, '2014_10_12_000000_create_users_table', 1),
+(5, '2014_10_12_100000_create_password_resets_table', 1),
+(6, '2019_08_19_000000_create_failed_jobs_table', 1);
 
 -- --------------------------------------------------------
 
@@ -100,10 +128,11 @@ CREATE TABLE `password_resets` (
 CREATE TABLE `siswa` (
   `id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
-  `nisn` varchar(15) NOT NULL,
-  `program_studi` varchar(255) NOT NULL,
-  `angkatan` int(4) NOT NULL,
-  `jk` varchar(255) NOT NULL,
+  `nis` int(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `jk` varchar(20) NOT NULL,
+  `kelas_id` int(11) DEFAULT NULL,
+  `tgl_masuk` date NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
@@ -113,11 +142,9 @@ CREATE TABLE `siswa` (
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id`, `nama`, `nisn`, `program_studi`, `angkatan`, `jk`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'yuda', '8020190325', 'FASHION DESIGN', 2019, 'Laki-laki', 1, '2022-05-26 05:17:54', '2022-05-26 04:25:36'),
-(2, 'surya', '123123123', 'MENJAHIT', 2019, 'Laki-laki', 0, '2022-05-26 05:19:04', '2022-05-26 05:19:04'),
-(4, 'Jijah', '8020190034', 'FASHION DESIGN', 2019, 'Perempuan', 1, '2022-05-26 04:03:27', '2022-05-26 04:03:27'),
-(6, 'abas', '8020190001', 'MENJAHIT', 2022, 'Laki-laki', 1, '2022-05-27 03:24:40', '2022-05-27 03:24:40');
+INSERT INTO `siswa` (`id`, `nama`, `nis`, `email`, `jk`, `kelas_id`, `tgl_masuk`, `user_id`, `created_at`, `updated_at`) VALUES
+(2, 'Yuda', 8090, 'yuda@mail.com', 'Laki-laki', 2, '2022-05-01', 1, '2022-05-31 04:29:34', '2022-05-31 04:29:34'),
+(3, 'Nurul', 8000, 'nurul@gmail.com', 'Perempuan', 1, '2022-05-29', 1, '2022-05-31 04:35:49', '2022-05-31 04:35:49');
 
 -- --------------------------------------------------------
 
@@ -126,24 +153,23 @@ INSERT INTO `siswa` (`id`, `nama`, `nisn`, `program_studi`, `angkatan`, `jk`, `u
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `akses` varchar(12) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` int(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `password` varchar(255) NOT NULL,
+  `akses` varchar(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `akses`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', 'admin', NULL, '$2y$10$r8NmS8uPryFpcRBObZQPBOrWF2yDqBV6iBQc3RuOsgNkNesy/NyqO', NULL, '2022-04-03 23:45:53', '2022-04-03 23:45:53'),
-(6, 'operator', 'operator@gmail.com', 'operator', NULL, '$2y$10$wMTv2VctmPHVJ0gb.Dae1OnDr9AA33vbh6LfLTzokDTtIvaxzWyHi', NULL, '2022-05-25 18:01:24', '2022-05-25 18:01:24');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `akses`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@mail.com', NULL, '$2y$10$GUOdLZZj3c4KF6p5j4PLiOpbHvaEJ7Te2DU.1F3hkOBOXOKZlevGm', 'admin', '2022-05-25 08:03:41', '2022-05-25 08:03:41'),
+(4, 'surya', 'surya@mail.com', NULL, '$2a$12$CNMhP2acLAtAevgHMPfARuizR14spzFE1Jn2/qrBL05exj4W04T8a', 'operator', '2022-05-30 08:44:43', '2022-05-30 08:44:43');
 
 --
 -- Indexes for dumped tables
@@ -159,6 +185,12 @@ ALTER TABLE `biaya`
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kelas`
+--
+ALTER TABLE `kelas`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -183,8 +215,7 @@ ALTER TABLE `siswa`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -194,7 +225,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `biaya`
 --
 ALTER TABLE `biaya`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -203,22 +234,28 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `kelas`
+--
+ALTER TABLE `kelas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
