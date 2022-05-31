@@ -27,8 +27,9 @@ Route::middleware(['auth'])->group(function(){
 });
 
 
+
 Route::get('/', function () {
-    return view('/home');
+    return view('home');
 })->middleware('auth');
 
 // kalkulator
@@ -41,5 +42,5 @@ Route::get('/contoh', function() {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
