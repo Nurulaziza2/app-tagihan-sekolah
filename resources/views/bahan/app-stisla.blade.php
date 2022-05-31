@@ -144,29 +144,29 @@
           </div>
           <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
-              <li class="nav-item active">
+              <li class="nav-item {{ Request::path() === 'home' ? 'active' : '' }}">
                 <a href="{{ url('/home') }}" class="nav-link "><i class="fas fa-fire"></i><span>Dashboard</span></a>  
               </li>
               @if (auth()->user()->akses == 'admin')
-                <li>
+                <li class="nav-item {{ Request::path() === 'user' ? 'active' : '' }}">
                   <a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users"></i> <span>Data User</span>
                   </a>
                 </li>
-                <li>
+                <li class="nav-item {{ Request::path() === 'biaya' ? 'active' : '' }}">
                   <a class="nav-link" href="{{ route('biaya.index') }}"><i class="fas fa-money-bill-wave"></i> <span>Data Biaya</span>
                   </a>
                 </li>
               @endif
 
-              <li>
+              <li class="nav-item {{ Request::path() === 'kelas' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('kelas.index') }}"><i class="fas fa-pencil-ruler"></i> <span>Data Kelas</span>
                 </a>
               </li>
-              <li>
+              <li class="nav-item {{ Request::path() === 'siswa' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('siswa.index') }}"><i class="fas fa-user-graduate"></i> <span>Data Siswa</span>
                 </a>
               </li>
-              <li>
+              <li class="nav-item {{ Request::path() === 'laporan' ? 'active' : '' }}">
                 <a class="nav-link" href="#"><i class="fas fa-file"></i> <span>Laporan</span>
                 </a>
               </li>
@@ -184,7 +184,7 @@
       <div class="main-content">
         <section class="section">
             <div class="section-header">
-              <h1>Data</h1>
+              <h1>Data {{ Request::path() }}</h1>
             </div>
         
             <div class="section-body">

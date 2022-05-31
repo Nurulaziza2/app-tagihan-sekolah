@@ -18,7 +18,11 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $models = Model::latest()->paginate(10);
+        if(request()->filled('q')) {
+            $models = Model::search(request('q'))->paginate(100);
+        } else {
+            $models = Model::orderBy('id', 'desc')->paginate(100);
+        }
         $data['models'] = $models;
         $data['routePrefix'] = $this->routePrefix;
         return view($this->viewPrefix . '_index', $data);

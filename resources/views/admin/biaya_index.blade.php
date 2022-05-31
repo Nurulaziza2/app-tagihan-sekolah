@@ -11,7 +11,7 @@
                 <div class="card-body">           
                 <a href="{{ route('biaya.create') }}" class="btn btn-primary mb-2">Tambah Biaya</a>
                 <div class="table-responsive">
-                    <table class="table table-responsive-md">
+                    <table class="table table-hover">
                     <thead>
                         <th>No</th>
                         <th>Nama</th>
