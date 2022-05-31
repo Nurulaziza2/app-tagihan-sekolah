@@ -17,9 +17,20 @@
                     <span class="text-danger">{{ $errors->first('nama') }} </span>
                 </div>
                 <div class="form-group">
-                    <label for="jumlah">Jumlah Biaya</label>
-                    {!! Form::text('jumlah', null, ['class'=>'form-control']) !!}
-                    <span class="text-danger">{{ $errors->first('jumlah') }} </span>
+                    <label for="nominal">Nominal</label>
+                    {!! Form::text('nominal', null, ['class'=>'form-control format-rupiah']) !!}
+                    <span class="text-danger">{{ $errors->first('nominal') }} </span>
+                </div>
+                <div class="form-group">
+                    <label for="tahun">Tahun</label>
+                    {!! Form::selectRange('tahun', 2020, date('Y'), null, ['class'=>'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('tahun') }} </span>
+                </div>
+
+                <div class="form-group">
+                    <label for="deskripsi">Deskripsi</label>
+                    {!! Form::textarea('deskripsi', null, ['class'=>'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('deskripsi') }} </span>
                 </div>
                 
                 {!! Form::submit($namaTombol, ['class'=>'btn btn-primary']) !!}

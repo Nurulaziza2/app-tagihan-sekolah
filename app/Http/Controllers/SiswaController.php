@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Siswa as Model;
+use \App\Kelas;
 use Auth;
 
 class SiswaController extends Controller
@@ -33,6 +34,7 @@ class SiswaController extends Controller
         $model = new Model();
         $data['model'] = $model;
         $data['method'] = 'POST';
+        $data['kelas']= Kelas::pluck('nama','id');
         $data['route'] = $this->routePrefix .'.store';
         $data['namaTombol']= 'Simpan';
         return view($this->viewPrefix . '_form', $data);
@@ -49,12 +51,13 @@ class SiswaController extends Controller
     {
         $requestData = $request->validate([
             'nama' => 'required',
-            'nisn' => 'required|unique:siswa',
-            'program_studi' => 'required',
-            'angkatan' => 'required',
-            'jk' => 'required'
+            'nis' => 'required|unique:siswa',
+            'email'=> 'required|email|unique:siswa',
+            'jk' => 'required',
+            'kelas_id' => 'nullable',
+            'tgl_masuk' => 'required',
         ]);
-    
+        // $requestData['kelas_id'] = Auth::kelas()->id;
         $requestData['user_id'] = Auth::user()->id;
 
         Model::create($requestData);
@@ -87,6 +90,7 @@ class SiswaController extends Controller
         $data['model'] = $model;
         $data['method'] = 'PUT';
         $data['route'] = [$this->routePrefix . '.update', $id];
+        $data['kelas']= Kelas::pluck('nama','id');
         $data['namaTombol']= 'Update';
         return view($this->viewPrefix . '_form', $data);
     }
@@ -103,12 +107,13 @@ class SiswaController extends Controller
         
         $requestData = $request->validate([
             'nama' => 'required',
-            'nisn' => 'required|unique:siswa,nisn,' . $id,
-            'program_studi' => 'required',
-            'angkatan' => 'required',
+            'nis' => 'required|unique:siswa,nis,' . $id,
+            'email'=> 'required|email|unique:siswa',
             'jk' => 'required',
+            'kelas_id'=> 'nullable',
+            'tgl_masuk' => 'required',
         ]);
-      
+        
         $requestData['user_id'] = Auth::user()->id;
         
         Model::where('id', $id)->update($requestData);
@@ -124,10 +129,7 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        if($id==1){
-            flash("Admin tidak dapat dihapus")->error();
-            return back();
-        }
+
         $model =  Model::findOrFail($id);
         $model->delete();
         flash("Data berhasil dihapus")->success();

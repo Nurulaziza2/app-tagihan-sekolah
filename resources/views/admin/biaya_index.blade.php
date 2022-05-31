@@ -15,7 +15,9 @@
                     <thead>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Jumlah</th>
+                        <th>Nominal</th>
+                        <th>Tahun</th>
+                        <th>Deskripsi</th>
                         <th>Aksi</th>
                     </thead>
                     <tbody>
@@ -24,8 +26,9 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->nama }}</td>
-                            <td>{{ $item->jumlah }}</td>
-                            {{-- <td>{{ $item->created_at->format('d/m/Y H:i') }}</td> --}}
+                            <td>Rp{{ number_format($item->nominal,0,",",".") }}</td>
+                            <td>{{ $item->tahun }}</td>
+                            <td>{{ $item->deskripsi }}</td>
                             <td>
                                 {!! Form::open(['route'=>[$routePrefix . '.destroy',$item->id],'method'=>'DELETE','onsubmit'=>'return confirm("Anda Yakin?")']) !!}
                                 <a href="{{ route($routePrefix . '.edit', $item->id) }}" class="btn btn-warning">Edit</a>
@@ -40,6 +43,6 @@
                 </div>
             </div>
             </div>
-        
+    </div>
         <!-- /.content -->
 @endsection

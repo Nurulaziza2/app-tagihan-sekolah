@@ -19,20 +19,24 @@
                                 <td>: {{ $model->nama }}</td>
                             </tr>
                             <tr>
-                                <td>NISN</td>
-                                <td>: {{ $model->nisn }}</td>
+                                <td>NIS</td>
+                                <td>: {{ $model->nis }}</td>
                             </tr>
                             <tr>
-                                <td>Prodi</td>
-                                <td>: {{ $model->program_studi }}</td>
-                            </tr>
-                            <tr>
-                                <td>Angkatan</td>
-                                <td>: {{ $model->angkatan }}</td>
+                                <td>email</td>
+                                <td>: {{ $model->email }}</td>
                             </tr>
                             <tr>
                                 <td>Jenis Kelamin</td>
                                 <td>: {{ $model->jk }}</td>
+                            </tr>
+                            <tr>
+                                <td>Kelas</td>
+                                <td>: {{ $model->kelas_id }}</td>
+                            </tr>
+                            <tr>
+                                <td>Tanggal Masuk</td>
+                                <td>{{ $model->tgl_masuk }}</td>
                             </tr>
                             <tr>
                                 <td>User Input</td>

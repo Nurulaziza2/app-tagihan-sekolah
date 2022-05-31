@@ -147,9 +147,29 @@
               <li class="nav-item active">
                 <a href="{{ url('/home') }}" class="nav-link "><i class="fas fa-fire"></i><span>Dashboard</span></a>  
               </li>
-              <li><a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-pencil-ruler"></i> <span>Data User</span></a></li>
-              <li><a class="nav-link" href="{{ route('biaya.index') }}"><i class="fas fa-pencil-ruler"></i> <span>Data Biaya</span></a></li>
-              <li><a class="nav-link" href="{{ route('siswa.index') }}"><i class="fas fa-pencil-ruler"></i> <span>Data Siswa</span></a></li>
+              @if (auth()->user()->akses == 'admin')
+                <li>
+                  <a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users"></i> <span>Data User</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link" href="{{ route('biaya.index') }}"><i class="fas fa-money-bill-wave"></i> <span>Data Biaya</span>
+                  </a>
+                </li>
+              @endif
+
+              <li>
+                <a class="nav-link" href="{{ route('kelas.index') }}"><i class="fas fa-pencil-ruler"></i> <span>Data Kelas</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link" href="{{ route('siswa.index') }}"><i class="fas fa-user-graduate"></i> <span>Data Siswa</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link" href="#"><i class="fas fa-file"></i> <span>Laporan</span>
+                </a>
+              </li>
             </ul>
 
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
@@ -199,6 +219,12 @@
   <!-- Template JS File -->
   <script src="{{ asset('stisla') }}/assets/js/scripts.js"></script>
   <script src="{{ asset('stisla') }}/assets/js/custom.js"></script>
+  <script src="{{ asset('js') }}/jquery.mask.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.format-rupiah').mask('#.##0', {reverse: true});
+    });
+  </script>
 
   <!-- Page Specific JS File -->
 </body>

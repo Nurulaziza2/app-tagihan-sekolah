@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\Biaya as Model;
+use \App\Kelas as Model;
 use Auth;
 
-class BiayaController extends Controller
+class KelasController extends Controller
 {
-    private $viewPrefix = "admin.biaya"; 
-    private $routePrefix = "biaya";  
+    private $viewPrefix = "operator.kelas"; 
+    private $routePrefix = "kelas";  
     /**
      * Display a listing of the resource.
      *
@@ -49,13 +49,14 @@ class BiayaController extends Controller
     {
         $requestData = $request->validate([
             'nama' => 'required',
-            'nominal' => 'required',
-            'tahun' => 'required',
-            'deskripsi' => 'nullable',
+            'program_kursus'=> 'required',
+            'durasi_kursus'=> 'required',
+            'detail'=>'nullable',
+            
         ]);
-        $requestData['nominal'] = str_replace(".", "", $requestData['nominal']);
-    
+        // $requestData['kelas_id'] = Auth::kelas()->id;
         $requestData['user_id'] = Auth::user()->id;
+
         Model::create($requestData);
         flash("Data berhasil disimpan");
         return back();
@@ -101,10 +102,12 @@ class BiayaController extends Controller
     {
         
         $requestData = $request->validate([
-            'nominal' => 'required',
-            'deskripsi' => 'nullable',
+            'nama' => 'required',
+            'program_kursus'=> 'required',
+            'durasi_kursus'=> 'required',
+            'detail'=>'nullable',
         ]);
-        $requestData['nominal'] = str_replace(".", "", $requestData['nominal']);
+        
         $requestData['user_id'] = Auth::user()->id;
         
         Model::where('id', $id)->update($requestData);
@@ -120,6 +123,7 @@ class BiayaController extends Controller
      */
     public function destroy($id)
     {
+
         $model =  Model::findOrFail($id);
         $model->delete();
         flash("Data berhasil dihapus")->success();

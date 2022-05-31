@@ -21,6 +21,7 @@ Route::get('logout', function () {
 Route::middleware(['auth'])->group(function(){
     Route::resource('user', 'UserController')->middleware('admin');
     Route::resource('siswa', 'SiswaController');
+    Route::resource('kelas', 'KelasController');
     Route::resource('biaya', 'BiayaController');
     
 });

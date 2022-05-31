@@ -5,15 +5,15 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Siswa extends Model
+class Kelas extends Model
 {
-    protected  $table = 'siswa' ;
-    protected  $guarded = [] ;
-
+    protected $guarded = [];
+    protected $table = 'kelas';
     public function user(): BelongsTo {
         return $this->belongsTo(User::class)->withDefault();
     }
-    public function kelas(): BelongsTo {
-        return $this->belongsTo(Kelas::class)->withDefault();
+    public function siswa()
+    {
+        return $this->hasMany('App\Siswa');
     }
 }

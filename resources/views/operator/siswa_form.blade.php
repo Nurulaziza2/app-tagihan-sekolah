@@ -17,22 +17,14 @@
                     <span class="text-danger">{{ $errors->first('nama') }} </span>
                 </div>
                 <div class="form-group">
-                    <label for="nisn">NISN</label>
-                    {!! Form::text('nisn', null, ['class'=>'form-control']) !!}
-                    <span class="text-danger">{{ $errors->first('nisn') }} </span>
+                    <label for="nis">NIS</label>
+                    {!! Form::text('nis', null, ['class'=>'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('nis') }} </span>
                 </div>
                 <div class="form-group">
-                    <label for="program_studi">Program Studi</label>
-                    {!! Form::select('program_studi', [
-                        'MENJAHIT' => 'BELAJAR MENJAHIT',
-                        'FASHION DESIGN' => 'FASHION DESIGN'
-                    ], null, ['class'=>'form-control']) !!}
-                    <span class="text-danger">{{ $errors->first('program_studi') }} </span>
-                </div>
-                <div class="form-group">
-                    <label for="angkatan">Angkatan</label>
-                    {!! Form::selectRange('angkatan', 2019, date('Y'), null,  ['class'=>'form-control']) !!}
-                    <span class="text-danger">{{ $errors->first('angkatan') }} </span>
+                    <label for="email">Email</label>
+                    {!! Form::text('email', null, ['class'=>'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('email') }} </span>
                 </div>
                 <div class="form-group">
                     <label for="jk">Jenis Kelamin</label>
@@ -41,6 +33,15 @@
                         'Perempuan' => 'Perempuan'
                     ], null, ['class'=>'form-control']) !!}
                     <span class="text-danger">{{ $errors->first('jk') }} </span>
+                </div>
+                <div class="form-group">
+                    <label for="kelas_id">Kelas</label>
+                    {!! Form::select('kelas_id', $kelas, null, ['class'=>'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('kelas_id') }} </span>
+                <div class="form-group">
+                    <label for="tgl_masuk">Tanggal Masuk</label>
+                    {!! Form::date('tgl_masuk', null, ['class'=>'form-control',]) !!}
+                    <span class="text-danger">{{ $errors->first('tgl_masuk') }} </span>
                 </div>
                 
                 {!! Form::submit($namaTombol, ['class'=>'btn btn-primary']) !!}

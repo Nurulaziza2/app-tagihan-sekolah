@@ -145,11 +145,22 @@
 						</a>
                     </li>
 
-                    <li><a class=" ai-icon" href="{{ route('user.index') }}" aria-expanded="false">
+                    @if (auth()->user()->akses == 'admin')
+                    <li>
+                        <a class=" ai-icon" href="{{ route('user.index') }}" aria-expanded="false">
                         <i class="flaticon-144-layout"></i>
                         <span class="nav-text">Data User</span>
-                    </a>
-                    </li>
+                    </a> 
+                    </li>   
+                    <li>
+                        <a class=" ai-icon" href="{{ route('user.index') }}" aria-expanded="false">
+                        <i class="flaticon-144-layout"></i>
+                        <span class="nav-text">Laporan</span>
+                    </a> 
+                    </li> 
+                    @endif
+                    
+                    
                     <li><a class=" ai-icon" href="{{ route('biaya.index') }}" aria-expanded="false">
                         <i class="flaticon-144-layout"></i>
                         <span class="nav-text">Data Biaya</span>
