@@ -38,7 +38,8 @@ class SiswaController extends Controller
         $model = new Model();
         $data['model'] = $model;
         $data['method'] = 'POST';
-        $data['kelas']= Kelas::pluck('nama','id');
+        // $data['kelas']= Kelas::pluck('nama','id');
+        // $data['durasi']= Kelas::pluck('durasi_kursus','id');
         $data['route'] = $this->routePrefix .'.store';
         $data['namaTombol']= 'Simpan';
         return view($this->viewPrefix . '_form', $data);
@@ -58,7 +59,7 @@ class SiswaController extends Controller
             'nis' => 'required|unique:siswa',
             'email'=> 'required|email|unique:siswa',
             'jk' => 'required',
-            'kelas_id' => 'nullable',
+            // 'kelas_id' => 'nullable',
             'tgl_masuk' => 'required',
         ]);
         // $requestData['kelas_id'] = Auth::kelas()->id;
@@ -94,7 +95,7 @@ class SiswaController extends Controller
         $data['model'] = $model;
         $data['method'] = 'PUT';
         $data['route'] = [$this->routePrefix . '.update', $id];
-        $data['kelas']= Kelas::pluck('nama','id');
+        // $data['kelas']= Kelas::pluck('nama','id');
         $data['namaTombol']= 'Update';
         return view($this->viewPrefix . '_form', $data);
     }
@@ -114,7 +115,7 @@ class SiswaController extends Controller
             'nis' => 'required|unique:siswa,nis,' . $id,
             'email'=> 'required|email|unique:siswa',
             'jk' => 'required',
-            'kelas_id'=> 'nullable',
+            // 'kelas_id'=> 'nullable',
             'tgl_masuk' => 'required',
         ]);
         

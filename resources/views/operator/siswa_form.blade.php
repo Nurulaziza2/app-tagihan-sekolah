@@ -34,10 +34,11 @@
                     ], null, ['class'=>'form-control']) !!}
                     <span class="text-danger">{{ $errors->first('jk') }} </span>
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="kelas_id">Kelas</label>
                     {!! Form::select('kelas_id', $kelas, null, ['class'=>'form-control']) !!}
                     <span class="text-danger">{{ $errors->first('kelas_id') }} </span>
+                </div> --}}
                 <div class="form-group">
                     <label for="tgl_masuk">Tanggal Masuk</label>
                     {!! Form::date('tgl_masuk', null, ['class'=>'form-control',]) !!}

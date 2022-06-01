@@ -17,15 +17,6 @@
                     <span class="text-danger">{{ $errors->first('nama') }} </span>
                 </div>
                 <div class="form-group">
-                    <label for="program_kursus">Program Kursus</label>
-                    {!! Form::select('program_kursus', [
-                        'Menjahit' => 'Menjahit',
-                        'Fashion Design' => 'Fashion Design',
-                    ], null, ['class'=>'form-control']) !!}
-                    
-                    <span class="text-danger">{{ $errors->first('program_kursus') }}</span>
-                </div>
-                <div class="form-group">
                     <label for="durasi_kursus">Durasi Kursus</label>
                     {!! Form::select('durasi_kursus', [
                         '3 Bulan' => '3 Bulan',

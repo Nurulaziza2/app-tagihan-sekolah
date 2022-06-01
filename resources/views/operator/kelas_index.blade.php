@@ -15,7 +15,6 @@
                         <thead>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Program Kursus</th>
                         <th>Durasi Kursus</th>
                         <th>Detail</th>
                         <th>Aksi</th>
@@ -26,7 +25,6 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->nama }}</td>
-                            <td>{{ $item->program_kursus }}</td>
                             <td>{{ $item->durasi_kursus }}</td>
                             <td>{{ $item->detail }}</td>
                             {{-- <td>{{$item->created_at->format('d/m/Y H:i') }}</td> --}}
