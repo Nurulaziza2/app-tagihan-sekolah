@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2022 at 07:43 AM
+-- Generation Time: Jun 01, 2022 at 11:12 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -70,7 +70,6 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `kelas` (
   `id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
-  `program_kursus` varchar(20) NOT NULL,
   `durasi_kursus` varchar(20) NOT NULL,
   `detail` varchar(255) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
@@ -82,9 +81,14 @@ CREATE TABLE `kelas` (
 -- Dumping data for table `kelas`
 --
 
-INSERT INTO `kelas` (`id`, `nama`, `program_kursus`, `durasi_kursus`, `detail`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'Menjahit 01', 'Menjahit', '3 Bulan', '', 0, '2022-05-31 05:13:17', '2022-05-31 05:13:17'),
-(2, '01DS', 'Fashion Design', '6 Bulan', NULL, 1, '2022-05-31 03:47:49', '2022-05-31 03:47:49');
+INSERT INTO `kelas` (`id`, `nama`, `durasi_kursus`, `detail`, `user_id`, `created_at`, `updated_at`) VALUES
+(4, 'Menjahit', '3 Bulan', NULL, 1, '2022-06-01 07:11:02', '2022-06-01 07:11:02'),
+(5, 'Fashion Design', '3 Bulan', NULL, 1, '2022-06-01 07:11:13', '2022-06-01 07:11:13'),
+(6, 'Menjahit', '6 Bulan', NULL, 1, '2022-06-01 07:11:23', '2022-06-01 07:11:23'),
+(7, 'Fashion Design', '6 Bulan', NULL, 1, '2022-06-01 07:15:38', '2022-06-01 07:15:38'),
+(9, 'Menjahit', '12 Bulan', NULL, 1, '2022-06-01 07:16:31', '2022-06-01 07:16:31'),
+(10, 'Fashion Design', '12 Bulan', NULL, 1, '2022-06-01 07:16:39', '2022-06-01 07:16:39'),
+(11, 'Fashion Design & Menjahit', '12 Bulan', NULL, 1, '2022-06-01 07:29:27', '2022-06-01 07:29:27');
 
 -- --------------------------------------------------------
 
@@ -131,7 +135,6 @@ CREATE TABLE `siswa` (
   `nis` int(20) NOT NULL,
   `email` varchar(255) NOT NULL,
   `jk` varchar(20) NOT NULL,
-  `kelas_id` int(11) DEFAULT NULL,
   `tgl_masuk` date NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
@@ -142,9 +145,22 @@ CREATE TABLE `siswa` (
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id`, `nama`, `nis`, `email`, `jk`, `kelas_id`, `tgl_masuk`, `user_id`, `created_at`, `updated_at`) VALUES
-(2, 'Yuda', 8090, 'yuda@mail.com', 'Laki-laki', 2, '2022-05-01', 1, '2022-05-31 04:29:34', '2022-05-31 04:29:34'),
-(3, 'Nurul', 8000, 'nurul@gmail.com', 'Perempuan', 1, '2022-05-29', 1, '2022-05-31 04:35:49', '2022-05-31 04:35:49');
+INSERT INTO `siswa` (`id`, `nama`, `nis`, `email`, `jk`, `tgl_masuk`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'Aldi Taher', 8010, 'alditaher@gmail.com', 'Pria', '2022-05-29', 1, '2022-06-01 08:59:40', '2022-06-01 08:59:40'),
+(2, 'Ananda Ali Taher', 8011, 'anandaalitaher@gmail.com', 'Pria', '2022-05-29', 1, '2022-06-01 08:59:40', '2022-06-01 08:59:40'),
+(3, 'Ardan Badarudin', 8012, 'ardanbadarudin@gmail.com', 'Pria', '2022-05-30', 1, '2022-06-01 08:59:41', '2022-06-01 08:59:41'),
+(4, 'Arial Hunaiku', 8013, 'arialhunaiku@gmail.com', 'Pria', '2022-05-30', 1, '2022-06-01 08:59:41', '2022-06-01 08:59:41'),
+(5, 'Cristina Marsionova', 8014, 'cristinamarsionova@gmail.com', 'Wanita', '2022-05-30', 1, '2022-06-01 08:59:41', '2022-06-01 08:59:41'),
+(6, 'Gustixa', 8015, 'gustixa@gmail.com', 'Pria', '2022-05-30', 1, '2022-06-01 08:59:41', '2022-06-01 08:59:41'),
+(7, 'Irsandi', 8016, 'irsandi@gmail.com', 'Wanita', '2022-05-30', 1, '2022-06-01 08:59:41', '2022-06-01 08:59:41'),
+(8, 'Ismail', 8017, 'ismail@gmail.com', 'Pria', '2022-05-31', 1, '2022-06-01 08:59:41', '2022-06-01 08:59:41'),
+(9, 'Junaidi', 8018, 'junaidi@gmail.com', 'Pria', '2022-05-31', 1, '2022-06-01 08:59:41', '2022-06-01 08:59:41'),
+(10, 'Lord Rangga Sasana', 8019, 'lordranggasasana@gmail.com', 'Pria', '2022-05-31', 1, '2022-06-01 08:59:41', '2022-06-01 08:59:41'),
+(11, 'Muh Irsank', 8020, 'muhirsank@gmail.com', 'Pria', '2022-05-31', 1, '2022-06-01 08:59:41', '2022-06-01 08:59:41'),
+(12, 'Muhammad Rizkhal Lamaau', 8021, 'muhammadrizkhallamaau@gmail.com', 'Pria', '2022-05-01', 1, '2022-06-01 08:59:41', '2022-06-01 08:59:41'),
+(13, 'Rony Marteen', 8022, 'ronymarteen@gmail.com', 'Pria', '2022-05-01', 1, '2022-06-01 08:59:41', '2022-06-01 08:59:41'),
+(14, 'Slamet', 8023, 'slamet@gmail.com', 'Wanita', '2022-05-01', 1, '2022-06-01 08:59:41', '2022-06-01 08:59:41'),
+(15, 'Tretan Bukan Muslim', 8024, 'tretanbukanmuslim@gmail.com', 'Pria', '2022-05-01', 1, '2022-06-01 08:59:41', '2022-06-01 08:59:41');
 
 -- --------------------------------------------------------
 
@@ -237,7 +253,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -249,7 +265,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
