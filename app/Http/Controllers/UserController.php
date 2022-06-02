@@ -103,9 +103,12 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'nullable|confirmed',
         ]);
-        if ($request->filled('password')) {
+        if ($request->password != null) {
             $requestData['password'] = bcrypt($request->password);
-        }   
+        }
+        else {
+            unset($requestData['password']);
+        }
         Model::where('id', $id)->update($requestData);
         flash("Data berhasil diupdate");
         return back();
