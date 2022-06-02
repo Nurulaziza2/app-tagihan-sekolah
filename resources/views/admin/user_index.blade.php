@@ -15,6 +15,7 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Tanggal Buat</th>
+                        <th>Akses</th>
                         <th>Aksi</th>
                     </thead>
                     <tbody>
@@ -25,6 +26,7 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->created_at->format('d/m/Y H:i') }}</td>
+                            <td>{{ $item->akses }}</td>
                             <td>
                                 {!! Form::open(['route'=>[$routePrefix . '.destroy',$item->id],'method'=>'DELETE','onsubmit'=>'return confirm("Anda Yakin?")']) !!}
                                 <a href="{{ route($routePrefix . '.edit', $item->id) }}" class="btn btn-warning">Edit</a>

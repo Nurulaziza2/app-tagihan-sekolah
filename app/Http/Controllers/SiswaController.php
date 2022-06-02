@@ -61,7 +61,11 @@ class SiswaController extends Controller
             'jk' => 'required',
             // 'kelas_id' => 'nullable',
             'tgl_masuk' => 'required',
+            'gambar' => 'nullable|image|mimes:jpg,png,jpeg|max:2000',
         ]);
+        if ($request->hasFile('gambar')) {
+            $requestData['gambar'] = $request->file('gambar')->store('public/images');
+        }
         // $requestData['kelas_id'] = Auth::kelas()->id;
         $requestData['user_id'] = Auth::user()->id;
 
@@ -118,7 +122,15 @@ class SiswaController extends Controller
             // 'kelas_id'=> 'nullable',
             'tgl_masuk' => 'required',
         ]);
-        
+        if ($request->hasFile('gambar')){
+            $requestData['gambar'] = $request->file('gambar')->store('public/images');
+            $model = Model::findOrFail($id);
+
+            if($model->gambar != null) {
+                \Storage::delete($model->gambar);
+            }
+        }
+
         $requestData['user_id'] = Auth::user()->id;
         
         Model::where('id', $id)->update($requestData);

@@ -36,7 +36,7 @@
                 Histories
               </div>
               <div class="search-item">
-                <a href="{{ asset('stisla') }}/#">How to hack NASA using CSS</a>
+                <a href="{{ asset('stisla') }}/#">Ayo semangat Ngerjain KP-nya</a>
                 <a href="{{ asset('stisla') }}/#" class="search-close"><i class="fas fa-times"></i></a>
               </div>
             
@@ -158,6 +158,10 @@
               </li>
               <li class="nav-item {{ Request::path() === 'siswa' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('siswa.index') }}"><i class="fas fa-user-graduate"></i> <span>Data Siswa</span>
+                </a>
+              </li>
+              <li class="nav-item {{ Request::path() === 'kalkulator' ? 'active' : '' }}">
+                <a class="nav-link" href="/kalkulator"><i class="fas fa-calculator"></i> <span>Kalkulator</span>
                 </a>
               </li>
               <li class="nav-item {{ Request::path() === 'laporan' ? 'active' : '' }}">

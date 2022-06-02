@@ -10,11 +10,16 @@
                 <h4 class="card-title">Tambah Siswa</h4>
             </div>               
                 <div class="card-body">
-                {!! Form::model($model, ['route'=>$route, 'method'=>$method]) !!}
+                {!! Form::model($model, ['route'=>$route, 'method'=>$method,'files' => true]) !!}
                 <div class="form-group">
                     <label for="nama">Nama</label>
                     {!! Form::text('nama', null, ['class'=>'form-control','autofocus'=>true]) !!}
                     <span class="text-danger">{{ $errors->first('nama') }} </span>
+                </div>
+                <div class="form-group">
+                    <label for="gambar">Gambar</label>
+                    {!! Form::file('gambar', ['class'=>'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('gambar') }} </span>
                 </div>
                 <div class="form-group">
                     <label for="nis">NIS</label>

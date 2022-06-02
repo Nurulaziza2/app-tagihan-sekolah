@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover table-sm">
                         <thead>
                         <th>No</th>
                         <th>Nama</th>
@@ -61,7 +61,7 @@
                         
                         @foreach ($models as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration.'.' }}</td>
                             <td>{{ $item->nama }}</td>
                             <td>{{ $item->nis }}</td>
                             <td>{{ $item->email }}</td>
