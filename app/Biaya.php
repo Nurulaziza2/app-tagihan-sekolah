@@ -13,4 +13,8 @@ class Biaya extends Model
     public function user() : BelongsTo {
         return $this->belongsTo(User::class)->withDefault();
     }
+    public function getJumlahRupiah()
+    {
+        return 'Rp'.number_format($this->nominal,0,',','.');
+    }
 }

@@ -44,7 +44,6 @@ namespace App{
  *
  * @property int $id
  * @property string $nama
- * @property string $program_kursus
  * @property string $durasi_kursus
  * @property string|null $detail
  * @property int $user_id
@@ -61,7 +60,6 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Kelas whereDurasiKursus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Kelas whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Kelas whereNama($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Kelas whereProgramKursus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Kelas whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Kelas whereUserId($value)
  */
@@ -74,15 +72,15 @@ namespace App{
  *
  * @property int $id
  * @property string $nama
+ * @property string|null $gambar
  * @property int $nis
  * @property string $email
  * @property string $jk
- * @property int|null $kelas_id
  * @property string $tgl_masuk
  * @property int $user_id
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
- * @property-read \App\Kelas|null $kelas
+ * @property-read \App\Kelas $kelas
  * @property-read \App\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa newQuery()
@@ -91,9 +89,9 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereGambar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereJk($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereKelasId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereNama($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereNis($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereTglMasuk($value)

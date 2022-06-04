@@ -29,9 +29,9 @@
                             <td>{{ $item->akses }}</td>
                             <td>
                                 {!! Form::open(['route'=>[$routePrefix . '.destroy',$item->id],'method'=>'DELETE','onsubmit'=>'return confirm("Anda Yakin?")']) !!}
-                                <a href="{{ route($routePrefix . '.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                                <a href="{{ route($routePrefix . '.show', $item->id) }}" class="btn btn-info ml-1 mr-1">Detail</a>
-                                {!! Form::submit('Hapus', ['class'=>'btn btn-danger']) !!}
+                                <a href="{{ route($routePrefix . '.edit', $item->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                <a href="{{ route($routePrefix . '.show', $item->id) }}" class="btn btn-info ml-1 mr-1"><i class="fas fa-eye"></i></a>
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                                 {!! Form::close() !!}
                             </td>
                         </tr>
