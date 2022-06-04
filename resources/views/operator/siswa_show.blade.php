@@ -37,7 +37,7 @@
                                             <td>: {{ $model->nis }}</td>
                                         </tr>
                                         <tr>
-                                            <td>email</td>
+                                            <td>Email</td>
                                             <td>: {{ $model->email }}</td>
                                         </tr>
                                         <tr>
@@ -53,7 +53,7 @@
                                             <td>{{ $model->tgl_masuk }}</td>
                                         </tr>
                                         <tr>
-                                            <td>User Input</td>
+                                            <td>Dibuat Oleh</td>
                                             <td>: {{ $model->user->name }}</td>
                                         </tr>
                                     </thead>

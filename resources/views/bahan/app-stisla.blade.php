@@ -160,6 +160,10 @@
                 <a class="nav-link" href="{{ route('siswa.index') }}"><i class="fas fa-user-graduate"></i> <span>Data Siswa</span>
                 </a>
               </li>
+              <li class="nav-item {{ Request::path() === 'tagihan' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('tagihan.index') }}"><i class="fas fa-money-bill"></i> <span>Data Tagihan</span>
+                </a>
+              </li>
               <li class="nav-item {{ Request::path() === 'kalkulator' ? 'active' : '' }}">
                 <a class="nav-link" href="/kalkulator"><i class="fas fa-calculator"></i> <span>Kalkulator</span>
                 </a>

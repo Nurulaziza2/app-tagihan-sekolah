@@ -28,7 +28,7 @@
                             </tr>
                             <tr>
                                 <td>Dibuat Oleh</td>
-                                <td>:</td>
+                                <td>{{ $model->user->name }}</td>
                             </tr>
                         </thead>
                     </table>
