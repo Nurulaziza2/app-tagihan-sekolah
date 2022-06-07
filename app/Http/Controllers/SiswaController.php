@@ -59,6 +59,9 @@ class SiswaController extends Controller
             'nis' => 'required|unique:siswa',
             'email'=> 'required|email|unique:siswa',
             'jk' => 'required',
+            'alamat' => 'required',
+            'prodi' => 'required',
+            'durasi' => 'required',
             // 'kelas_id' => 'nullable',
             'tgl_masuk' => 'required',
             'gambar' => 'nullable|image|mimes:jpg,png,jpeg|max:2000',
@@ -117,8 +120,11 @@ class SiswaController extends Controller
         $requestData = $request->validate([
             'nama' => 'required',
             'nis' => 'required|unique:siswa,nis,' . $id,
-            'email'=> 'required|email|unique:siswa',
+            'email'=> 'required|email|unique:siswa,email,' . $id,
             'jk' => 'required',
+            'alamat' => 'required',
+            'prodi' => 'required',
+            'durasi' => 'required',
             // 'kelas_id'=> 'nullable',
             'tgl_masuk' => 'required',
         ]);

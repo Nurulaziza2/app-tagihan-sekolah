@@ -45,8 +45,12 @@
                                             <td>: {{ $model->jk }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Kelas</td>
-                                            <td>: {{ $model->kelas_id }}</td>
+                                            <td>Alamat</td>
+                                            <td>: {{ $model->alamat }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Program Kursus</td>
+                                            <td>: {{ $model->prodi }} {{ $model->durasi }}</td>
                                         </tr>
                                         <tr>
                                             <td>Tanggal Masuk</td>

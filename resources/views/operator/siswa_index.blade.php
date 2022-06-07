@@ -52,7 +52,8 @@
                         <th>NIS</th>
                         <th>Email</th>
                         <th>Jenis Kelamin</th>
-                        {{-- <th>Kelas</th> --}}
+                        <th>Alamat</th>
+                        <th>Program kursus</th>
                         <th>Tanggal Masuk</th>
                         <th>Aksi</th>
 
@@ -66,6 +67,8 @@
                             <td>{{ $item->nis }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->jk }}</td>
+                            <td>{{ $item->alamat }}</td>
+                            <td>{{ $item->prodi }} {{ $item->durasi }}</td>
                             {{-- <td>{{ $item->kelas->nama }}</td> --}}
                             <td>{{ $item->tgl_masuk }}</td>
                             {{-- <td>{{$item->created_at->format('d/m/Y H:i') }}</td> --}}

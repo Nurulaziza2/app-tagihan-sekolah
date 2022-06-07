@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2022 at 12:02 PM
+-- Generation Time: Jun 07, 2022 at 08:55 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -136,6 +136,9 @@ CREATE TABLE `siswa` (
   `nis` int(20) NOT NULL,
   `email` varchar(255) NOT NULL,
   `jk` varchar(20) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `prodi` varchar(20) NOT NULL,
+  `durasi` varchar(10) NOT NULL,
   `tgl_masuk` date NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
@@ -146,24 +149,25 @@ CREATE TABLE `siswa` (
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id`, `nama`, `gambar`, `nis`, `email`, `jk`, `tgl_masuk`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'Aldi Taher', '', 8010, 'alditaher@gmail.com', 'Pria', '2022-05-29', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(2, 'Ananda Ali Taher', '', 8011, 'anandaalitaher@gmail.com', 'Pria', '2022-05-29', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(3, 'Ardan Badarudin', '', 8012, 'ardanbadarudin@gmail.com', 'Pria', '2022-05-29', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(4, 'Arial Hunaiku', '', 8013, 'arialhunaiku@gmail.com', 'Pria', '2022-05-29', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(5, 'Cristina Marsionova', '', 8014, 'cristinamarsionova@gmail.com', 'Wanita', '2022-05-29', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(6, 'Gustixa', '', 8015, 'gustixa@gmail.com', 'Pria', '2022-05-29', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(7, 'Irsandi', '', 8016, 'irsandi@gmail.com', 'Wanita', '2022-05-29', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(8, 'Ismail', '', 8017, 'ismail@gmail.com', 'Pria', '2022-05-30', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(9, 'Junaidi', '', 8018, 'junaidi@gmail.com', 'Pria', '2022-05-30', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(10, 'Lord Rangga Sasana', '', 8019, 'lordranggasasana@gmail.com', 'Pria', '2022-05-30', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(11, 'Muh Irsank', '', 8020, 'muhirsank@gmail.com', 'Pria', '2022-05-30', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(12, 'Muhammad Rizkhal Lamaau', '', 8021, 'muhammadrizkhallamaau@gmail.com', 'Pria', '2022-05-30', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(13, 'Rony Marteen', '', 8022, 'ronymarteen@gmail.com', 'Pria', '2022-05-31', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(14, 'Slamet', '', 8023, 'slamet@gmail.com', 'Wanita', '2022-05-31', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(15, 'Tretan Bukan Muslim', '', 8024, 'tretanbukanmuslim@gmail.com', 'Pria', '2022-05-31', 1, '2022-06-02 02:15:10', '2022-06-02 02:15:10'),
-(16, 'Tretan Muslim', '', 8025, 'tretanmuslim1@gmail.com', 'Laki-laki', '2022-05-31', 1, '2022-06-02 02:15:10', '2022-06-03 02:22:54'),
-(17, 'tretan', 'public/images/agYrazlrBRahbMM6NptJxAkovr2plmUd17q8e4jC.jpg', 7009, 'treaten@gmail.com', 'Laki-laki', '2022-06-01', 1, '2022-06-03 02:24:15', '2022-06-03 02:24:15');
+INSERT INTO `siswa` (`id`, `nama`, `gambar`, `nis`, `email`, `jk`, `alamat`, `prodi`, `durasi`, `tgl_masuk`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'Surya', 'public/images/5qd4KO2TrA8orQQ645mnweoHlnbeefvlypjIUjap.jpg', 7777, 'surya@mail.com', 'Laki-laki', 'Jambi', 'Fashion Design', '3 Bulan', '2022-06-01', 1, '2022-06-07 13:36:52', '2022-06-07 13:36:52'),
+(2, 'Yuda', 'public/images/9Oa7OBAEfEd2TAFXkWXjC0vgTxzd7owSJI9RVtD1.jpg', 696969, 'yuda@mail.com', 'Laki-laki', 'Kasang Pudak', 'Menjahit', '12 Bulan', '2022-05-23', 1, '2022-06-07 13:40:42', '2022-06-07 13:40:42'),
+(3, 'Aldi Taher', NULL, 8010, 'alditaher@gmail.com', 'Pria', 'Jambi', 'Fashion Design', '3 bulan', '2022-05-29', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(4, 'Ananda Ali Taher', NULL, 8011, 'anandaalitaher@gmail.com', 'Pria', 'Jambi', 'Fashion Design', '6 bulan', '2022-05-29', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(5, 'Ardan Badarudin', NULL, 8012, 'ardanbadarudin@gmail.com', 'Pria', 'Jambi', 'Fashion Design', '3 bulan', '2022-05-29', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(6, 'Arial Hunaiku', NULL, 8013, 'arialhunaiku@gmail.com', 'Pria', 'Jambi', 'Fashion Design', '6 bulan', '2022-05-29', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(7, 'Cristina Marsionova', NULL, 8014, 'cristinamarsionova@gmail.com', 'Wanita', 'Jambi', 'Fashion Design', '12 bulan', '2022-05-29', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(8, 'Gustixa', NULL, 8015, 'gustixa@gmail.com', 'Pria', 'Jambi', 'Fashion Design', '6 bulan', '2022-05-29', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(9, 'Irsandi', NULL, 8016, 'irsandi@gmail.com', 'Wanita', 'Jambi', 'Fashion Design', '3 bulan', '2022-05-29', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(10, 'Ismail', NULL, 8017, 'ismail@gmail.com', 'Pria', 'Jambi', 'Fashion Design', '3 bulan', '2022-05-30', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(11, 'Junaidi', NULL, 8018, 'junaidi@gmail.com', 'Pria', 'Jambi', 'Menjahit', '12 bulan', '2022-05-30', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(12, 'Lord Rangga Sasana', NULL, 8019, 'lordranggasasana@gmail.com', 'Pria', 'Jambi', 'Menjahit', '3 bulan', '2022-05-30', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(13, 'Muh Irsank', NULL, 8020, 'muhirsank@gmail.com', 'Pria', 'Jambi', 'Menjahit', '12 bulan', '2022-05-30', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(14, 'Muhammad Rizkhal Lamaau', NULL, 8021, 'muhammadrizkhallamaau@gmail.com', 'Pria', 'Jambi', 'Menjahit', '3 bulan', '2022-05-30', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(15, 'Rony Marteen', NULL, 8022, 'ronymarteen@gmail.com', 'Pria', 'Jambi', 'Menjahit', '3 bulan', '2022-05-31', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(16, 'Slamet', NULL, 8023, 'slamet@gmail.com', 'Wanita', 'Jambi', 'Menjahit', '6 bulan', '2022-05-31', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(17, 'Tretan Bukan Muslim', NULL, 8024, 'tretanbukanmuslim@gmail.com', 'Pria', 'Jambi', 'Menjahit', '12 bulan', '2022-05-31', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12'),
+(18, 'Tretan Muslim', NULL, 8025, 'tretanmuslim@gmail.com', 'Pria', 'Jambi', 'Menjahit', '6 bulan', '2022-05-31', 1, '2022-06-07 13:54:12', '2022-06-07 13:54:12');
 
 -- --------------------------------------------------------
 
@@ -297,7 +301,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tagihan`

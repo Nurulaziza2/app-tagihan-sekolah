@@ -20,6 +20,9 @@ class SiswaImport implements ToCollection
             $email = $row[3];
             $jk = $row[4];
             $tgl_masuk = $row[5];
+            $alamat= $row[6];
+            $prodi = $row[7];
+            $durasi = $row[8];
             if(is_int ($no)){
                 $siswa  = \App\Siswa::where('nis', $nis)->first();
                 if($siswa == null) {
@@ -29,6 +32,9 @@ class SiswaImport implements ToCollection
                         'email' => $email,
                         'jk' => $jk,
                         'tgl_masuk' => $tgl_masuk,
+                        'alamat' => $alamat,
+                        'prodi' => $prodi,
+                        'durasi' => $durasi,
                         'user_id'=>Auth::user()->id,
                     ]);
                 }

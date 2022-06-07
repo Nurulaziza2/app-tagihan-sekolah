@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use \App\Tagihan as Model;
-use App\Tagihan;
 use Auth;
+use App\Siswa;
+use App\Tagihan;
+use \App\Tagihan as Model;
+use Illuminate\Http\Request;
 
 class TagihanController extends Controller
 {
@@ -33,6 +34,7 @@ class TagihanController extends Controller
     {
         $model = new Model();
         $data['model'] = $model;
+        $data['siswa']= Siswa::pluck('nama','id');
         $data['method'] = 'POST';
         // $data['kelas']= Kelas::pluck('nama','id');
         // $data['durasi']= Kelas::pluck('durasi_kursus','id');

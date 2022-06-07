@@ -39,6 +39,28 @@
                     ], null, ['class'=>'form-control']) !!}
                     <span class="text-danger">{{ $errors->first('jk') }} </span>
                 </div>
+                <div class="form-group">
+                    <label for="alamat">Alamat</label>
+                    {!! Form::textarea('alamat', null, ['class'=>'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('alamat') }} </span>
+                </div>
+                <div class="form-group">
+                    <label for="prodi">Program Studi</label>
+                    {!! Form::select('prodi', [
+                        'Menjahit' => 'Menjahit',
+                        'Fashion Design' => 'Fashion Design',
+                ], null, ['class'=>'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('prodi') }} </span>
+                </div>
+                <div class="form-group">
+                    <label for="durasi">Durasi</label>
+                    {!! Form::select('durasi', [
+                        '3 Bulan' => '3 Bulan',
+                        '6 Bulan' => '6 Bulan',
+                        '12 Bulan' => '12 Bulan',
+                ], null, ['class'=>'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('durasi') }} </span>
+                </div>
                 {{-- <div class="form-group">
                     <label for="kelas_id">Kelas</label>
                     {!! Form::select('kelas_id', $kelas, null, ['class'=>'form-control']) !!}
