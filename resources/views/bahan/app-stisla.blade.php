@@ -143,7 +143,7 @@
               </li>
               @if (auth()->user()->akses == 'admin')
                 <li class="nav-item {{ Request::path() === 'user' ? 'active' : '' }}">
-                  <a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users"></i> <span>Data User</span>
+                  <a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users"></i> <span>Data Operator</span>
                   </a>
                 </li>
                 <li class="nav-item {{ Request::path() === 'biaya' ? 'active' : '' }}">
