@@ -19,7 +19,7 @@ class TagihanController extends Controller
      */
     public function index()
     {
-        $models = Tagihan::latest()->paginate(10);
+        $models = Tagihan::latest()->paginate(100);
         $data['models'] = $models;
         $data['routePrefix'] = $this->routePrefix;
         return view($this->viewPrefix . '_index', $data);
