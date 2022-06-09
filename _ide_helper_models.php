@@ -22,6 +22,7 @@ namespace App{
  * @property int $user_id
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read mixed $nama_biaya
  * @property-read \App\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya newQuery()
@@ -76,6 +77,9 @@ namespace App{
  * @property int $nis
  * @property string $email
  * @property string $jk
+ * @property string $alamat
+ * @property string $prodi
+ * @property string $durasi
  * @property string $tgl_masuk
  * @property int $user_id
  * @property \Illuminate\Support\Carbon $created_at
@@ -87,13 +91,16 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa query()
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereAlamat($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereDurasi($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereGambar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereJk($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereNama($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereNis($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereProdi($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereTglMasuk($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereUserId($value)
@@ -107,18 +114,19 @@ namespace App{
  *
  * @property int $id
  * @property int $siswa_id
- * @property string $tanggal_tagihan
- * @property string $tanggal_jatuh_tempo
+ * @property \Illuminate\Support\Carbon $tanggal_tagihan
+ * @property \Illuminate\Support\Carbon $tanggal_jatuh_tempo
  * @property string $nama
  * @property float $jumlah
  * @property string|null $keterangan
  * @property int $denda
  * @property string $status
  * @property string $tanggal_bayar
- * @property string $dibayar_oleh
+ * @property string|null $dibayar_oleh
  * @property string $dibuat_oleh
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read \App\Siswa $siswa
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan query()
@@ -149,7 +157,7 @@ namespace App{
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
- * @property string|null $akses
+ * @property string $akses
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications

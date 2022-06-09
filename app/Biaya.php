@@ -9,6 +9,12 @@ class Biaya extends Model
 {
     protected  $table = 'biaya' ;
     protected  $guarded = [] ;
+    protected $appends = ['nama_biaya'];
+
+    public function getNamaBiayaAttribute()
+    {
+        return $this->nama . ' (' .$this->getJumlahRupiah().')';
+    }
 
     public function user() : BelongsTo {
         return $this->belongsTo(User::class)->withDefault();
@@ -17,4 +23,5 @@ class Biaya extends Model
     {
         return 'Rp'.number_format($this->nominal,0,',','.');
     }
+
 }

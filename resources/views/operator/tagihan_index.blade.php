@@ -12,22 +12,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary">Tambah Data</a>
-                        </div>
-                        <div class="col-md-6">
-                            {!! Form::open(['route' => 'siswa.import','files' => true]) !!}
-                            <div class="input-group mb-3">
-                                <div class="custom-file">
-                                    {!! Form::file('file_siswa', ['class' => 'form-control','id' => 'inputGroupFile02']) !!}
-                                <label class="custom-file-label" for="inputGroupFile02">
-                                    Pilih File</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit"><i class="fas fa-upload"></i></button>
-                                {{-- {!! Form::submit('Import Excel', ['class' => 'btn btn-primary']) !!} --}}
-                                </div>
-                            </div>
-                            {!! Form::close() !!}
-                        </div>
+                        </div>  
                     </div>
                     <div class="row justify-content-start pt-3">
                         <div class="col-md-5 ">
@@ -48,12 +33,12 @@
                     <table class="table table-hover table-sm">
                         <thead>
                         <th>No</th>
-                        <th>Nama</th>
-                        <th>NIS</th>
-                        <th>Email</th>
-                        <th>Jenis Kelamin</th>
-                        {{-- <th>Kelas</th> --}}
-                        <th>Tanggal Masuk</th>
+                        <th>Nama Siswa</th>
+                        <th>Periode Tagihan</th>
+                        <th>Jatuh Tempo</th>
+                        <th>Nama Tagihan</th>
+                        <th>Jumlah Tagihan</th>
+                        <th>Status</th>
                         <th>Aksi</th>
 
                     </thead>
@@ -62,13 +47,12 @@
                         @foreach ($models as $item)
                         <tr>
                             <td>{{ $loop->iteration.'.' }}</td>
+                            <td>{{ $item->siswa->nama }}</td>
+                            <td>{{ $item->tanggal_tagihan->translatedFormat('F Y') }}</td>
+                            <td>{{ $item->tanggal_jatuh_tempo->translatedFormat('d F Y') }}</td>
                             <td>{{ $item->nama }}</td>
-                            <td>{{ $item->nis }}</td>
-                            <td>{{ $item->email }}</td>
-                            <td>{{ $item->jk }}</td>
-                            {{-- <td>{{ $item->kelas->nama }}</td> --}}
-                            <td>{{ $item->tgl_masuk }}</td>
-                            {{-- <td>{{$item->created_at->format('d/m/Y H:i') }}</td> --}}
+                            <td>Rp{{ number_format($item->jumlah,0,",",".") }}</td>
+                            <td>{{ $item->status }}</td>
                             <td>
                                 {!! Form::open(['route'=>[$routePrefix . '.destroy',$item->id],'method'=>'DELETE','onsubmit'=>'return confirm("Anda Yakin?")']) !!}
                                 <a href="{{ route($routePrefix . '.edit', $item->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>

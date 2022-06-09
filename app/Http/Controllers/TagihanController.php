@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Biaya;
 use App\Siswa;
 use App\Tagihan;
-use \App\Tagihan as Model;
 use Illuminate\Http\Request;
 
 class TagihanController extends Controller
@@ -19,7 +19,7 @@ class TagihanController extends Controller
      */
     public function index()
     {
-        $models = Tagihan::paginate(10);
+        $models = Tagihan::latest()->paginate(10);
         $data['models'] = $models;
         $data['routePrefix'] = $this->routePrefix;
         return view($this->viewPrefix . '_index', $data);
@@ -32,14 +32,13 @@ class TagihanController extends Controller
      */
     public function create()
     {
-        $model = new Model();
+        $model = new Tagihan();
         $data['model'] = $model;
-        $data['siswa']= Siswa::pluck('nama','id');
+        // $data['siswaList']= Siswa::pluck('nama','id');
+        $data['biayaList']= Biaya::get()->pluck('nama_biaya','id');
         $data['method'] = 'POST';
-        // $data['kelas']= Kelas::pluck('nama','id');
-        // $data['durasi']= Kelas::pluck('durasi_kursus','id');
         $data['route'] = $this->routePrefix .'.store';
-        $data['namaTombol']= 'Simpan';
+        $data['namaTombol']= 'Buat Tagihan';
         return view($this->viewPrefix . '_form', $data);
 
     }
@@ -53,23 +52,38 @@ class TagihanController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->validate([
-            'nama' => 'required',
-            'nis' => 'required|unique:tagihan',
-            'email'=> 'required|email|unique:tagihan',
-            'jk' => 'required',
-            // 'kelas_id' => 'nullable',
-            'tgl_masuk' => 'required',
-            'gambar' => 'nullable|image|mimes:jpg,png,jpeg|max:2000',
-        ]);
-        if ($request->hasFile('gambar')) {
-            $requestData['gambar'] = $request->file('gambar')->store('public/images');
-        }
-        // $requestData['kelas_id'] = Auth::kelas()->id;
-        $requestData['user_id'] = Auth::user()->id;
+            'biaya_id' => 'required',
+            'tanggal_tagihan' => 'required',
+            'tanggal_jatuh_tempo' => 'required',
+            'prodi'=> 'required',
 
-        Model::create($requestData);
-        flash("Data berhasil disimpan");
-        return back();
+        ]);
+        $biaya = Biaya::findOrFail($request->biaya_id);
+        $siswa = Siswa::query();
+        $siswa->where('prodi',$request->prodi);
+        $siswa = $siswa->get();
+        $tanggalTagihan = \Carbon\Carbon::parse($request->tanggal_tagihan);
+        $bulanTagihan = $tanggalTagihan->format('m');
+        $tahunTagihan = $tanggalTagihan->format('Y');
+        foreach ($siswa as $item){
+            $cekTagihan = Tagihan::whereMonth('tanggal_tagihan',$bulanTagihan)
+                ->whereYear('tanggal_tagihan',$tahunTagihan)
+                ->where('siswa_id',$item->id)
+                ->first();
+            if ($cekTagihan == null){
+            $tagihan = new Tagihan();
+            $tagihan->siswa_id = $item->id;
+            $tagihan->tanggal_tagihan = $request->tanggal_tagihan;
+            $tagihan->tanggal_jatuh_tempo = $request->tanggal_jatuh_tempo;
+            $tagihan->nama = $biaya->nama;
+            $tagihan->jumlah = $biaya->nominal;
+            $tagihan->status ='Baru';
+            $tagihan->dibuat_oleh = Auth::user()->name;
+            $tagihan->save();
+            }
+        }
+        flash('Tagihan berhasil dibuat')->success();
+        return redirect()->route($this->routePrefix .'.index' );
 
     }
 
@@ -81,8 +95,8 @@ class TagihanController extends Controller
      */
     public function show($id)
     {
-        $data['model'] = Model::findOrFail($id);
-        return view($this->viewPrefix . '_show', $data);
+        // $data['model'] = Model::findOrFail($id);
+        // return view($this->viewPrefix . '_show', $data);
     }
 
     /**
@@ -93,13 +107,13 @@ class TagihanController extends Controller
      */
     public function edit($id)
     {
-        $model = Model::findOrFail($id);
-        $data['model'] = $model;
-        $data['method'] = 'PUT';
-        $data['route'] = [$this->routePrefix . '.update', $id];
-        // $data['kelas']= Kelas::pluck('nama','id');
-        $data['namaTombol']= 'Update';
-        return view($this->viewPrefix . '_form', $data);
+        // $model = Model::findOrFail($id);
+        // $data['model'] = $model;
+        // $data['method'] = 'PUT';
+        // $data['route'] = [$this->routePrefix . '.update', $id];
+        // // $data['kelas']= Kelas::pluck('nama','id');
+        // $data['namaTombol']= 'Update';
+        // return view($this->viewPrefix . '_form', $data);
     }
 
     /**
@@ -112,28 +126,28 @@ class TagihanController extends Controller
     public function update(Request $request, $id)
     {
         
-        $requestData = $request->validate([
-            'nama' => 'required',
-            'nis' => 'required|unique:tagihan,nis,' . $id,
-            'email'=> 'required|email|unique:tagihan',
-            'jk' => 'required',
-            // 'kelas_id'=> 'nullable',
-            'tgl_masuk' => 'required',
-        ]);
-        if ($request->hasFile('gambar')){
-            $requestData['gambar'] = $request->file('gambar')->store('public/images');
-            $model = Model::findOrFail($id);
+        // $requestData = $request->validate([
+        //     'nama' => 'required',
+        //     'nis' => 'required|unique:tagihan,nis,' . $id,
+        //     'email'=> 'required|email|unique:tagihan',
+        //     'jk' => 'required',
+        //     // 'kelas_id'=> 'nullable',
+        //     'tgl_masuk' => 'required',
+        // ]);
+        // if ($request->hasFile('gambar')){
+        //     $requestData['gambar'] = $request->file('gambar')->store('public/images');
+        //     $model = Model::findOrFail($id);
 
-            if($model->gambar != null) {
-                \Storage::delete($model->gambar);
-            }
-        }
+        //     if($model->gambar != null) {
+        //         \Storage::delete($model->gambar);
+        //     }
+        // }
 
-        $requestData['user_id'] = Auth::user()->id;
+        // $requestData['user_id'] = Auth::user()->id;
         
-        Model::where('id', $id)->update($requestData);
-        flash("Data berhasil diupdate");
-        return back();
+        // Model::where('id', $id)->update($requestData);
+        // flash("Data berhasil diupdate");
+        // return back();
     }
 
     /**
@@ -145,9 +159,9 @@ class TagihanController extends Controller
     public function destroy($id)
     {
 
-        $model =  Model::findOrFail($id);
-        $model->delete();
-        flash("Data berhasil dihapus")->success();
-        return back();
+        // $model =  Model::findOrFail($id);
+        // $model->delete();
+        // flash("Data berhasil dihapus")->success();
+        // return back();
     }
 }
