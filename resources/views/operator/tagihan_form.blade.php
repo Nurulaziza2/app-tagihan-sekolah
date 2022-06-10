@@ -7,45 +7,38 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Tambah Tagihan</h4>
+                <h4 class="card-title">Buat Tagihan Baru</h4>
             </div>               
                 <div class="card-body">
                 {!! Form::model($model, ['route'=>$route, 'method'=>$method,'files' => true]) !!}
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="siswa_id">Siswa</label>
-                    {!! Form::select('siswa_id', $siswa, null, ['class'=>'form-control']) !!}
+                    {!! Form::select('siswa_id', $siswaList, null, ['class'=>'form-control']) !!}
                     <span class="text-danger">{{ $errors->first('siswa_id') }} </span>
-                </div>
+                </div> --}}
                 <div class="form-group">
                     <label for="tanggal_tagihan">Tanggal Tagihan</label>
                     {!! Form::date('tanggal_tagihan', null, ['class'=>'form-control',]) !!}
                     <span class="text-danger">{{ $errors->first('tanggal_tagihan') }} </span>
                 </div>
                 <div class="form-group">
-                    <label for="nis">NIS</label>
-                    {!! Form::text('nis', null, ['class'=>'form-control']) !!}
-                    <span class="text-danger">{{ $errors->first('nis') }} </span>
+                    <label for="tanggal_jatuh_tempo">Tanggal Jatuh Tempo</label>
+                    {!! Form::date('tanggal_jatuh_tempo', null, ['class'=>'form-control',]) !!}
+                    <span class="text-danger">{{ $errors->first('tanggal_jatuh_tempo') }} </span>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    {!! Form::text('email', null, ['class'=>'form-control']) !!}
-                    <span class="text-danger">{{ $errors->first('email') }} </span>
+                    <label for="Biaya_id">Biaya Tagihan</label>
+                    {!! Form::select('biaya_id', $biayaList, null, ['class'=>'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('biaya_id') }} </span>
                 </div>
                 <div class="form-group">
-                    <label for="jk">Jenis Kelamin</label>
-                    {!! Form::select('jk', [
-                        'Laki-laki' => 'Laki-laki',
-                        'Perempuan' => 'Perempuan'
-                    ], null, ['class'=>'form-control']) !!}
-                    <span class="text-danger">{{ $errors->first('jk') }} </span>
+                    <label for="prodi">Program Studi</label>
+                    {!! Form::select('prodi', [
+                        'Menjahit' => 'Menjahit',
+                        'Fashion Design' => 'Fashion Design',
+                ], null, ['class'=>'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('prodi') }} </span>
                 </div>
-                {{-- <div class="form-group">
-                    <label for="siswa_id">Kelas</label>
-                    {!! Form::select('siswa_id', $kelas, null, ['class'=>'form-control']) !!}
-                    <span class="text-danger">{{ $errors->first('siswa_id') }} </span>
-                </div> --}}
-                
-                
                 {!! Form::submit($namaTombol, ['class'=>'btn btn-primary']) !!}
                 <a href="{{ url('tagihan', []) }}" class="ml-2 btn-primary btn">Kembali</a>
                 {!! Form::close() !!}

@@ -101,6 +101,7 @@ class BiayaController extends Controller
     {
         
         $requestData = $request->validate([
+            'nama' => 'required',
             'nominal' => 'required',
             'deskripsi' => 'nullable',
         ]);

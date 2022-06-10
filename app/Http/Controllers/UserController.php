@@ -16,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $models = Model::latest()->paginate(100);
+        // $models = Model::latest()->paginate(100);
+        $models = Model::where('akses', '!=', 'admin')->latest()->paginate(100);
         $data['models'] = $models;
         $data['routePrefix'] = $this->routePrefix;
         return view($this->viewPrefix . '_index', $data);
@@ -49,7 +50,8 @@ class UserController extends Controller
         $requestData = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed',
+            'password' => 'required',
+            'akses' => 'required',
         ]);
         if ($request->filled('password')) {
             $requestData['password'] = bcrypt($request->password);
@@ -102,6 +104,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'nullable|confirmed',
+            'akses' => 'required',
         ]);
         if ($request->password != null) {
             $requestData['password'] = bcrypt($request->password);
@@ -124,7 +127,7 @@ class UserController extends Controller
     {
         $model =  Model::findOrFail($id);
         $model->delete();
-        flash("Data berhasil dihapus")->danger();
+        flash("Data berhasil dihapus");
         return back();
     }
 }

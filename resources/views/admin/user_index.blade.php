@@ -1,10 +1,11 @@
 @extends('bahan.app-stisla')
 
 @section('content')
+
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Table Data User</h4>
+                    <h4 class="card-title">Data Operator</h4>
                 </div>               
                 <div class="card-body">
                     <a href="{{ route('user.create') }}" class="btn btn-primary mb-2">Tambah Data</a>
@@ -38,6 +39,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {!! $models->links() !!}
                 </div>
             </div>
             </div>
