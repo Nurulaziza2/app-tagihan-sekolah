@@ -17,9 +17,21 @@ class TagihanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $models = Tagihan::latest()->paginate(10);
+        if($request->filled('bulan') && $request->filled('tahun')){
+            $models = Tagihan::whereMonth('tanggal_tagihan', $request->bulan)
+            ->whereYear('tanggal_tagihan', $request->tahun)
+            ->latest()
+            ->paginate(10);
+        }
+        // elseif(request()->filled('q')) {
+        //     $models = Tagihan::search(request('q'))->paginate(10);
+        // }
+        else{
+            $models = Tagihan::latest()
+            ->paginate(10);
+        }
         $data['models'] = $models;
         $data['routePrefix'] = $this->routePrefix;
         return view($this->viewPrefix . '_index', $data);

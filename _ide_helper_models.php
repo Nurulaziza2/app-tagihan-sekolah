@@ -130,6 +130,8 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tagihan search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tagihan searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereDenda($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereDibayarOleh($value)

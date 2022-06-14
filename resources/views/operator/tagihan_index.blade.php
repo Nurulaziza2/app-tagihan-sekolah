@@ -10,8 +10,21 @@
                 </div>               
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary">Tambah Data</a>
+                        </div>
+                        <div class="col-md-4">
+                            {!! Form::open(['route' => $routePrefix.'.index','method' => 'GET']) !!}
+                            <div class="input-group mb-3">
+                                {!! Form::selectMonth('bulan', request('bulan'), ['class'=>'form-control','placeholder'=>'Pilih Bulan']) !!}
+                                {!! Form::selectRange('tahun', date('Y'), 2021, request('tahun'), ['class'=>'form-control','placeholder'=>'Pilih Tahun'])!!}
+
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit"><i class="fas fa-filter"></i></button>
+                                {{-- {!! Form::submit('Import Excel', ['class' => 'btn btn-primary']) !!} --}}
+                                </div>
+                            </div>
+                            {!! Form::close() !!}    
                         </div>  
                     </div>
                     <div class="row justify-content-start pt-3">
@@ -34,8 +47,8 @@
                         <thead>
                         <th>No</th>
                         <th>Nama Siswa</th>
+                        <th>NIS</th>
                         <th>Periode Tagihan</th>
-                        <th>Jatuh Tempo</th>
                         <th>Nama Tagihan</th>
                         <th>Jumlah Tagihan</th>
                         <th>Status</th>
@@ -48,8 +61,8 @@
                         <tr>
                             <td>{{ $loop->iteration.'.' }}</td>
                             <td>{{ $item->siswa->nama }}</td>
+                            <td>{{ $item->siswa->nis }}</td>
                             <td>{{ $item->tanggal_tagihan->translatedFormat('F Y') }}</td>
-                            <td>{{ $item->tanggal_jatuh_tempo->translatedFormat('d F Y') }}</td>
                             <td>{{ $item->nama }}</td>
                             <td>Rp{{ number_format($item->jumlah,0,",",".") }}</td>
                             <td>{{ $item->status }}</td>
