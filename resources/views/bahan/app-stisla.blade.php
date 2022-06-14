@@ -138,7 +138,7 @@
           </div>
           <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
-              <li class="nav-item {{ Request::path() === 'home' ? 'active' : '' }}">
+              <li class="nav-item {{ Request::path() === '/' ? 'active' : '' }}">
                 <a href="{{ url('/') }}" class="nav-link "><i class="fas fa-fire"></i><span>Dashboard</span></a>  
               </li>
               @if (auth()->user()->akses == 'admin')
@@ -186,7 +186,7 @@
       <div class="main-content">
         <section class="section">
             <div class="section-header">
-              <h1>Data {{ Request::path() }}</h1>
+              <h1>Data {{ Request::path()}}</h1>
             </div>
         
             <div class="section-body">

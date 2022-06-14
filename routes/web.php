@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function(){
 
 Route::get('/', function () {
     return view('home');
-})->middleware('auth');
+})->middleware('auth')->name('Dashboard');
 
 // kalkulator
 Route::get('/kalkulator', function() {
