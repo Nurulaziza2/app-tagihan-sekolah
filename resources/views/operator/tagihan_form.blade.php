@@ -40,7 +40,7 @@
                     <span class="text-danger">{{ $errors->first('prodi') }} </span>
                 </div>
                 {!! Form::submit($namaTombol, ['class'=>'btn btn-primary']) !!}
-                <a href="{{ url('siswa', []) }}" class="ml-2 btn-primary btn">Kembali</a>
+                <a href="{{ url('tagihan', []) }}" class="ml-2 btn-primary btn">Kembali</a>
                 {!! Form::close() !!}
                 </div>
             </div>
