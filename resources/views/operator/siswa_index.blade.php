@@ -70,7 +70,7 @@
                             <td>{{ $item->alamat }}</td>
                             <td>{{ $item->prodi }} {{ $item->durasi }}</td>
                             {{-- <td>{{ $item->kelas->nama }}</td> --}}
-                            <td>{{ $item->tgl_masuk }}</td>
+                            <td>{{ $item->tgl_masuk->translatedFormat('d F Y') }}</td>
                             {{-- <td>{{$item->created_at->format('d/m/Y H:i') }}</td> --}}
                             <td>
                                 {!! Form::open(['route'=>[$routePrefix . '.destroy',$item->id],'method'=>'DELETE','onsubmit'=>'return confirm("Anda Yakin?")']) !!}

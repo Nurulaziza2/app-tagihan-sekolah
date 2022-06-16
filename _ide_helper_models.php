@@ -80,7 +80,7 @@ namespace App{
  * @property string $alamat
  * @property string $prodi
  * @property string $durasi
- * @property string $tgl_masuk
+ * @property \Illuminate\Support\Carbon $tgl_masuk
  * @property int $user_id
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at

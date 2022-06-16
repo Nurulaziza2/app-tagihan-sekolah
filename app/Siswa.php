@@ -11,6 +11,7 @@ class Siswa extends Model
     use SearchableTrait;
     protected  $table = 'siswa' ;
     protected  $guarded = [] ;
+    protected $dates = ['tgl_masuk'];
 
     protected $searchable = [
         'columns' => [
