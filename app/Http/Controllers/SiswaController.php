@@ -133,7 +133,7 @@ class SiswaController extends Controller
             $model = Model::findOrFail($id);
 
             if($model->gambar != null) {
-                \Storage::delete($model->gambar);
+                \Storage::delete($model->gambar); 
             }
         }
 
