@@ -36,7 +36,7 @@
                     {!! Form::select('jk', [
                         'Laki-laki' => 'Laki-laki',
                         'Perempuan' => 'Perempuan'
-                    ], null, ['class'=>'form-control']) !!}
+                    ], null, ['class'=>'form-control','placeholder'=>'Jenis Kelamin']) !!}
                     <span class="text-danger">{{ $errors->first('jk') }} </span>
                 </div>
                 <div class="form-group">
@@ -49,7 +49,7 @@
                     {!! Form::select('prodi', [
                         'Menjahit' => 'Menjahit',
                         'Fashion Design' => 'Fashion Design',
-                ], null, ['class'=>'form-control']) !!}
+                ], null, ['class'=>'form-control','placeholder'=>'Pilih Program Studi']) !!}
                     <span class="text-danger">{{ $errors->first('prodi') }} </span>
                 </div>
                 <div class="form-group">
@@ -58,7 +58,7 @@
                         '3 Bulan' => '3 Bulan',
                         '6 Bulan' => '6 Bulan',
                         '12 Bulan' => '12 Bulan',
-                ], null, ['class'=>'form-control']) !!}
+                ], null, ['class'=>'form-control','placeholder'=>'Pilih Durasi Kursus']) !!}
                     <span class="text-danger">{{ $errors->first('durasi') }} </span>
                 </div>
                 {{-- <div class="form-group">

@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                     <label for="Biaya_id">Biaya Tagihan</label>
-                    {!! Form::select('biaya_id', $biayaList, null, ['class'=>'form-control']) !!}
+                    {!! Form::select('biaya_id', $biayaList, null, ['class'=>'form-control','placeholder'=>'Pilih Jenis Biaya']) !!}
                     <span class="text-danger">{{ $errors->first('biaya_id') }} </span>
                 </div>
                 <div class="form-group">
@@ -36,7 +36,7 @@
                     {!! Form::select('prodi', [
                         'Menjahit' => 'Menjahit',
                         'Fashion Design' => 'Fashion Design',
-                ], null, ['class'=>'form-control']) !!}
+                ], null, ['class'=>'form-control','placeholder'=>'Pilih Program Studi']) !!}
                     <span class="text-danger">{{ $errors->first('prodi') }} </span>
                 </div>
                 {!! Form::submit($namaTombol, ['class'=>'btn btn-primary']) !!}
