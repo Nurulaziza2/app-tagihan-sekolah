@@ -1,5 +1,50 @@
 @extends('bahan.app-stisla')
+@section('js')
+<script>
+    "use strict";
 
+$("[data-checkboxes]").each(function() {
+  var me = $(this),
+    group = me.data('checkboxes'),
+    role = me.data('checkbox-role');
+
+  me.change(function() {
+    var all = $('[data-checkboxes="' + group + '"]:not([data-checkbox-role="dad"])'),
+      checked = $('[data-checkboxes="' + group + '"]:not([data-checkbox-role="dad"]):checked'),
+      dad = $('[data-checkboxes="' + group + '"][data-checkbox-role="dad"]'),
+      total = all.length,
+      checked_length = checked.length;
+
+    if(role == 'dad') {
+      if(me.is(':checked')) {
+        all.prop('checked', true);
+      }else{
+        all.prop('checked', false);
+      }
+    }else{
+      if(checked_length >= total) {
+        dad.prop('checked', true);
+      }else{
+        dad.prop('checked', false);
+      }
+    }
+  });
+});
+
+$("#table-1").dataTable({
+  "columnDefs": [
+    { "sortable": false, "targets": [2,3] }
+  ]
+});
+$("#table-2").dataTable({
+  "columnDefs": [
+    { "sortable": false, "targets": [0,2,3] }
+  ]
+});
+
+</script>
+    
+@endsection
 @section('content')
 
     <!-- Main content -->
@@ -27,23 +72,9 @@
                             {!! Form::close() !!}    
                         </div>  
                     </div>
-                    <div class="row justify-content-start pt-3">
-                        <div class="col-md-5 ">
-                            {!! Form::open(['method' => "GET"]) !!}
-                            <div class="input-group mb-3">
-                                <div class="custom-file">
-                                    {!! Form::text('q',request('q'), ['class' => 'form-control','placeholder' => 'Pencarian berdasarkan nama atau nis atau email']) !!}
-                                </div>
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
-                                {{-- {!! Form::submit('Pencarian', ['class' => 'btn btn-primary']) !!} --}}
-                                </div>
-                            </div>
-                            {!! Form::close() !!}
-                        </div>
-                    </div>
+                   
                     <div class="table-responsive">
-                    <table class="table table-hover table-sm">
+                    <table class="table table-hover table-sm" id="table-1">
                         <thead>
                         <th>No</th>
                         <th>Nama Siswa</th>
@@ -79,7 +110,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {!! $models->links() !!}
+                {{-- {!! $models->links() !!} --}}
                 </div>
             </div>
             </div>
