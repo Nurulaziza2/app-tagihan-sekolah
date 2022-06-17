@@ -6,7 +6,7 @@
     <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Data Tagihan</h4>
+                    <h4 class="card-title">Data Siswa</h4>
                 </div>               
                 <div class="card-body">
                     <div class="row">
@@ -29,6 +29,8 @@
                             {!! Form::close() !!}
                         </div>
                     </div>
+
+                    {{-- code pencarian start --}}
                     <div class="row justify-content-start pt-3">
                         <div class="col-md-5 ">
                             {!! Form::open(['method' => "GET"]) !!}
@@ -44,6 +46,8 @@
                             {!! Form::close() !!}
                         </div>
                     </div>
+                    {{-- code pencarian end --}}
+
                     <div class="table-responsive">
                     <table class="table table-hover table-sm text-center">
                         <thead>

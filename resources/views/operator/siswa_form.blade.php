@@ -1,4 +1,4 @@
-@extends('bahan.app-stisla', ['namaHalaman' => 'Form Siswa'])
+@extends('bahan.app-stisla', ['title' => 'Form Siswa'])
 
 @section('content')
 
