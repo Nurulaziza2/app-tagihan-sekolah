@@ -1,4 +1,4 @@
-@extends('bahan.app-stisla')
+@extends('bahan.app-stisla', ['namaHalaman' => 'Form Siswa'])
 
 @section('content')
 
@@ -49,6 +49,8 @@
                     {!! Form::select('prodi', [
                         'Menjahit' => 'Menjahit',
                         'Fashion Design' => 'Fashion Design',
+                        'Desain Interior' => 'Desain Interior',
+
                 ], null, ['class'=>'form-control','placeholder'=>'Pilih Program Studi']) !!}
                     <span class="text-danger">{{ $errors->first('prodi') }} </span>
                 </div>

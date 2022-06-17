@@ -14,7 +14,7 @@ class SiswaImportController extends Controller
             'file_siswa' => 'required|mimes:csv,xls,xlsx',
         ]);
         $file = $request->file('file_siswa');
-        $namaFile = $file ->getClientOriginalName();
+        $namaFile = date("ymd-his").$file->getClientOriginalName();
         $file->move('file_siswa', $namaFile);
         Excel::import(new SiswaImport, public_path('/file_siswa/'.$namaFile));
 

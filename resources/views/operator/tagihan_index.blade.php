@@ -74,7 +74,7 @@ $("#table-2").dataTable({
                     </div>
                     
                     <div class="table-responsive">
-                    <table class="table table-hover table-sm" id="table-1">
+                    <table class="table table-hover table-sm" id="datatables">
                         <thead>
                         <th>No</th>
                         <th>Nama Siswa</th>
