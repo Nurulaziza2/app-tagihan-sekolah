@@ -72,15 +72,9 @@ $("#table-2").dataTable({
                             {!! Form::close() !!}    
                         </div>  
                     </div>
-<<<<<<< HEAD
-                   
-                    <div class="table-responsive">
-                    <table class="table table-hover table-sm" id="table-1">
-=======
                     
                     <div class="table-responsive">
-                    <table class="table table-hover table-sm" id="datatables">
->>>>>>> 8e4c5901d94402044bf924c1783228d826fa1556
+                    <table class="table table-hover table-sm" id="table-1">
                         <thead>
                         <th>No</th>
                         <th>Nama Siswa</th>
