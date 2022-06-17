@@ -27,23 +27,9 @@
                             {!! Form::close() !!}    
                         </div>  
                     </div>
-                    <div class="row justify-content-start pt-3">
-                        <div class="col-md-5 ">
-                            {!! Form::open(['method' => "GET"]) !!}
-                            <div class="input-group mb-3">
-                                <div class="custom-file">
-                                    {!! Form::text('q',request('q'), ['class' => 'form-control','placeholder' => 'Pencarian berdasarkan nama atau nis atau email']) !!}
-                                </div>
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
-                                {{-- {!! Form::submit('Pencarian', ['class' => 'btn btn-primary']) !!} --}}
-                                </div>
-                            </div>
-                            {!! Form::close() !!}
-                        </div>
-                    </div>
+                    
                     <div class="table-responsive">
-                    <table class="table table-hover table-sm">
+                    <table class="table table-hover table-sm" id="datatables">
                         <thead>
                         <th>No</th>
                         <th>Nama Siswa</th>
