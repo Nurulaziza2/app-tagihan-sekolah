@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                    <table class="table table-hover table-sm">
+                    <table class="table table-hover table-sm text-center">
                         <thead>
                         <th>No</th>
                         <th>Nama</th>
