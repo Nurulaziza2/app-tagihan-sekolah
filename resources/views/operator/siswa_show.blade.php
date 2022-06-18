@@ -1,4 +1,4 @@
-@extends('bahan.app-stisla')
+@extends('bahan.app-stisla',['title'=>'Profil Siswa'])
 
 @section('content')
 
@@ -9,7 +9,7 @@
 </style>
     <!-- Main content -->
     <div class="col-lg-12">
-     
+    
             <div class="card">
                 <div class="container">
                     <div class="row">
@@ -19,7 +19,7 @@
                         </div>
 
                         <div class="col">
-                            <div class="card-header">Info Data{{ strtoupper($model->name) }}</div>
+                            <div class="card-header">Data Siswa : {{ strtoupper($model->nama) }}</div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-responsive table-bordered table-md">
@@ -50,11 +50,11 @@
                                         </tr>
                                         <tr>
                                             <td>Program Kursus</td>
-                                            <td>: {{ $model->prodi }} {{ $model->durasi }}</td>
+                                            <td>:  {{ $model->kelas->nama_kelas }}</td>
                                         </tr>
                                         <tr>
                                             <td>Tanggal Masuk</td>
-                                            <td>{{ $model->tgl_masuk }}</td>
+                                            <td>:  {{ $model->tgl_masuk->translatedFormat('d F Y') }}</td>
                                         </tr>
                                         <tr>
                                             <td>Dibuat Oleh</td>

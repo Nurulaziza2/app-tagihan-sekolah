@@ -7,7 +7,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Tambah Siswa</h4>
+                <h4 class="card-title">Data Siswa</h4>
             </div>               
                 <div class="card-body">
                 {!! Form::model($model, ['route'=>$route, 'method'=>$method,'files' => true]) !!}
@@ -45,14 +45,9 @@
                     <span class="text-danger">{{ $errors->first('alamat') }} </span>
                 </div>
                 <div class="form-group">
-                    <label for="prodi">Program Studi</label>
-                    {!! Form::select('prodi', [
-                        'Menjahit' => 'Menjahit',
-                        'Fashion Design' => 'Fashion Design',
-                        'Desain Interior' => 'Desain Interior',
-
-                ], null, ['class'=>'form-control','placeholder'=>'Pilih Program Studi']) !!}
-                    <span class="text-danger">{{ $errors->first('prodi') }} </span>
+                    <label for="kelas_id">Kelas</label>
+                    {!! Form::select('kelas_id', $kelasList, null, ['class'=>'form-control','placeholder'=>'Pilih Kelas ']) !!}
+                    <span class="text-danger">{{ $errors->first('kelas_id') }} </span>
                 </div>
                 <div class="form-group">
                     <label for="durasi">Durasi</label>
@@ -64,10 +59,17 @@
                     <span class="text-danger">{{ $errors->first('durasi') }} </span>
                 </div>
                 {{-- <div class="form-group">
-                    <label for="kelas_id">Kelas</label>
-                    {!! Form::select('kelas_id', $kelas, null, ['class'=>'form-control']) !!}
-                    <span class="text-danger">{{ $errors->first('kelas_id') }} </span>
+                    <label for="prodi">Program Studi</label>
+                    {!! Form::select('prodi', [
+                        'Menjahit' => 'Menjahit',
+                        'Fashion Design' => 'Fashion Design',
+                        'Desain Interior' => 'Desain Interior',
+
+                ], null, ['class'=>'form-control','placeholder'=>'Pilih Program Studi']) !!}
+                    <span class="text-danger">{{ $errors->first('prodi') }} </span>
                 </div> --}}
+                
+                
                 <div class="form-group">
                     <label for="tgl_masuk">Tanggal Masuk</label>
                     {!! Form::date('tgl_masuk', null, ['class'=>'form-control',]) !!}

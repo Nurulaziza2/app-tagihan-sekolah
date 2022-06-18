@@ -28,6 +28,9 @@ class Tagihan extends Model
     {
         return $this->belongsTo(Siswa::class); 
     }
+    public function kelas(): BelongsTo {
+        return $this->belongsTo(Kelas::class);
+    }
 
 }
 

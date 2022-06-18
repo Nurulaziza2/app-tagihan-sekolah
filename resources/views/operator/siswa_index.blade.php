@@ -1,4 +1,4 @@
-@extends('bahan.app-stisla')
+@extends('bahan.app-stisla',['title' => 'Siswa'])
 
 @section('content')
 
@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary">Tambah Data</a>
+                            <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary">Tambah Siswa <i class="fas fa-plus"></i></a>
                         </div>
                         <div class="col-md-6">
                             {!! Form::open(['route' => 'siswa.import','files' => true]) !!}
@@ -72,18 +72,15 @@
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->jk }}</td>
                             <td>{{ $item->alamat }}</td>
-                            <td>{{ $item->prodi }} {{ $item->durasi }}</td>
-                            {{-- <td>{{ $item->kelas->nama }}</td> --}}
+                            <td>{{ $item->kelas->nama }} {{ $item->durasi }}</td>
+
                             <td>{{ $item->tgl_masuk->translatedFormat('d F Y') }}</td>
-                            {{-- <td>{{$item->created_at->format('d/m/Y H:i') }}</td> --}}
                             <td>
                                 {!! Form::open(['route'=>[$routePrefix . '.destroy',$item->id],'method'=>'DELETE','onsubmit'=>'return confirm("Anda Yakin?")']) !!}
                                 <a href="{{ route($routePrefix . '.edit', $item->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                 <a href="{{ route($routePrefix . '.show', $item->id) }}" class="btn btn-info ml-1 mr-1"><i class="fas fa-eye"></i></a>
                                 <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                                 {!! Form::close() !!}
-                                {{-- {!! Form::submit('Hapus', ['class'=>'btn btn-danger']) !!}
-                                {!! Form::close() !!} --}}
                             </td>
                         </tr>
                         @endforeach

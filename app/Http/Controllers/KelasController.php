@@ -49,7 +49,6 @@ class KelasController extends Controller
     {
         $requestData = $request->validate([
             'nama' => 'required',
-            'durasi_kursus'=> 'required',
             'detail'=>'nullable',
             
         ]);
@@ -102,7 +101,6 @@ class KelasController extends Controller
         
         $requestData = $request->validate([
             'nama' => 'required',
-            'durasi_kursus'=> 'required',
             'detail'=>'nullable',
         ]);
         

@@ -1,4 +1,4 @@
-@extends('bahan.app-stisla')
+@extends('bahan.app-stisla',['title'=>'Operator'])
 
 @section('content')
 
@@ -8,7 +8,7 @@
                     <h4 class="card-title">Data Operator</h4>
                 </div>               
                 <div class="card-body">
-                    <a href="{{ route('user.create') }}" class="btn btn-primary mb-2">Tambah Data</a>
+                    <a href="{{ route('user.create') }}" class="btn btn-primary mb-2">Tambah Operator <i class="fas fa-plus"></i></a>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>

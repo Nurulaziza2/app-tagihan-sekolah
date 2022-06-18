@@ -1,11 +1,11 @@
-@extends('bahan.app-stisla')
+@extends('bahan.app-stisla',['title'=>'Detail Operator'])
 
 @section('content')
 
     <!-- Main content -->
     <div class="col-lg-12">
             <div class="card">
-                <div class="card-header">Tampil Data {{ strtoupper($model->name) }}</div>
+                <div class="card-header"> </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-responsive-md">

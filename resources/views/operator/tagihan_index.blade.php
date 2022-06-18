@@ -1,4 +1,4 @@
-@extends('bahan.app-stisla')
+@extends('bahan.app-stisla',['title'=>'Tagihan'])
 @section('js')
 <script>
     "use strict";
@@ -56,14 +56,13 @@ $("#table-2").dataTable({
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-8">
-                            <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary">Tambah Data</a>
+                            <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary">Buat Tagihan <i class="fas fa-plus"></i></a>
                         </div>
                         <div class="col-md-4">
                             {!! Form::open(['route' => $routePrefix.'.index','method' => 'GET']) !!}
                             <div class="input-group mb-3">
                                 {!! Form::selectMonth('bulan', request('bulan'), ['class'=>'form-control','placeholder'=>'Pilih Bulan']) !!}
                                 {!! Form::selectRange('tahun', date('Y'), 2021, request('tahun'), ['class'=>'form-control','placeholder'=>'Pilih Tahun'])!!}
-                                
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit"><i class="fas fa-filter"></i></button>
                                 {{-- {!! Form::submit('Import Excel', ['class' => 'btn btn-primary']) !!} --}}

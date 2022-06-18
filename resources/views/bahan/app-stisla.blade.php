@@ -200,7 +200,8 @@
                 @yield('content')
             </div>
             
-       
+        </section>  
+      
         
       </div>
       <footer class="main-footer">

@@ -25,7 +25,7 @@ class SiswaImport implements ToCollection
             $durasi = $row[8];
             if(is_int ($no)){
                 $siswa  = \App\Siswa::where('nis', $nis)->first();
-                $kelas = \App\Kelas::where('nama', $prodi)->where('durasi_kursus', $durasi)->first();
+                $kelas = \App\Kelas::where('nama', $prodi)->first();
                 
                 if($siswa == null) {
                     \App\Siswa::create([
@@ -35,9 +35,8 @@ class SiswaImport implements ToCollection
                         'jk' => $jk,
                         'tgl_masuk' => $tgl_masuk,
                         'alamat' => $alamat,
-                        'prodi' => $prodi,
-                        'durasi' => $durasi,
                         'user_id'=>Auth::user()->id,
+                        'durasi'=>$durasi,
                         'kelas_id'=>$kelas->id
                     ]);
                 }

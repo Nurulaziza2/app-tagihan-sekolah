@@ -7,7 +7,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Tambah Kelas</h4>
+                <h4 class="card-title">Data Kelas</h4>
             </div>               
                 <div class="card-body">
                 {!! Form::model($model, ['route'=>$route, 'method'=>$method]) !!}
@@ -15,14 +15,6 @@
                     <label for="nama">Nama</label>
                     {!! Form::text('nama', null, ['class'=>'form-control','autofocus'=>true]) !!}
                     <span class="text-danger">{{ $errors->first('nama') }} </span>
-                </div>
-                <div class="form-group">
-                    <label for="durasi_kursus">Durasi Kursus</label>
-                    {!! Form::select('durasi_kursus', [
-                        '3 Bulan' => '3 Bulan',
-                        '6 Bulan' => '6 Bulan',
-                        '12 Bulan' => '12 Bulan',
-                    ], null, ['class'=>'form-control']) !!}
                 </div>
                 <div class="form-group">
                     <label for="detail">Detail</label>

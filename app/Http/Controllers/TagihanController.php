@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Biaya;
+use App\Kelas;
 use App\Siswa;
 use App\Tagihan;
 use Illuminate\Http\Request;
@@ -46,8 +47,8 @@ class TagihanController extends Controller
     {
         $model = new Tagihan();
         $data['model'] = $model;
-        // $data['siswaList']= Siswa::pluck('nama','id');
         $data['biayaList']= Biaya::get()->pluck('nama_biaya','id');
+        $data['kelasList']= Kelas::get()->pluck('nama','id');
         $data['method'] = 'POST';
         $data['route'] = $this->routePrefix .'.store';
         $data['namaTombol']= 'Buat Tagihan';
@@ -67,12 +68,12 @@ class TagihanController extends Controller
             'biaya_id' => 'required',
             'tanggal_tagihan' => 'required',
             'tanggal_jatuh_tempo' => 'required',
-            'prodi'=> 'required',
+            'kelas'=> 'required',
 
         ]);
         $biaya = Biaya::findOrFail($request->biaya_id);
         $siswa = Siswa::query();
-        $siswa->where('prodi',$request->prodi);
+        $siswa->where('kelas_id',$request->kelas);
         $siswa = $siswa->get();
         $tanggalTagihan = \Carbon\Carbon::parse($request->tanggal_tagihan);
         $bulanTagihan = $tanggalTagihan->format('m');

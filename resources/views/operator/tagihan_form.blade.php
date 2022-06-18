@@ -32,12 +32,9 @@
                     <span class="text-danger">{{ $errors->first('biaya_id') }} </span>
                 </div>
                 <div class="form-group">
-                    <label for="prodi">Program Studi</label>
-                    {!! Form::select('prodi', [
-                        'Menjahit' => 'Menjahit',
-                        'Fashion Design' => 'Fashion Design',
-                ], null, ['class'=>'form-control','placeholder'=>'Pilih Program Studi']) !!}
-                    <span class="text-danger">{{ $errors->first('prodi') }} </span>
+                    <label for="kelas">Kelas</label>
+                    {!! Form::select('kelas', $kelasList, null, ['class'=>'form-control','placeholder'=>'Pilih Kelas']) !!}
+                    <span class="text-danger">{{ $errors->first('kelas') }} </span>
                 </div>
                 {!! Form::submit($namaTombol, ['class'=>'btn btn-primary']) !!}
                 <a href="{{ url('tagihan', []) }}" class="ml-2 btn-primary btn">Kembali</a>
