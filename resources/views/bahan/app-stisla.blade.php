@@ -34,67 +34,17 @@
             <li><a href="{{ asset('stisla') }}/#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
           </ul>
           <div class="search-element">
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
-            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+            
             <div class="search-backdrop"></div>
             <div class="search-result">
-              <div class="search-header">
-                Histories
-              </div>
-              <div class="search-item">
-                <a href="{{ asset('stisla') }}/#">Ayo semangat Ngerjain KP-nya</a>
-                <a href="{{ asset('stisla') }}/#" class="search-close"><i class="fas fa-times"></i></a>
-              </div>
-            
-              <div class="search-header">
-                Result
-              </div>
-              <div class="search-item">
-                <a href="{{ asset('stisla') }}/#">
-                  <img class="mr-3 rounded" width="30" src="{{ asset('stisla') }}/assets/img/products/product-3-50.png" alt="product">
-                  oPhone S9 Limited Edition
-                </a>
-              </div>
-              <div class="search-header">
-                Projects
-              </div>
-              <div class="search-item">
-                <a href="{{ asset('stisla') }}/#">
-                  <div class="search-icon bg-danger text-white mr-3">
-                    <i class="fas fa-code"></i>
-                  </div>
-                  Stisla Admin Template
-                </a>
-              </div>
+              
+             
+              
             </div>
           </div>
         </form>
         <ul class="navbar-nav navbar-right">
-          <li class="dropdown dropdown-list-toggle"><a href="{{ asset('stisla') }}/#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
-            <div class="dropdown-menu dropdown-list dropdown-menu-right">
-              <div class="dropdown-header">Messages
-                <div class="float-right">
-                  <a href="{{ asset('stisla') }}/#">Mark All As Read</a>
-                </div>
-              </div>
-              <div class="dropdown-list-content dropdown-list-message">
-                <a href="{{ asset('stisla') }}/#" class="dropdown-item dropdown-item-unread">
-                  <div class="dropdown-item-avatar">
-                    <img alt="image" src="{{ asset('stisla') }}/assets/img/avatar/avatar-1.png" class="rounded-circle">
-                    <div class="is-online"></div>
-                  </div>
-                  <div class="dropdown-item-desc">
-                    <b>Kusnaedi</b>
-                    <p>Hello, Bro!</p>
-                    <div class="time">10 Hours Ago</div>
-                  </div>
-                </a>
-              </div>
-              <div class="dropdown-footer text-center">
-                <a href="{{ asset('stisla') }}/#">View All <i class="fas fa-chevron-right"></i></a>
-              </div>
-            </div>
-          </li>
+          
           <li class="dropdown dropdown-list-toggle"><a href="{{ asset('stisla') }}/#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
               <div class="dropdown-header">Notifications
@@ -148,16 +98,15 @@
                 <a href="{{ url('/') }}" class="nav-link "><i class="fas fa-fire"></i><span>Dashboard</span></a>  
               </li>
               @if (auth()->user()->akses == 'admin')
-                <li class="nav-item {{ Request::path() === 'user' ? 'active' : '' }}">
-                  <a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users"></i> <span>Data Operator</span>
-                  </a>
-                </li>
-                <li class="nav-item {{ Request::path() === 'biaya' ? 'active' : '' }}">
-                  <a class="nav-link" href="{{ route('biaya.index') }}"><i class="fas fa-money-bill-wave"></i> <span>Data Biaya</span>
-                  </a>
-                </li>
-              @endif
-
+              <li class="nav-item {{ Request::path() === 'user' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users"></i> <span>Data Operator</span>
+                </a>
+              </li>
+              <li class="nav-item {{ Request::path() === 'biaya' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('biaya.index') }}"><i class="fas fa-money-bill-wave"></i> <span>Data Biaya</span>
+                </a>
+              </li>
+              @else
               <li class="nav-item {{ Request::path() === 'kelas' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('kelas.index') }}"><i class="fas fa-pencil-ruler"></i> <span>Data Kelas</span>
                 </a>
@@ -179,6 +128,8 @@
                 </a>
               </li>
             </ul>
+              @endif
+              
 
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
               <a href="{{ route ('logout') }}" class="btn btn-danger btn-lg btn-block btn-icon-split">
@@ -206,7 +157,7 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="{{ asset('stisla') }}/https://nauval.in/">Muhamad Nauval Azhar</a>
+          Copyright &copy; 2022 <div class="bullet"></div> App Pembayaran SPP FA Sekolah Mode</a>
         </div>
         <div class="footer-right">
           2.3.0
