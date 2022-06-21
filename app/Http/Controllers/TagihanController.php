@@ -7,6 +7,7 @@ use App\Biaya;
 use App\Kelas;
 use App\Siswa;
 use App\Tagihan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TagihanController extends Controller
@@ -19,25 +20,28 @@ class TagihanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {   
+        $title = "Data Tagihan";
+        $info= "Silahkan Pilih Bulan dan tahun untuk melihat data tagihan";
         if($request->filled('bulan') && $request->filled('tahun')){
             $models = Tagihan::whereMonth('tanggal_tagihan', $request->bulan)
             ->whereYear('tanggal_tagihan', $request->tahun)
             ->latest()
             ->get();
+            $bulan=Carbon::parse($request->tahun.'-'.$request->bulan.'-01')->translatedformat('F');
+            $title= " Data Tagihan Bulan ".$bulan." ".$request->tahun;
+            $info= "Tidak Ada Data Pada Bulan ".$bulan." ".$request->tahun;
         }
-        // elseif(request()->filled('q')) {
-        //     $models = Tagihan::search(request('q'))->paginate(10);
-        // }
         else{
-            $models = Tagihan::latest()
-            ->get();
+            $models= collect([]);
         }
+        $data['info'] = $info;
+        $data['title'] = $title;
         $data['models'] = $models;
         $data['routePrefix'] = $this->routePrefix;
         return view($this->viewPrefix . '_index', $data);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -90,7 +94,7 @@ class TagihanController extends Controller
             $tagihan->tanggal_jatuh_tempo = $request->tanggal_jatuh_tempo;
             $tagihan->nama = $biaya->nama;
             $tagihan->jumlah = $biaya->nominal;
-            $tagihan->status ='Baru';
+            $tagihan->status ='Belum Bayar';
             $tagihan->dibuat_oleh = Auth::user()->name;
             $tagihan->save();
             }

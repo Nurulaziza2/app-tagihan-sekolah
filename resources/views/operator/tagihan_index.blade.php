@@ -51,7 +51,7 @@ $("#table-2").dataTable({
     <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Data Tagihan</h4>
+                    <h4 class="card-title">{{ $title }}</h4>
                 </div>               
                 <div class="card-body">
                     <div class="row">
@@ -65,13 +65,12 @@ $("#table-2").dataTable({
                                 {!! Form::selectRange('tahun', date('Y'), 2021, request('tahun'), ['class'=>'form-control','placeholder'=>'Pilih Tahun'])!!}
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit"><i class="fas fa-filter"></i></button>
-                                {{-- {!! Form::submit('Import Excel', ['class' => 'btn btn-primary']) !!} --}}
                                 </div>
                             </div>
                             {!! Form::close() !!}    
                         </div>  
                     </div>
-                    
+                   
                     <div class="table-responsive">
                     <table class="table table-hover table-sm" id="datatables">
                         <thead>
@@ -83,34 +82,33 @@ $("#table-2").dataTable({
                         <th>Jumlah Tagihan</th>
                         <th>Status</th>
                         <th>Aksi</th>
-
                     </thead>
                     <tbody>
-                        
-                        @foreach ($models as $item)
+                      @forelse ($models as $item)
                         <tr>
-                            <td>{{ $loop->iteration.'.' }}</td>
-                            <td>{{ $item->siswa->nama }}</td>
-                            <td>{{ $item->siswa->nis }}</td>
-                            <td>{{ $item->tanggal_tagihan->translatedFormat('F Y') }}</td>
-                            <td>{{ $item->nama }}</td>
-                            <td>Rp{{ number_format($item->jumlah,0,",",".") }}</td>
-                            <td>{{ $item->status }}</td>
-                            <td>
-                                {!! Form::open(['route'=>[$routePrefix . '.destroy',$item->id],'method'=>'DELETE','onsubmit'=>'return confirm("Anda Yakin?")']) !!}
-                                <a href="{{ route($routePrefix . '.edit', $item->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                <a href="{{ route($routePrefix . '.show', $item->id) }}" class="btn btn-info ml-1 mr-1"><i class="fas fa-eye"></i></a>
-                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                {!! Form::close() !!}
-                                {{-- {!! Form::submit('Hapus', ['class'=>'btn btn-danger']) !!}
-                                {!! Form::close() !!} --}}
-                            </td>
-                        </tr>
-                        @endforeach
+                          <td>{{ $loop->iteration.'.' }}</td>
+                          <td>{{ $item->siswa->nama }}</td>
+                          <td>{{ $item->siswa->nis }}</td>
+                          <td>{{ $item->tanggal_tagihan->translatedFormat('F Y') }}</td>
+                          <td>{{ $item->nama }}</td>
+                          <td>Rp{{ number_format($item->jumlah,0,",",".") }}</td>
+                          <td><div class="badge {{ $item->status ==='Lunas' ? 'badge-success' : 'badge-danger' }}">{{ $item->status }}</div></td>
+                          <td>
+                              {!! Form::open(['route'=>[$routePrefix . '.destroy',$item->id],'method'=>'DELETE','onsubmit'=>'return confirm("Anda Yakin?")']) !!}
+                              <a href="{{ route($routePrefix . '.edit', $item->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                              <a href="{{ route($routePrefix . '.show', $item->id) }}" class="btn btn-info ml-1 mr-1"><i class="fas fa-eye"></i></a>
+                              <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                              {!! Form::close() !!}
+                          </td>
+                        </tr>   
+                      @empty
+                            <tr>
+                              <td colspan="8" class="text-center">{{ $info }}</td>
+                            </tr>
+                      @endforelse
                     </tbody>
-                </table>
-                {{-- {!! $models->links() !!} --}}
-                </div>
+                  </table>
+                  </div>
             </div>
             </div>
     </div>
