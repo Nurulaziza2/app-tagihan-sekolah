@@ -20,12 +20,12 @@ Route::get('logout', function () {
 // menggabungkan route, agar dapat diakses ketika user login
 Route::middleware(['auth'])->group(function(){
     Route::resource('user', 'UserController')->middleware('admin');
-    Route::resource('siswa', 'SiswaController');
-    Route::resource('kelas', 'KelasController');
-    Route::resource('biaya', 'BiayaController');
-    Route::resource('tagihan', 'TagihanController');
+    Route::resource('siswa', 'SiswaController')->middleware('operator');
+    Route::resource('kelas', 'KelasController')->middleware('operator');
+    Route::resource('biaya', 'BiayaController')->middleware('admin');
+    Route::resource('tagihan', 'TagihanController')->middleware('operator');
     Route::resource('userprofil', 'UserProfilController');
-    Route::post('siswaimport/upload','SiswaImportController@upload')->name('siswa.import');
+    Route::post('siswaimport/upload','SiswaImportController@upload')->name('    siswa.import');
     
 });
 
@@ -38,9 +38,6 @@ Route::get('/', function () {
 // kalkulator
 Route::get('/kalkulator', function() {
     return view('kalkulator');
-});
-Route::get('/contoh', function() {
-    return view('bahan.blank');
 });
 
 Auth::routes();
