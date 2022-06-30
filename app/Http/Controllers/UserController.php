@@ -51,11 +51,12 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required',
-            'akses' => 'required',
         ]);
         if ($request->filled('password')) {
             $requestData['password'] = bcrypt($request->password);
         }
+        $requestData['akses'] = 'operator';
+        
         Model::create($requestData);
         flash("Data berhasil disimpan");
         return back();
@@ -104,7 +105,6 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'nullable|confirmed',
-            'akses' => 'required',
         ]);
         if ($request->password != null) {
             $requestData['password'] = bcrypt($request->password);

@@ -22,11 +22,6 @@
                     <span class="text-danger">{{ $errors->first('email') }} </span>
                 </div>
                 <div class="form-group">
-                    <label for="akses">Akses</label>
-                    {!! Form::select('akses', ['operator' => 'operator',    ], null, ['class'=>'form-control']) !!}
-                    <span class="text-danger">{{ $errors->first('akses') }} </span>
-                </div>
-                <div class="form-group">
                     <label for="password">Password</label>
                     {!! Form::password('password', ['class'=>'form-control']) !!}
                     <span class="text-danger">{{ $errors->first('password') }} </span>
