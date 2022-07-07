@@ -104,6 +104,7 @@ class SiswaController extends Controller
         $data['route'] = [$this->routePrefix . '.update', $id];
         $data['kelasList']= Kelas::get()->pluck('nama','id');
         $data['namaTombol']= 'Update';
+        // dd($data['model']);
         return view($this->viewPrefix . '_form', $data);
     }
 

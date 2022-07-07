@@ -50,7 +50,7 @@
                                         </tr>
                                         <tr>
                                             <td>Program Kursus</td>
-                                            <td>:  {{ $model->kelas->nama_kelas }}</td>
+                                            <td>:  {{ $model->kelas->nama }} {{$model->durasi  }}</td>
                                         </tr>
                                         <tr>
                                             <td>Tanggal Masuk</td>

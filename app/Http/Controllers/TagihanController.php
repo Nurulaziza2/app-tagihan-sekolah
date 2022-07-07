@@ -112,8 +112,9 @@ class TagihanController extends Controller
      */
     public function show($id)
     {
-        // $data['model'] = Model::findOrFail($id);
-        // return view($this->viewPrefix . '_show', $data);
+       $model = \App\Tagihan::findOrFail($id);
+        $data['model'] = $model;
+       return view($this->viewPrefix . '_show',$data);
     }
 
     /**
