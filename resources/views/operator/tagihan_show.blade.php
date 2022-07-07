@@ -7,10 +7,9 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Informasi Siswa </h4>
-                </div>               
                 <div class="card-body">
+                    <h4 class="card-title">Informasi Siswa </h4>
+                
                    <table class="table ">
                         <tr>
                             <td rowspan="6" width="250">
@@ -45,20 +44,18 @@
     <div class="row">
         <div class="col-sm-5">
         <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Detail Tagihan </h4>
-            </div>               
             <div class="card-body">
+                <h4 class="card-title">Detail Tagihan </h4>       
+
                 
             </div>
         </div>
         </div>
         <div class="col-sm-7">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Kartu SPP </h4>
-                </div>               
                 <div class="card-body">
+                    <h4 class="card-title">Kartu SPP </h4>     
+
                     
                 </div>
             </div>
