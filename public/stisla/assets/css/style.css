@@ -304,7 +304,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .form-group {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 
 .form-group .control-label,
@@ -936,6 +936,35 @@ select.form-control:not([size]):not([multiple]) {
     line-height: 28px;
     color: #6777ef;
     padding-right: 5px;
+    margin-bottom: 5px;
+}
+
+.card .card-body h5 {
+    font-size: 14px;
+    line-height: 28px;
+    color: #6777ef;
+    padding-right: 5px;
+    margin-bottom: 0;
+}
+
+.card .card-body h6 {
+    font-size: 14px;
+    color: #938F90;
+    padding-right: 0px;
+    margin-bottom: 0;
+}
+
+.card .card-body b.status-belumlunas {
+    font-size: 14px;
+    color: #FC544B;
+    padding-right: 0px;
+    margin-bottom: 0;
+}
+
+.card .card-body b.status-lunas {
+    font-size: 14px;
+    color: #47C363;
+    padding-right: 0px;
     margin-bottom: 0;
 }
 
@@ -1386,6 +1415,13 @@ select.form-control:not([size]):not([multiple]) {
 .table:not(.table-sm):not(.table-md):not(.dataTable) th {
     padding: 0 25px;
     height: 60px;
+    vertical-align: middle;
+}
+
+.tabel:not(.tabel-sm):not(.tabel-md):not(.dataTabel) td,
+.tabel:not(.tabel-sm):not(.tabel-md):not(.dataTabel) th {
+    padding: 0 25px;
+    height: 35px;
     vertical-align: middle;
 }
 
@@ -2042,6 +2078,7 @@ h6 .badge {
     box-shadow: 0 2px 6px #acb5f6;
     background-color: #6777ef;
     border-color: #6777ef;
+    margin-bottom: 10px;
 }
 
 .btn-primary:focus,

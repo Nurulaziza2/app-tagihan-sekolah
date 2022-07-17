@@ -112,9 +112,14 @@ class TagihanController extends Controller
      */
     public function show($id)
     {
-       $model = \App\Tagihan::findOrFail($id);
+        $model = \App\Tagihan::findOrFail($id);
         $data['model'] = $model;
-       return view($this->viewPrefix . '_show',$data);
+        $data['total'] = $model->jumlah+$model->denda;
+        $modelPembayaran = new \App\Pembayaran();
+        $data['modelPembayaran'] = $modelPembayaran;
+        $data['method'] = 'POST';
+        $data['route'] = 'pembayaran.store';
+       return view($this->viewPrefix . '_show', $data);
     }
 
     /**

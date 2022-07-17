@@ -126,7 +126,6 @@ class SiswaController extends Controller
             'alamat' => 'required',
             'kelas_id'=> 'nullable',
             'durasi'=>'required',
-            'tgl_masuk' => 'required',
         ]);
         if ($request->hasFile('gambar')){
             $requestData['gambar'] = $request->file('gambar')->store('public/images');
