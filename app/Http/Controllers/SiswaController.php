@@ -151,8 +151,11 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-
         $model =  Model::findOrFail($id);
+        if($model->tagihan->count()>=1){
+            flash("Data tidak dapat dihapus karena masih memiliki tagihan")->error();
+            return back();
+        }
         $model->delete();
         flash("Data berhasil dihapus")->success();
         return back();

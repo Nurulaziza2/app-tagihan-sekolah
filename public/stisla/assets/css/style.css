@@ -947,6 +947,17 @@ select.form-control:not([size]):not([multiple]) {
     margin-bottom: 0;
 }
 
+.card .card-body .lunas h4 {
+    font-size: 16px;
+    line-height: 28px;
+    color: #6C757D;
+    font-weight: bolder;
+    text-decoration: underline;
+    padding-top: 10px;
+    padding-right: 5px;
+    margin-bottom: 0;
+}
+
 .card .card-body h6 {
     font-size: 14px;
     color: #938F90;

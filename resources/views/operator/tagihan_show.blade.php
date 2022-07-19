@@ -96,12 +96,15 @@
                             <b>Rp{{ number_format($total,0,",",".") }}</b>
                         </div>
                     </div>
+                    @if ($model->status !== "Lunas")
                     <br>
                     <h5>Form Pembayaran</h5>
                     {!! Form::model($modelPembayaran, ['route' => $route, 'method' => $method]) !!}
+                    {!! Form::hidden('tagihan_id', $model->id, []) !!}
+                   
                     <div class="form-group">
                       <label for="tanggal">Tanggal Pembayaran</label>
-                      {!! Form::date('tanggal', null, ['class'=>'form-control']) !!}
+                      {!! Form::date('tanggal', \Carbon\Carbon::now(), ['class'=>'form-control']) !!}
                       <span class="text-danger">{{ $errors->first('tanggal') }}</span>
                     </div>
                     <div class="form-group">
@@ -110,6 +113,24 @@
                       <span class="text-danger">{{ $errors->first('jumlah') }}</span>
                     </div>
                     {!! Form::submit('Buat Pembayaran', ['class'=>'btn btn-primary']) !!}
+                    @else
+                    <div class="lunas text-center"><h4>Tagihan Sudah Lunas</h4></div>
+                    <div class="lunas"><h4>Dibayar Pada {{ $model->pembayaran }}</h4></div>
+                    
+                    {{--  {!! Form::model($modelPembayaran, ['route' => $route, 'method' => $method]) !!}
+                    {!! Form::hidden('tagihan_id', $model->id, []) !!}
+                    <div class="form-group">
+                      <label for="tanggal">Dibayar Pada</label>
+                      {!! Form::date('tanggal', \Carbon\Carbon::now(), ['class'=>'form-control','disabled'=>'true']) !!}
+                      <span class="text-danger">{{ $errors->first('tanggal') }}</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="jumlah">Jumlah Pembayaran</label>
+                      {!! Form::text('jumlah', $total, ['class'=>'form-control format-rupiah','disabled'=>'true']) !!}
+                      <span class="text-danger">{{ $errors->first('jumlah') }}</span>
+                    </div>      --}}
+                    @endif
+                    
                     
                     {!! Form::close() !!}
                     

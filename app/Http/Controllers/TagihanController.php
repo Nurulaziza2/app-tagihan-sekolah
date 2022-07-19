@@ -182,9 +182,13 @@ class TagihanController extends Controller
     public function destroy($id)
     {
 
-        // $model =  Model::findOrFail($id);
-        // $model->delete();
-        // flash("Data berhasil dihapus")->success();
-        // return back();
+        $model =  Tagihan::findOrFail($id);
+        if($model->pembayaran->count() >= 1 ) {
+            flash('Tagihan tidak dapat dihapus karena sudah ada pembayaran')->error();
+            return back();
+        }
+        $model->delete();
+        flash("Data berhasil dihapus")->success();
+        return back();
     }
 }

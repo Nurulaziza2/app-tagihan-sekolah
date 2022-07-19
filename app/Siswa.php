@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
 class Siswa extends Model
 {
     use SearchableTrait;
@@ -26,5 +26,14 @@ class Siswa extends Model
     }
     public function kelas(): BelongsTo {
         return $this->belongsTo(Kelas::class);
+    }
+    /**
+     * Get all of the comments for the Siswa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tagihan(): HasMany
+    {
+        return $this->hasMany(Tagihan::class);
     }
 }
