@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2022 at 08:38 AM
+-- Generation Time: Jul 21, 2022 at 10:01 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -33,6 +33,7 @@ CREATE TABLE `biaya` (
   `nominal` double NOT NULL,
   `tahun` int(4) NOT NULL,
   `deskripsi` varchar(255) DEFAULT NULL,
+  `kelas_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
@@ -42,9 +43,9 @@ CREATE TABLE `biaya` (
 -- Dumping data for table `biaya`
 --
 
-INSERT INTO `biaya` (`id`, `nama`, `nominal`, `tahun`, `deskripsi`, `user_id`, `created_at`, `updated_at`) VALUES
-(2, 'SPP Menjahit', 150000, 2022, NULL, 1, '2022-05-31 05:23:00', '2022-05-31 05:23:00'),
-(3, 'SPP Fashion Design', 100000, 2022, NULL, 1, '2022-05-31 05:41:51', '2022-06-18 10:29:07');
+INSERT INTO `biaya` (`id`, `nama`, `nominal`, `tahun`, `deskripsi`, `kelas_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(2, 'SPP Menjahit', 150000, 2022, NULL, 4, 1, '2022-05-31 05:23:00', '2022-07-21 14:03:47'),
+(3, 'SPP Fashion Design', 100000, 2022, NULL, 5, 1, '2022-05-31 05:41:51', '2022-07-21 14:03:36');
 
 -- --------------------------------------------------------
 
@@ -134,6 +135,17 @@ CREATE TABLE `pembayaran` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id`, `tagihan_id`, `jumlah`, `tanggal`, `dibayar_oleh`, `diterima_oleh`, `created_at`, `updated_at`) VALUES
+(2, 9, 111111, '2022-07-09 00:00:00', 'Siswa', 'Surya Maulana Saputra', '2022-07-21 12:36:52', '2022-07-21 12:36:52'),
+(3, 4, 150000, '2022-07-09 00:00:00', 'Siswa', 'Surya Maulana Saputra', '2022-07-21 12:48:58', '2022-07-21 12:48:58'),
+(4, 25, 100000, '2022-07-21 00:00:00', 'Siswa', 'Surya Maulana Saputra', '2022-07-21 14:18:50', '2022-07-21 14:18:50'),
+(5, 26, 100000, '2022-07-21 00:00:00', 'Siswa', 'Surya Maulana Saputra', '2022-07-21 14:48:58', '2022-07-21 14:48:58'),
+(6, 27, 100000, '2022-07-21 00:00:00', 'Siswa', 'Surya Maulana Saputra', '2022-07-21 14:51:15', '2022-07-21 14:51:15');
+
 -- --------------------------------------------------------
 
 --
@@ -207,19 +219,35 @@ INSERT INTO `tagihan` (`id`, `siswa_id`, `tanggal_tagihan`, `tanggal_jatuh_tempo
 (1, 9, '2022-07-07', '2022-07-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 15:46:07', '2022-07-07 15:46:07'),
 (2, 10, '2022-07-07', '2022-07-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 15:46:07', '2022-07-07 15:46:07'),
 (3, 11, '2022-07-07', '2022-07-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 15:46:07', '2022-07-07 15:46:07'),
-(4, 12, '2022-07-07', '2022-07-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 15:46:07', '2022-07-07 15:46:07'),
+(4, 12, '2022-07-07', '2022-07-10', 'SPP Menjahit', 150000, NULL, 0, 'Lunas', 'Surya Maulana Saputra', '2022-07-07 15:46:07', '2022-07-21 12:48:58'),
 (5, 13, '2022-07-07', '2022-07-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 15:46:07', '2022-07-07 15:46:07'),
 (6, 14, '2022-07-07', '2022-07-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 15:46:07', '2022-07-07 15:46:07'),
 (7, 15, '2022-07-07', '2022-07-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 15:46:07', '2022-07-07 15:46:07'),
 (8, 16, '2022-07-07', '2022-07-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 15:46:07', '2022-07-07 15:46:07'),
-(9, 1, '2022-07-07', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 16:29:58', '2022-07-07 16:29:58'),
-(10, 2, '2022-07-07', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 16:29:58', '2022-07-07 16:29:58'),
-(11, 3, '2022-07-07', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 16:29:58', '2022-07-07 16:29:58'),
-(12, 4, '2022-07-07', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 16:29:58', '2022-07-07 16:29:58'),
-(13, 5, '2022-07-07', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 16:29:58', '2022-07-07 16:29:58'),
-(14, 6, '2022-07-07', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 16:29:58', '2022-07-07 16:29:58'),
-(15, 7, '2022-07-07', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 16:29:58', '2022-07-07 16:29:58'),
-(16, 8, '2022-07-07', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-07 16:29:58', '2022-07-07 16:29:58');
+(17, 9, '2022-08-01', '2022-08-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 12:54:21', '2022-07-21 12:54:21'),
+(18, 10, '2022-08-01', '2022-08-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 12:54:21', '2022-07-21 12:54:21'),
+(19, 11, '2022-08-01', '2022-08-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 12:54:21', '2022-07-21 12:54:21'),
+(20, 12, '2022-08-01', '2022-08-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 12:54:21', '2022-07-21 12:54:21'),
+(21, 13, '2022-08-01', '2022-08-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 12:54:21', '2022-07-21 12:54:21'),
+(22, 14, '2022-08-01', '2022-08-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 12:54:21', '2022-07-21 12:54:21'),
+(23, 15, '2022-08-01', '2022-08-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 12:54:21', '2022-07-21 12:54:21'),
+(24, 16, '2022-08-01', '2022-08-10', 'SPP Menjahit', 150000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 12:54:21', '2022-07-21 12:54:21'),
+(25, 1, '2022-07-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Lunas', 'Surya Maulana Saputra', '2022-07-21 14:17:45', '2022-07-21 14:18:50'),
+(26, 2, '2022-07-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Lunas', 'Surya Maulana Saputra', '2022-07-21 14:17:45', '2022-07-21 14:48:58'),
+(27, 3, '2022-07-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Lunas', 'Surya Maulana Saputra', '2022-07-21 14:17:45', '2022-07-21 14:51:15'),
+(28, 4, '2022-07-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 14:17:45', '2022-07-21 14:17:45'),
+(29, 5, '2022-07-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 14:17:45', '2022-07-21 14:17:45'),
+(30, 6, '2022-07-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 14:17:45', '2022-07-21 14:17:45'),
+(31, 7, '2022-07-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 14:17:45', '2022-07-21 14:17:45'),
+(32, 8, '2022-07-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 14:17:45', '2022-07-21 14:17:45'),
+(33, 1, '2022-08-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 14:19:16', '2022-07-21 14:19:16'),
+(34, 2, '2022-08-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 14:19:16', '2022-07-21 14:19:16'),
+(35, 3, '2022-08-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 14:19:16', '2022-07-21 14:19:16'),
+(36, 4, '2022-08-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 14:19:16', '2022-07-21 14:19:16'),
+(37, 5, '2022-08-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 14:19:16', '2022-07-21 14:19:16'),
+(38, 6, '2022-08-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 14:19:16', '2022-07-21 14:19:16'),
+(39, 7, '2022-08-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 14:19:16', '2022-07-21 14:19:16'),
+(40, 8, '2022-08-01', '2022-07-10', 'SPP Fashion Design', 100000, NULL, 0, 'Belum Bayar', 'Surya Maulana Saputra', '2022-07-21 14:19:16', '2022-07-21 14:19:16');
 
 -- --------------------------------------------------------
 
@@ -337,7 +365,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `siswa`
@@ -349,7 +377,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT for table `tagihan`
 --
 ALTER TABLE `tagihan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `users`
