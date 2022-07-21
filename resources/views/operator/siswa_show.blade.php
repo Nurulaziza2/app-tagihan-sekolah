@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <img src="{{ \Storage::url($model->gambar ?? 'images/no-image.png') }}" alt="gbr" width="100%" class="mt-3 rounded">
-                            <a href="{{ url('siswa', []) }}" class="ml-2 mt-2 btn-primary btn">Kembali</a>
+                            <a href="{{ url('siswa', []) }}" class="ml-2 mt-2 btn-secondary btn">Kembali</a>
                         </div>
 
                         <div class="col">

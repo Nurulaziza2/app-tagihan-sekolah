@@ -23,6 +23,7 @@ namespace App{
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
  * @property-read mixed $nama_biaya
+ * @property-read \App\Kelas $kelas
  * @property-read \App\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya newQuery()
@@ -45,7 +46,6 @@ namespace App{
  *
  * @property int $id
  * @property string $nama
- * @property string $durasi_kursus
  * @property string|null $detail
  * @property int $user_id
  * @property \Illuminate\Support\Carbon $created_at
@@ -58,13 +58,40 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Kelas query()
  * @method static \Illuminate\Database\Eloquent\Builder|Kelas whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Kelas whereDetail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Kelas whereDurasiKursus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Kelas whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Kelas whereNama($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Kelas whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Kelas whereUserId($value)
  */
 	class Kelas extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Pembayaran
+ *
+ * @property int $id
+ * @property int $tagihan_id
+ * @property float $jumlah
+ * @property \Illuminate\Support\Carbon $tanggal
+ * @property string $dibayar_oleh
+ * @property string $diterima_oleh
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read \App\Tagihan $tagihan
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereDibayarOleh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereDiterimaOleh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereJumlah($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereTagihanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereTanggal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereUpdatedAt($value)
+ */
+	class Pembayaran extends \Eloquent {}
 }
 
 namespace App{
@@ -78,13 +105,15 @@ namespace App{
  * @property string $email
  * @property string $jk
  * @property string $alamat
- * @property string $prodi
+ * @property int|null $kelas_id
  * @property string $durasi
  * @property \Illuminate\Support\Carbon $tgl_masuk
  * @property int $user_id
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
- * @property-read \App\Kelas $kelas
+ * @property-read \App\Kelas|null $kelas
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tagihan[] $tagihan
+ * @property-read int|null $tagihan_count
  * @property-read \App\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa newQuery()
@@ -98,9 +127,9 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereGambar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereJk($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereKelasId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereNama($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereNis($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereProdi($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereTglMasuk($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereUserId($value)
@@ -121,11 +150,12 @@ namespace App{
  * @property string|null $keterangan
  * @property int $denda
  * @property string $status
- * @property string $tanggal_bayar
- * @property string|null $dibayar_oleh
  * @property string $dibuat_oleh
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read \App\Kelas $kelas
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Pembayaran[] $pembayaran
+ * @property-read int|null $pembayaran_count
  * @property-read \App\Siswa $siswa
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan newQuery()
@@ -134,7 +164,6 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereDenda($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereDibayarOleh($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereDibuatOleh($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereJumlah($value)
@@ -142,7 +171,6 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereNama($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereSiswaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereTanggalBayar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereTanggalJatuhTempo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereTanggalTagihan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereUpdatedAt($value)
@@ -159,7 +187,7 @@ namespace App{
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
- * @property string $akses
+ * @property string|null $akses
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications

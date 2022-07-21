@@ -16,6 +16,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Nominal</th>
+                        <th>Kelas</th>
                         <th>Tahun</th>
                         <th>Deskripsi</th>
                         <th>Aksi</th>
@@ -27,6 +28,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->nama }}</td>
                             <td>Rp{{ number_format($item->nominal,0,",",".") }}</td>
+                            <td>{{ $item->kelas->nama }}</td>
                             <td>{{ $item->tahun }}</td>
                             <td>{{ $item->deskripsi }}</td>
                             <td>

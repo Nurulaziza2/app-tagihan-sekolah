@@ -12,7 +12,7 @@
                             <h4 class="card-title">Informasi Siswa </h4>
                         </div>
                         <div class="col-sm-1">
-                            <h5 class="card-title">Detail</h5>
+                            <h5 class="card-title"><a href={{ route('siswa.show', $model->siswa->id) }}>Detail</a></h5>
                         </div>
                     </div>
 
@@ -114,8 +114,11 @@
                     </div>
                     {!! Form::submit('Buat Pembayaran', ['class'=>'btn btn-primary']) !!}
                     @else
-                    <div class="lunas text-center"><h4>Tagihan Sudah Lunas</h4></div>
-                    <div class="lunas"><h4>Dibayar Pada {{ $model->pembayaran }}</h4></div>
+                    <div class="lunas text-center"><u><h4>Tagihan Sudah Lunas</h4></u></div>
+                    <div class="lunas">
+                        <h5>Dibayar pada : {{ $dataPembayaran[0]->tanggal->translatedFormat('d F Y') }}</h5>
+                        <h5>Pembayaran diterima oleh : {{ $dataPembayaran[0]->diterima_oleh }}</h5>
+                    </div>
                     
                     {{--  {!! Form::model($modelPembayaran, ['route' => $route, 'method' => $method]) !!}
                     {!! Form::hidden('tagihan_id', $model->id, []) !!}
@@ -140,8 +143,14 @@
         <div class="col-sm-7">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Kartu SPP </h4>
-                    <div class="">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h4 class="card-title">Kartu SPP </h4>
+                        </div>
+                        <div class="col-sm-2">
+                           <div class="cetak"> <a href="#" class="btn btn-primary" alt="Cetak Kartu SPP"><i class="fas fa-print" ></i></a></div>
+                        </div>
+                    </div>
 
                     <table class="table">
                         <thead>
@@ -154,17 +163,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                         @foreach ($model as $item)
+                         @foreach ($kartuTagihan as $item)
 
                             <tr>
                                 <td>{{ $loop->iteration.'.' }}</td>
 
-                                <td>{{ $model->tanggal_tagihan->translatedFormat('F Y')  }}</td>
+                                <td>{{ $item->tanggal_tagihan->translatedFormat('F Y')  }}
+                                    
+                                    </td>
 
                                 <td>Rp{{ number_format($total,0,",",".") }}</td>
 
                                 <td>
-                                    <div class="badge {{ $model->status ==='Lunas' ? 'badge-success' : 'badge-danger' }}">{{ $model->status }}</div>
+                                    <a href={{ route('tagihan.show', $item->id) }}><div class="badge {{ $item->status ==='Lunas' ? 'badge-success' : 'badge-danger' }}">{{ $item->status }}</div></a>
                                 </td>
                                 <td>
                                     <a href="#" class="btn btn-secondary"><i class="fas fa-print"></i></a>
@@ -178,6 +189,7 @@
                     </div>
                 </div>
             </div>
+            <a href="{{ url('tagihan', []) }}" class="ml-3 mt-2 btn-secondary btn">Kembali</a>
         </div>
     </div>
 

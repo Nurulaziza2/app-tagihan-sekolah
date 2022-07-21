@@ -19,6 +19,15 @@ class Biaya extends Model
     public function user() : BelongsTo {
         return $this->belongsTo(User::class)->withDefault();
     }
+    /**
+     * Get the kelas that owns the Biaya
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function kelas(): BelongsTo
+    {
+        return $this->belongsTo(Kelas::class)->withDefault();
+    }
     public function getJumlahRupiah()
     {
         return 'Rp'.number_format($this->nominal,0,',','.');

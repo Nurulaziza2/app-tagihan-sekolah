@@ -33,6 +33,7 @@ class BiayaController extends Controller
         $model = new Model();
         $data['model'] = $model;
         $data['method'] = 'POST';
+        $data['kelasList'] =\App\Kelas::pluck('nama', 'id');
         $data['route'] = $this->routePrefix .'.store';
         $data['namaTombol']= 'Simpan';
         return view($this->viewPrefix . '_form', $data);
@@ -51,6 +52,7 @@ class BiayaController extends Controller
             'nama' => 'required',
             'nominal' => 'required',
             'tahun' => 'required',
+            'kelas_id'=> 'required',
             'deskripsi' => 'nullable',
         ]);
         $requestData['nominal'] = str_replace(".", "", $requestData['nominal']);
@@ -85,6 +87,7 @@ class BiayaController extends Controller
         $model = Model::findOrFail($id);
         $data['model'] = $model;
         $data['method'] = 'PUT';
+        $data['kelasList'] =\App\Kelas::pluck('nama', 'id');
         $data['route'] = [$this->routePrefix . '.update', $id];
         $data['namaTombol']= 'Update';
         return view($this->viewPrefix . '_form', $data);
@@ -104,6 +107,7 @@ class BiayaController extends Controller
             'nama' => 'required',
             'nominal' => 'required',
             'deskripsi' => 'nullable',
+            'kelas_id'=> 'required',
         ]);
         $requestData['nominal'] = str_replace(".", "", $requestData['nominal']);
         $requestData['user_id'] = Auth::user()->id;

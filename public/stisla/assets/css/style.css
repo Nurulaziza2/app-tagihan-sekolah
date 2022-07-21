@@ -938,13 +938,36 @@ select.form-control:not([size]):not([multiple]) {
     padding-right: 5px;
     margin-bottom: 5px;
 }
+.card .card-body .cetak {
+    font-size: 12px;
+    size: 12px;
+    color: #6777ef;
+    margin-top: 3px;
+    margin-left: 25px;
+    margin-bottom: 5px;
+}
+.card .card-body img {
+    width: 200px;
+    height: 200px;
+    padding-right: 5px;
+    padding-bottom: 15px;
+}
 
 .card .card-body h5 {
     font-size: 14px;
     line-height: 28px;
     color: #6777ef;
+    margin-left: 10px;
+    margin-bottom: 0;
+}
+.card .card-body h5 a {
+    font-size: 14px;
+    line-height: 28px;
+    color: #6777ef;
     padding-right: 5px;
     margin-bottom: 0;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .card .card-body .lunas h4 {
@@ -952,7 +975,15 @@ select.form-control:not([size]):not([multiple]) {
     line-height: 28px;
     color: #6C757D;
     font-weight: bolder;
-    text-decoration: underline;
+    padding-top: 10px;
+    padding-right: 5px;
+    margin-bottom: 0;
+}
+.card .card-body .lunas h5 {
+    font-size: 14px;
+    line-height: 28px;
+    color: #6C757D;
+    font-weight: bolder;
     padding-top: 10px;
     padding-right: 5px;
     margin-bottom: 0;

@@ -81,6 +81,7 @@ class TagihanController extends Controller
         $siswa = $siswa->get();
         $tanggalTagihan = \Carbon\Carbon::parse($request->tanggal_tagihan);
         $bulanTagihan = $tanggalTagihan->format('m');
+        $nbulanTagihan = $tanggalTagihan->translatedformat('F');
         $tahunTagihan = $tanggalTagihan->format('Y');
         foreach ($siswa as $item){
             $cekTagihan = Tagihan::whereMonth('tanggal_tagihan',$bulanTagihan)
@@ -98,6 +99,11 @@ class TagihanController extends Controller
             $tagihan->dibuat_oleh = Auth::user()->name;
             $tagihan->save();
             }
+            else {
+                flash('Tagihan untuk siswa kelas '.$item->kelas->nama.' pada bulan '.$nbulanTagihan.' '.$tahunTagihan.' sudah ada')->error();
+                return back();
+            }
+
         }
         flash('Tagihan berhasil dibuat')->success();
         return redirect()->route($this->routePrefix .'.index' );
@@ -112,7 +118,15 @@ class TagihanController extends Controller
      */
     public function show($id)
     {
-        $model = \App\Tagihan::findOrFail($id);
+        $model = \App\Tagihan::with('pembayaran')->findOrFail($id);
+        $kartuTagihan = \App\Tagihan::with('pembayaran')
+        ->whereYear('tanggal_tagihan',$model->tanggal_tagihan->format('Y'))
+        ->where('siswa_id',$model->siswa_id)
+        ->orderBy('tanggal_tagihan', 'asc')
+        ->get();
+        $dataPembayaran = \App\Pembayaran::where('tagihan_id',$id)->get();
+        $data['dataPembayaran'] = $dataPembayaran;
+        $data['kartuTagihan'] = $kartuTagihan;
         $data['model'] = $model;
         $data['total'] = $model->jumlah+$model->denda;
         $modelPembayaran = new \App\Pembayaran();
