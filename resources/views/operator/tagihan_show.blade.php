@@ -191,7 +191,7 @@
                                     <a href={{ route('tagihan.show', $item->id) }} ><div class="badge {{ $item->status ==='Lunas' ? 'badge-success' : 'badge-danger' }}">{{ $item->status }}</div></a>
                                 </td>
                                 <td>
-                                    <a href={{ route('kwitansi.show',$item->id) }} target="blank" class="btn btn-secondary"><i class="fas fa-print"></i></a>
+                                    <a href={{ route('kwitansi.show',$item->id) }} target="blank" class="btn btn-info"><i class="fas fa-print"></i></a>
                                 </td>
                                 
 
@@ -203,7 +203,7 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ url('tagihan', []) }}" class="ml-3 mt-2 btn-secondary btn">Kembali</a>
+            <a href="{{ url('tagihan', []) }}" class="ml-3 mt-2 btn-primary btn">Kembali</a>
         </div>
     </div>
 

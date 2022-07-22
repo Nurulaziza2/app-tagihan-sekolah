@@ -66,6 +66,7 @@
 /* 3.1 Misc */
 
 @import url("//fonts.googleapis.com/css?family=Nunito:400,600,700,800");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 .btn:focus,
 .btn:active,
 .btn:active:focus,
@@ -74,7 +75,9 @@
     box-shadow: none !important;
     outline: none;
 }
-
+body{
+    font-family: 'Quicksand', sans-serif;
+}
 a {
     color: #6777ef;
     font-weight: 500;
