@@ -43,19 +43,36 @@ class PembayaranController extends Controller
             'tanggal' => 'required',
             'tagihan_id' => 'required',
         ]);
-        
+
+        $tagihan = Tagihan::findOrFail($requestData['tagihan_id']);
+        //cek denda
+        $tglSekarang = \Carbon\Carbon::now();
+        if($tglSekarang->gt($tagihan->tanggal_jatuh_tempo)){
+            $telatHari= $tglSekarang->diffInDays($tagihan->tanggal_jatuh_tempo);
+            $denda =  $telatHari * 2000;
+        }
+        else{
+            $denda = 0;
+        }
+        $jumlahBayar = $tagihan->jumlah + $denda;
         $requestData['jumlah'] = str_replace(".", "", $requestData['jumlah']);    
         $requestData['dibayar_oleh'] = "Siswa";
         $requestData['diterima_oleh'] = Auth::user()->name;
-        $tagihan = Tagihan::findOrFail($requestData['tagihan_id']);
         if ($tagihan->status == "Lunas") {
             flash('Tagihan sudah lunas')->warning();
             return back();
         }
-        if($requestData['jumlah'] < $tagihan->jumlah){
+        if($requestData['jumlah'] < $jumlahBayar){
             flash('Tagihan harus dibayar lunas')->warning();
             return back();
         }
+        if($requestData['jumlah'] > $jumlahBayar){
+            flash('Pembayaran melebihi biaya tagihan')->warning();
+            return back();
+        }
+
+        $tagihan->jumlah_bayar =$jumlahBayar;
+        $tagihan->denda = $denda;
         $tagihan->status= "Lunas";
         $tagihan->save();
         Model::create($requestData);

@@ -119,6 +119,19 @@ class TagihanController extends Controller
     public function show($id)
     {
         $model = \App\Tagihan::with('pembayaran')->findOrFail($id);
+
+        //munculkan denda 
+        $tglSekarang = \Carbon\Carbon::now();
+        if($tglSekarang->gt($model->tanggal_jatuh_tempo)){
+            $telatHari= $tglSekarang->diffInDays($model->tanggal_jatuh_tempo);
+            $jumlahDenda =  $telatHari * 2000;
+            $data['telatHari'] = $telatHari;
+        }
+        else{
+            $jumlahDenda = 0;
+        }
+        $data['jumlahDenda'] = $jumlahDenda;
+
         $kartuTagihan = \App\Tagihan::with('pembayaran')
         ->whereYear('tanggal_tagihan',$model->tanggal_tagihan->format('Y'))
         ->where('siswa_id',$model->siswa_id)
@@ -128,7 +141,11 @@ class TagihanController extends Controller
         $data['dataPembayaran'] = $dataPembayaran;
         $data['kartuTagihan'] = $kartuTagihan;
         $data['model'] = $model;
-        $data['total'] = $model->jumlah+$model->denda;
+
+        //menentukan jumlah total bayar
+        $data['total'] = $model->jumlah+$data['jumlahDenda'];
+        
+        
         $modelPembayaran = new \App\Pembayaran();
         $data['modelPembayaran'] = $modelPembayaran;
         $data['method'] = 'POST';

@@ -79,14 +79,25 @@
                             Rp{{ $model->getJumlahRupiah() }}
                         </div>
                     </div>
+                    @if ($jumlahDenda>0)
                     <div class="row">
                         <div class="col-md-8">
-                            <b>Denda</b>
+                            <b>Denda ( telat {{ $telatHari }} hari )</b>
                         </div>
                         <div class="col-md-4">
-                            Rp{{ $model->getDendaRupiah() }}
+                            Rp{{ number_format($jumlahDenda,0,",",".") }}
                         </div>
                     </div>
+                    @else
+                    <div class="row">
+                        <div class="col-md-8">
+                            <b>Denda </b>
+                        </div>
+                        <div class="col-md-4">
+                            Rp{{ number_format($jumlahDenda,0,",",".") }}
+                        </div>
+                    </div>
+                    @endif
                     <hr>
                     <div class="row">
                         <div class="col-md-8">
@@ -172,14 +183,17 @@
                                     
                                     </td>
 
-                                <td>Rp{{ number_format($total,0,",",".") }}</td>
+                                <td>
+                                    Rp{{ number_format($item->jumlah,0,",",".") }}
+                                </td>
 
                                 <td>
-                                    <a href={{ route('tagihan.show', $item->id) }}><div class="badge {{ $item->status ==='Lunas' ? 'badge-success' : 'badge-danger' }}">{{ $item->status }}</div></a>
+                                    <a href={{ route('tagihan.show', $item->id) }} ><div class="badge {{ $item->status ==='Lunas' ? 'badge-success' : 'badge-danger' }}">{{ $item->status }}</div></a>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-secondary"><i class="fas fa-print"></i></a>
+                                    <a href={{ route('kwitansi.show',$item->id) }} target="blank" class="btn btn-secondary"><i class="fas fa-print"></i></a>
                                 </td>
+                                
 
                             </tr>
                             @endforeach
