@@ -159,7 +159,7 @@
                             <h4 class="card-title">Kartu SPP </h4>
                         </div>
                         <div class="col-sm-2">
-                           <div class="cetak"> <a href="#" class="btn btn-primary" alt="Cetak Kartu SPP"><i class="fas fa-print" ></i></a></div>
+                           <div class="cetak"> <a href="{{ route('kartuspp.show', [$model->id]) }}" class="btn btn-primary" alt="Cetak Kartu SPP" target="blank"><i class="fas fa-print" ></i></a></div>
                         </div>
                     </div>
 

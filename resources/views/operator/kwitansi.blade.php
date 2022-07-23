@@ -9,20 +9,39 @@
     <title>Kwitansi Pembayaran SPP Bulan {{ $model->tanggal_tagihan->translatedFormat('F Y') }}</title>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+        body {
+            font-family: 'Quicksand', sans-serif;
+
+        }
         .container h4 {
-            background-color: #FCE032;
-            font-weight: bold
-            color: #555;
+            position: relative;
+            background-color: #168aad;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            border-radius: 5px;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .container h4 .logo {
+            position: absolute;
+            top: 3px;
+            left: 5px;
+            border-radius: 5px;
+            width: 53px;
         }
         .container .row table {
             background-color: rgba(0, 0, 0, 0.09);
-            /* font-weight: bold */
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h4 class="text-center p-3 mt-5">Kwitansi Pembayaran SPP Bulan {{ $model->tanggal_tagihan->translatedFormat('F Y') }}</h4>
+        <h4 class="text-center p-3 mt-5">
+            <img src="{{ asset('stisla') }}/assets/img/logo.jpeg" alt="logo" class="logo">
+            Kwitansi Pembayaran SPP Bulan {{ $model->tanggal_tagihan->translatedFormat('F Y') }}
+        </h4>
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-hover">
@@ -38,7 +57,7 @@
                         <td>Program Kursus </td>
                         <td>: {{ $model->siswa->kelas->nama }} {{ $model->siswa->durasi }}</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid #ddd;">
+                    <tr >
                         <td>Tanggal Masuk </td>
                         <td>: {{ $model->siswa->tgl_masuk->translatedFormat('d F Y') }}</td>
                     </tr>
