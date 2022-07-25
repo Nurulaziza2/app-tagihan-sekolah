@@ -191,7 +191,11 @@
                                     <a href={{ route('tagihan.show', $item->id) }} ><div class="badge {{ $item->status ==='Lunas' ? 'badge-success' : 'badge-danger' }}">{{ $item->status }}</div></a>
                                 </td>
                                 <td>
-                                    <a href={{ route('kwitansi.show',$item->id) }} target="blank" class="btn btn-info"><i class="fas fa-print"></i></a>
+                                    @if ($item->status === 'Lunas')
+                                        <a href={{ route('kwitansi.show',$dataPembayaran[0]->id) }} target="blank" class="btn btn-info"><i class="fas fa-print"></i></a>
+                                    @else
+                                        <a href={{ route('invoice.show',$item->id) }} target="blank" class="btn btn-info"><i class="fas fa-print"></i></a>
+                                    @endif
                                 </td>
                                 
 

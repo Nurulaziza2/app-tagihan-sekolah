@@ -162,7 +162,6 @@ class TagihanController extends Controller
         $data['route'] = 'pembayaran.store';
        return view($this->viewPrefix . '_show', $data);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
