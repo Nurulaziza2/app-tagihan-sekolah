@@ -34,7 +34,7 @@
                     {!! Form::select(
                         'jk',
                         [
-                            'Pria' => 'Pria',
+                            'Laki-Laki' => 'Laki-Laki',
                             'Perempuan' => 'Perempuan',
                         ],
                         null,

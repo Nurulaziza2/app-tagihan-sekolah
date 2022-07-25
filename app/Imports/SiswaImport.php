@@ -23,6 +23,15 @@ class SiswaImport implements ToCollection
             $alamat= $row[6];
             $prodi = $row[7];
             $durasi = $row[8];
+            if ($row[8]==="3 bulan"){ 
+                $jumlah_tagihan=3;
+            }
+            elseif ($row[8]==="6 bulan"){ 
+                $jumlah_tagihan=6;
+            }
+            elseif ($row[8]==="12 bulan"){ 
+                $jumlah_tagihan=12;
+            }
             if(is_int ($no)){
                 $siswa  = \App\Siswa::where('nis', $nis)->first();
                 $kelas = \App\Kelas::where('nama', $prodi)->first();
@@ -37,6 +46,7 @@ class SiswaImport implements ToCollection
                         'alamat' => $alamat,
                         'user_id'=>Auth::user()->id,
                         'durasi'=>$durasi,
+                        'jumlah_tagihan'=>$jumlah_tagihan,
                         'kelas_id'=>$kelas->id
                     ]);
                 }

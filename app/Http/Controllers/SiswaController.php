@@ -66,6 +66,13 @@ class SiswaController extends Controller
             'tgl_masuk' => 'required',
             'gambar' => 'nullable|image|mimes:jpg,png,jpeg|max:2000',
         ]);
+        if($requestData['durasi']=== "3 bulan"){
+            $requestData['jumlah_tagihan']=3;
+        }elseif($requestData['durasi']=== "6 bulan"){
+            $requestData['jumlah_tagihan']=6;
+        }elseif($requestData['durasi']=== "12 bulan"){
+            $requestData['jumlah_tagihan']=12;
+        }
         if ($request->hasFile('gambar')) {
             $requestData['gambar'] = $request->file('gambar')->store('public/images');
         }
@@ -127,6 +134,13 @@ class SiswaController extends Controller
             'kelas_id'=> 'nullable',
             'durasi'=>'required',
         ]);
+        if($requestData['durasi']=== "3 bulan"){
+            $requestData['jumlah_tagihan']=3;
+        }elseif($requestData['durasi']=== "6 bulan"){
+            $requestData['jumlah_tagihan']=6;
+        }elseif($requestData['durasi']=== "12 bulan"){
+            $requestData['jumlah_tagihan']=12;
+        }
         if ($request->hasFile('gambar')){
             $requestData['gambar'] = $request->file('gambar')->store('public/images');
             $model = Model::findOrFail($id);

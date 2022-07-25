@@ -78,7 +78,9 @@ class TagihanController extends Controller
         $biaya = Biaya::findOrFail($request->biaya_id);
         $siswa = Siswa::query();
         $siswa->where('kelas_id',$request->kelas)->
-        whereDate('tgl_masuk', '<=', $request->tanggal_tagihan);
+        whereDate('tgl_masuk', '<=', $request->tanggal_tagihan)->
+        where('jumlah_tagihan', '>', 0);
+        
         $siswa = $siswa->get();
         $tanggalTagihan = \Carbon\Carbon::parse($request->tanggal_tagihan);
         $bulanTagihan = $tanggalTagihan->format('m');
@@ -88,9 +90,9 @@ class TagihanController extends Controller
             $cekTagihan = Tagihan::whereMonth('tanggal_tagihan',$bulanTagihan)
                 ->whereYear('tanggal_tagihan',$tahunTagihan)
                 ->where('siswa_id',$item->id)
-                
                 ->first();
-            if ($cekTagihan == null){
+            
+            if($cekTagihan == null){
             $tagihan = new Tagihan();
             $tagihan->siswa_id = $item->id;
             $tagihan->tanggal_tagihan = $request->tanggal_tagihan;
@@ -100,6 +102,12 @@ class TagihanController extends Controller
             $tagihan->status ='Belum Bayar';
             $tagihan->dibuat_oleh = Auth::user()->name;
             $tagihan->save();
+            $siswa = Siswa::findOrFail($item->id);
+            $siswa->jumlah_tagihan = $siswa->jumlah_tagihan  -1;
+            // if($siswa->jumlah_tagihan === 0){
+            //     $siswa->status = "lunas";
+            // }
+            $siswa->save();
             }
             else {
                 flash('Tagihan untuk siswa kelas '.$item->kelas->nama.' pada bulan '.$nbulanTagihan.' '.$tahunTagihan.' sudah ada')->error();
@@ -107,6 +115,7 @@ class TagihanController extends Controller
             }
 
         }
+
         flash('Tagihan berhasil dibuat')->success();
         return redirect()->route($this->routePrefix .'.index' );
 
@@ -220,6 +229,10 @@ class TagihanController extends Controller
             flash('Tagihan tidak dapat dihapus karena sudah ada pembayaran')->error();
             return back();
         }
+        
+        $siswa = Siswa::findOrFail($model->siswa_id);
+        $siswa->jumlah_tagihan = $siswa->jumlah_tagihan  +1;
+        $siswa->save();
         $model->delete();
         flash("Data berhasil dihapus")->success();
         return back();
