@@ -109,6 +109,7 @@ namespace App{
  * @property string $alamat
  * @property int|null $kelas_id
  * @property string $durasi
+ * @property int $jumlah_tagihan
  * @property \Illuminate\Support\Carbon $tgl_masuk
  * @property int $user_id
  * @property \Illuminate\Support\Carbon $created_at
@@ -129,6 +130,7 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereGambar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereJk($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereJumlahTagihan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereKelasId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereNama($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Siswa whereNis($value)

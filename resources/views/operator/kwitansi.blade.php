@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <title>Kwitansi Pembayaran SPP Bulan {{ $model->tanggal_tagihan->translatedFormat('F Y') }}</title>
+    <title>Kwitansi Pembayaran SPP Bulan {{ $model->tagihan->tanggal_tagihan->translatedFormat('F Y') }}</title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
@@ -50,6 +50,16 @@
             background-color: rgba(0, 0, 0, 0.03);
             border-radius: 5px;
         }
+        .container .row table td {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+            width: 10rem;
+            
+            padding: 2% 0% 0% 0%;
+        }
+        .container .row h5 {
+            font-weight: bold;
+            font-size: 30px;
+        }
         .container .nomor p{
             border-bottom: 1px solid rgba(0, 0, 0, 0.4);
             width: 10rem;
@@ -62,9 +72,9 @@
             padding: 20px;
         }
         .container .row .terbilang p {
-            padding: 35px;
+            padding: 30px;
             background-color: rgba(0, 0, 0, 0.08);
-            width: 20rem;
+            width: max-content ;
         }
     </style>
 </head>
@@ -87,43 +97,44 @@
 
         <div class="row ">
             <div class="nomor col-md-9">
-                <p>No.{{ $model->pembayaran[0]->id }}</p>
+                <p>No. {{ $model->id }}</p>
             </div>
             <div class="tgl col-md-3">
                 <p>Tanggal: {{ $tanggalSekarang->translatedFormat('d F Y') }}</p>
             </div>
         </div>
+        <br>
 
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <table class="table">
-                    <tr>
-                        <td>Telah diterima dari </td>
-                        <td>: {{ $model->siswa->nama }}</td>
-                    </tr>
-                    <tr>
-                        <td>Uang Sejumlah </td>
-                    <td>: {{ $model->pembayaran[0]->getJumlahTerbilang() }}</td>
-                    </tr>
-                    <tr>
-                        <td>Untuk Pembayaran </td>
-                        <td>: {{ $model->nama}}</td>
-                    </tr>
-                </table>
+            <div class=" row d-flex justify-content-center ">
+
+                <div class="col-9">
+                    <table class="table table-borderless bg-white">
+                        <tr>
+                            <td>Telah diterima dari <b>{{ $model->tagihan->siswa->nama }}</b></td>
+                        </tr>
+                        <tr>
+                            <td>Uang Sejumlah <b>{{ $model->getJumlahTerbilang() }}</b></td>
+                        </tr>
+                        <tr>
+                            <td >Untuk Pembayaran <b>{{ $model->tagihan->nama}}</b></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+                <br>
                 <br>
                 <div class="row">
                     <div class="terbilang col-md-9">
                         {{-- {{$model->getJumlahTerbilang()}} --}}
-                        <h5><p>Rp.{{ $model->pembayaran[0]->getJumlahRupiah() }}</p></h5> 
+                        <h5><p>Rp.{{ $model->getJumlahRupiah() }}</p></h5> 
                     </div>
                     <div class="col-md-3">
-                        Jambi, {{date('d F Y')}}
+                        Jambi, {{$tanggalSekarang->translatedFormat('d F Y')}}
                         <br><br><br><br>
                         <u>Kepala Sekolah</u>
                     </div>
                 </div>
-            </div>
-        </div>
+            
     </div>
 </body>
 </html>
