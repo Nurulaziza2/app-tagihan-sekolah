@@ -82,47 +82,44 @@
 
     <div class="container">
         <h4 class="text-center p-3 mt-3">
-            Kwitansi Pembayaran SPP Bulan {{ $model->tanggal_tagihan->translatedFormat('F Y') }}
+            Kwitansi Pembayaran 
         </h4>
 
         <div class="row ">
             <div class="nomor col-md-9">
-                <p>No.</p>
+                <p>No.{{ $model->pembayaran[0]->id }}</p>
             </div>
             <div class="tgl col-md-3">
-                <p>Tanggal.</p>
+                <p>Tanggal: {{ $tanggalSekarang->translatedFormat('d F Y') }}</p>
             </div>
         </div>
 
         <div class="row mt-3">
             <div class="col-md-12">
-                <table class="table table-hover">
+                <table class="table">
                     <tr>
                         <td>Telah diterima dari </td>
                         <td>: {{ $model->siswa->nama }}</td>
                     </tr>
                     <tr>
                         <td>Uang Sejumlah </td>
-                    <td>: Rp.{{ $model->getJumlahRupiah() }}</td>
+                    <td>: {{ $model->pembayaran[0]->getJumlahTerbilang() }}</td>
                     </tr>
                     <tr>
                         <td>Untuk Pembayaran </td>
-                        <td>: {{ $model->siswa->kelas->nama }} {{ $model->siswa->durasi }}</td>
-                    </tr>
-                    <tr >
-                        <td>Tanggal Masuk </td>
-                        <td>: {{ $model->siswa->tgl_masuk->translatedFormat('d F Y') }}</td>
+                        <td>: {{ $model->nama}}</td>
                     </tr>
                 </table>
+                <br>
                 <div class="row">
                     <div class="terbilang col-md-9">
                         {{-- {{$model->getJumlahTerbilang()}} --}}
-                        <p>RP. </p> 
+                        <h5><p>Rp.{{ $model->pembayaran[0]->getJumlahRupiah() }}</p></h5> 
                     </div>
                     <div class="col-md-3">
                         Jambi, {{date('d F Y')}}
-                        <br><br><br>
-                        <u>{{Auth::user()->name}}</u>
+                        <br><br><br><br>
+                        <u>Kepala Sekolah</u>
                     </div>
                 </div>
             </div>

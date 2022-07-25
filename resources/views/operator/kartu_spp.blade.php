@@ -111,7 +111,7 @@
                                     <th>NO</th>
                                     <th>Periode</th>
                                     <th>Jumlah</th>
-                                    <th>Status</th>
+                                    <th>Keterangan</th>
                                     <th>Paraf</th>
                                 </tr>
                             </thead>
@@ -130,7 +130,7 @@
                                     </td>
     
                                     <td>
-                                        <a href={{ route('tagihan.show', $item->id) }} ><div class="badge {{ $item->status ==='Lunas' ? 'badge-success' : 'badge-danger' }}">{{ $item->status }}</div></a>
+                                       {{ $item->status }}
                                     </td> 
                                     
                                     <td>

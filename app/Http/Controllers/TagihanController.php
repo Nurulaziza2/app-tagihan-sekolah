@@ -77,7 +77,8 @@ class TagihanController extends Controller
         ]);
         $biaya = Biaya::findOrFail($request->biaya_id);
         $siswa = Siswa::query();
-        $siswa->where('kelas_id',$request->kelas);
+        $siswa->where('kelas_id',$request->kelas)->
+        whereDate('tgl_masuk', '<=', $request->tanggal_tagihan);
         $siswa = $siswa->get();
         $tanggalTagihan = \Carbon\Carbon::parse($request->tanggal_tagihan);
         $bulanTagihan = $tanggalTagihan->format('m');
@@ -87,6 +88,7 @@ class TagihanController extends Controller
             $cekTagihan = Tagihan::whereMonth('tanggal_tagihan',$bulanTagihan)
                 ->whereYear('tanggal_tagihan',$tahunTagihan)
                 ->where('siswa_id',$item->id)
+                
                 ->first();
             if ($cekTagihan == null){
             $tagihan = new Tagihan();

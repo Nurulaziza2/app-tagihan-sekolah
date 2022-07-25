@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('kwitansi', 'KwitansiController')->middleware('operator');
     Route::resource('kartuspp', 'KartuSppController')->middleware('operator');
     Route::resource('userprofil', 'UserProfilController');
+    Route::resource('laporan', 'LaporanController');
     Route::post('siswaimport/upload','SiswaImportController@upload')->name('siswa.import');
     
 });

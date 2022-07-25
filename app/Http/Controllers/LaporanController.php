@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class KwitansiController extends Controller
+class LaporanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class KwitansiController extends Controller
      */
     public function index()
     {
-        //
+        return view('laporan');
     }
 
     /**
@@ -45,11 +45,7 @@ class KwitansiController extends Controller
      */
     public function show($id)
     {
-        $model = \App\Tagihan::findOrFail($id);
-        $data['model'] = $model;
-        $tanggalSekarang = \Carbon\Carbon::now();
-        $data['tanggalSekarang']= $tanggalSekarang;
-        return view('operator.kwitansi',$data);
+        //
     }
 
     /**

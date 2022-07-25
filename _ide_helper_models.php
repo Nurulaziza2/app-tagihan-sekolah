@@ -19,6 +19,7 @@ namespace App{
  * @property float $nominal
  * @property int $tahun
  * @property string|null $deskripsi
+ * @property int $kelas_id
  * @property int $user_id
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
@@ -31,6 +32,7 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya whereDeskripsi($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Biaya whereKelasId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya whereNama($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya whereNominal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Biaya whereTahun($value)
@@ -149,6 +151,7 @@ namespace App{
  * @property float $jumlah
  * @property string|null $keterangan
  * @property int $denda
+ * @property int|null $jumlah_bayar
  * @property string $status
  * @property string $dibuat_oleh
  * @property \Illuminate\Support\Carbon $created_at
@@ -167,6 +170,7 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereDibuatOleh($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereJumlah($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereJumlahBayar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereKeterangan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereNama($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tagihan whereSiswaId($value)

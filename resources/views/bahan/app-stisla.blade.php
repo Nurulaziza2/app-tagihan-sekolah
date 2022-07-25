@@ -124,7 +124,7 @@
                 </a>
               </li>
               <li class="nav-item {{ Request::path() === 'laporan' ? 'active' : '' }}">
-                <a class="nav-link" href="#"><i class="fas fa-file"></i> <span>Laporan</span>
+                <a class="nav-link" href="{{ route('laporan.index') }}"><i class="fas fa-file"></i> <span>Laporan</span>
                 </a>
               </li>
             </ul>
