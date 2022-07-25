@@ -119,6 +119,7 @@
                 <a class="nav-link" href="{{ route('tagihan.index') }}"><i class="fas fa-money-bill"></i> <span>Data Tagihan</span>
                 </a>
               </li>
+              @endif
               <li class="nav-item {{ Request::path() === 'kalkulator' ? 'active' : '' }}">
                 <a class="nav-link" href="/kalkulator"><i class="fas fa-calculator"></i> <span>Kalkulator</span>
                 </a>
@@ -128,7 +129,6 @@
                 </a>
               </li>
             </ul>
-              @endif
               
 
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
