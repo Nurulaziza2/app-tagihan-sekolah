@@ -80,7 +80,7 @@ class TagihanController extends Controller
         $siswa->where('kelas_id',$request->kelas)->
         whereDate('tgl_masuk', '<=', $request->tanggal_tagihan)->
         where('jumlah_tagihan', '>', 0);
-        
+        dd($siswa->get());
         $siswa = $siswa->get();
         $tanggalTagihan = \Carbon\Carbon::parse($request->tanggal_tagihan);
         $bulanTagihan = $tanggalTagihan->format('m');
