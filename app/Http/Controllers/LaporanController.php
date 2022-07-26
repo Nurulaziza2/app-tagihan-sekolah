@@ -29,8 +29,23 @@ class LaporanController extends Controller
         $data['model'] = $model;
         return view('laporan_pembayaran',$data);
     }
-    public function belumbayar()
-    {
-        return view('laporan_belumbayar');
+    public function belumbayar(Request $request)
+    {   
+        $requestData = $request->validate([
+            'bulanBelumBayar' => 'required',
+            'tahunBelumBayar' => 'required',
+        ]);
+        $bulanHuruf=Carbon::parse($request->tahunBelumBayar.'-'.$request->bulanBelumBayar.'-01')->translatedformat('F');
+        $data['bulanHuruf']=$bulanHuruf;
+        $bulan = $request->bulanBelumBayar;
+        $tahun = $request->tahunBelumBayar;
+        $model = \App\Tagihan::whereMonth('tanggal_tagihan', $bulan)
+            ->whereYear('tanggal_tagihan', $tahun)
+            ->where('status', 'Belum Bayar')
+            ->get();    
+        $data['model'] = $model;
+
+        
+        return view('laporan_belumbayar',$data);
     }
 }

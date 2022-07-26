@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <title>Laporan Pembayaran SPP</title>
+    <title>Laporan Belum Bayar SPP</title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
@@ -63,7 +63,7 @@
 
     <div class="container">
         <h4 class="text-center p-3 mt-3">
-            Laporan Pembayaran SPP Bulan {{ $bulanHuruf }} {{ request()->tahunPembayaran }}
+            Laporan Belum Bayar SPP pada Bulan {{ $bulanHuruf }} {{ request()->tahunPembayaran }}
         </h4>
 
         {{--  <div class="row ">
@@ -80,16 +80,16 @@
                             <thead>
                                 <tr>
                                     <th>NO</th>
-                                    <th>Kode Pembayaran</th>
                                     <th>Nama</th>
                                     <th>NIS</th>
-                                    <th>Jenis Biaya</th>
+                                    <th>Jenis Tagihan</th>
+                                    <th>Periode</th>
                                     <th>Jumlah</th>
                                     <th>Denda</th>
                                     <th>Total</th>
-                                    <th>Tanggal Pembayaran</th>
+                                    <th>Tanggal Jatuh Tempo</th>
                                     {{--  <th>Keterangan</th>  --}}
-                                    <th>Diterima Oleh</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -97,34 +97,31 @@
     
                                 <tr>
                                     <td>{{ $loop->iteration.'.' }}</td>
-    
                                     <td>
-                                       {{ $item->id }}
+                                       {{ $item->siswa->nama }}
                                     </td> 
                                     <td>
-                                       {{ $item->tagihan->siswa->nama }}
+                                       {{ $item->siswa->nis }}
                                     </td> 
                                     <td>
-                                       {{ $item->tagihan->siswa->nis }}
+                                       {{ $item->nama }}
                                     </td> 
                                     <td>
-                                       {{ $item->tagihan->nama }}
-                                    </td> 
-                                    <td>
-                                        Rp{{ number_format($item->tagihan->jumlah,0,",",".") }}
-                                    </td>
-                                    <td>
-                                        Rp{{ number_format($item->tagihan->denda,0,",",".") }}
+                                        {{ $item->tanggal_tagihan->translatedFormat('F Y') }}
                                     </td>
                                     <td>
                                         Rp{{ number_format($item->jumlah,0,",",".") }}
                                     </td>
                                     <td>
-                                        {{ $item->tanggal->translatedFormat('d F Y')  }}    
+                                        Rp{{ number_format($item->denda,0,",",".") }}
                                     </td>
                                     <td>
-                                        {{ $item->diterima_oleh }}
+                                        
                                     </td>
+                                    <td>
+                                        {{ $item->tanggal_jatuh_tempo->translatedFormat('d F Y')  }}    
+                                    </td>
+                                    
                                 </tr>
                                 @endforeach
     

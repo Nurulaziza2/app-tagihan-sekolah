@@ -130,27 +130,14 @@
                         <h5>Dibayar pada : {{ $dataPembayaran[0]->tanggal->translatedFormat('d F Y') }}</h5>
                         <h5>Pembayaran diterima oleh : {{ $dataPembayaran[0]->diterima_oleh }}</h5>
                     </div>
-                    
-                    {{--  {!! Form::model($modelPembayaran, ['route' => $route, 'method' => $method]) !!}
-                    {!! Form::hidden('tagihan_id', $model->id, []) !!}
-                    <div class="form-group">
-                      <label for="tanggal">Dibayar Pada</label>
-                      {!! Form::date('tanggal', \Carbon\Carbon::now(), ['class'=>'form-control','disabled'=>'true']) !!}
-                      <span class="text-danger">{{ $errors->first('tanggal') }}</span>
-                    </div>
-                    <div class="form-group">
-                      <label for="jumlah">Jumlah Pembayaran</label>
-                      {!! Form::text('jumlah', $total, ['class'=>'form-control format-rupiah','disabled'=>'true']) !!}
-                      <span class="text-danger">{{ $errors->first('jumlah') }}</span>
-                    </div>      --}}
                     @endif
-                    
-                    
                     {!! Form::close() !!}
                     
                 </div>
             </div>
         </div>
+
+        {{--  KartuSPP  --}}
         <div class="col-sm-7">
             <div class="card">
                 <div class="card-body">
@@ -191,10 +178,10 @@
                                     <a href={{ route('tagihan.show', $item->id) }} ><div class="badge {{ $item->status ==='Lunas' ? 'badge-success' : 'badge-danger' }}">{{ $item->status }}</div></a>
                                 </td>
                                 <td>
-                                    @if ($item->status === 'Lunas')
-                                        <a href={{ route('kwitansi.show',$dataPembayaran[0]->id) }} target="blank" class="btn btn-info"><i class="fas fa-print"></i></a>
-                                    @else
+                                    @if ($item->status !=='Lunas')
                                         <a href={{ route('invoice.show',$item->id) }} target="blank" class="btn btn-info"><i class="fas fa-print"></i></a>
+                                    @else
+                                        <a href={{ route('kwitansi.show',$item->id) }} target="blank" class="btn btn-info"><i class="fas fa-print"></i></a>
                                     @endif
                                 </td>
                                 

@@ -147,6 +147,8 @@ class TagihanController extends Controller
         ->where('siswa_id',$model->siswa_id)
         ->orderBy('tanggal_tagihan', 'asc')
         ->get();
+        
+
         $dataPembayaran = \App\Pembayaran::where('tagihan_id',$id)->get();
         $data['dataPembayaran'] = $dataPembayaran;
         $data['kartuTagihan'] = $kartuTagihan;

@@ -45,7 +45,7 @@ class KwitansiController extends Controller
      */
     public function show($id)
     {
-        $model = \App\Pembayaran::findOrFail($id);
+        $model = \App\Tagihan::findOrFail($id);
         $data['model'] = $model;
         $tanggalSekarang = \Carbon\Carbon::now();
         $data['tanggalSekarang']= $tanggalSekarang;

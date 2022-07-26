@@ -25,7 +25,7 @@
                     <h4 class="card-title">Laporan Belum Bayar SPP</h4>
                 </div>        
                 <div class="card-body">
-                {!! Form::open(['route' => $routePembayaran,'method' => 'GET']) !!}
+                {!! Form::open(['route' => $routeBelumBayar,'method' => 'GET']) !!}
                             <div class="input-group mb-3">
                                 {!! Form::selectMonth('bulanBelumBayar',null, ['class'=>'form-control','placeholder'=>'Pilih Bulan']) !!}
                                 {!! Form::selectRange('tahunBelumBayar', date('Y'), 2021, null, ['class'=>'form-control','placeholder'=>'Pilih Tahun'])!!}                                
