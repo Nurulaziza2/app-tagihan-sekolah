@@ -29,7 +29,9 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('kartuspp', 'KartuSppController')->middleware('operator');
     Route::resource('invoice', 'InvoiceController')->middleware('operator');
     Route::resource('userprofil', 'UserProfilController');
-    Route::resource('laporan', 'LaporanController');
+    Route::get('laporan','LaporanController@index')->name('laporan.index');
+    Route::get('laporan/pembayaran','LaporanController@pembayaran')->name('laporan.pembayaran');
+    Route::get('laporan/belum_bayar','LaporanController@belumbayar')->name('laporan.belumbayar');
     Route::post('siswaimport/upload','SiswaImportController@upload')->name('siswa.import');
     
 });

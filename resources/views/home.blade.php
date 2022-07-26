@@ -1,7 +1,6 @@
 @extends('bahan.app-stisla',['title'=>'Dashboard'])
 
 @section('content')
-    <!-- Content Header (Page header) -->
     <div class="row">
         <div class="col-md-12">
             <div class="card">

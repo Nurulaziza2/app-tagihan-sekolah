@@ -3,90 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class LaporanController extends Controller
 {
-    private $viewPrefix = "operator.laporan"; 
-    private $routePrefix = "laporan"; 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $modelPembayaran = \App\Pembayaran::all();
-        $modelTagihan = \App\Tagihan::all();
-        $data['route'] = $this->routePrefix .'.store';
-        $data['method'] = 'GET';
-        $data['modelPembayaran'] = $modelPembayaran;
-        $data['modelTagihan'] = $modelTagihan;
+        $data['routePembayaran'] = 'laporan.pembayaran';
+        $data['routeBelumBayar'] = 'laporan.belumbayar';
         return view('laporan',$data);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function pembayaran(Request $request)
     {
-        //
+        $requestData = $request->validate([
+            'bulanPembayaran' => 'required',
+            'tahunPembayaran' => 'required',
+        ]);
+        $bulanHuruf=Carbon::parse($request->tahunPembayaran.'-'.$request->bulanPembayaran.'-01')->translatedformat('F');
+        $data['bulanHuruf']=$bulanHuruf;
+        $bulan = $request->bulanPembayaran;
+        $tahun = $request->tahunPembayaran;
+        $model = \App\Pembayaran::whereMonth('tanggal', $bulan)
+            ->whereYear('tanggal', $tahun)
+            ->get();
+        $data['model'] = $model;
+        return view('laporan_pembayaran',$data);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function belumbayar()
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('laporan_belumbayar');
     }
 }
