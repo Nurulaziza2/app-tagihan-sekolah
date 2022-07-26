@@ -36,7 +36,7 @@
                     {!! Form::select('biaya_id', $biayaList, null, ['class'=>'form-control','placeholder'=>'Pilih Biaya']) !!}
                     <span class="text-danger">{{ $errors->first('biaya_id') }} </span>
                 </div>
-                {!! Form::submit($namaTombol, ['class'=>'btn btn-primary']) !!}
+                {!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}
                 <a href="{{ url('tagihan', []) }}" class="ml-2 btn-primary btn">Kembali</a>
                 {!! Form::close() !!}
                 </div>

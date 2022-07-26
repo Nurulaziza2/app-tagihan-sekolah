@@ -867,6 +867,7 @@ select.form-control:not([size]):not([multiple]) {
 .card .card-body {
     padding-top: 5px;
     padding-bottom: 5px;
+    
 }
 
 .card .card-body .table {

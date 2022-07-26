@@ -36,8 +36,16 @@ Route::middleware(['auth'])->group(function(){
 
 
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/', function (Request $request) {
+    $jumlah_siswa = \App\Siswa::count();
+        $jumlah_tagihan = \App\Tagihan::where('status', '=', 'Belum Bayar')->count();
+        $jumlah_tagihan_lunas = \App\Tagihan::where('status', '=', 'Lunas')->count();
+        $jumlah_pembayaran = \App\Pembayaran::sum('jumlah');
+        $data['jumlah_siswa'] = $jumlah_siswa;
+        $data['jumlah_tagihan'] = $jumlah_tagihan;
+        $data['jumlah_tagihan_lunas'] = $jumlah_tagihan_lunas;
+        $data['jumlah_pembayaran'] = $jumlah_pembayaran;
+        return view('home',$data);
 })->middleware('auth')->name('Dashboard');
 
 // kalkulator

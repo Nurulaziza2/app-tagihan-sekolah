@@ -21,8 +21,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $jumlah_siswa = \App\Siswa::count();
+        $jumlah_tagihan = \App\Tagihan::count()->where('status', '=', 'Belum Bayar');
+        $jumlah_tagihan_lunas = \App\Tagihan::count()->where('status', '=', 'Lunas');
+        $jumlah_pembayaran = \App\Pembayaran::sum('jumlah')->get();
+        $data['jumlah_siswa'] = $jumlah_siswa;
+        $data['jumlah_tagihan'] = $jumlah_tagihan;
+        $data['jumlah_tagihan_lunas'] = $jumlah_tagihan_lunas;
+        $data['jumlah_pembayaran'] = $jumlah_pembayaran;
+        dd($data);
+        return view('home',$data);
     }
 }

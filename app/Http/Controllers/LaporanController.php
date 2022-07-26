@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
+    private $viewPrefix = "operator.laporan"; 
+    private $routePrefix = "laporan"; 
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +15,13 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        return view('laporan');
+        $modelPembayaran = \App\Pembayaran::all();
+        $modelTagihan = \App\Tagihan::all();
+        $data['route'] = $this->routePrefix .'.store';
+        $data['method'] = 'GET';
+        $data['modelPembayaran'] = $modelPembayaran;
+        $data['modelTagihan'] = $modelTagihan;
+        return view('laporan',$data);
     }
 
     /**
