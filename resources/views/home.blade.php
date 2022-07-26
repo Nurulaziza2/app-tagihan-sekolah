@@ -13,42 +13,6 @@
             </div>
         </div>
     </div>
-
-    {{--  <div class="row ">
-        <div class="col-md-3">
-            <div class="card ">       
-                <div class="card-body">
-                    <h2 class="text-center">{{ $jumlah_siswa }}</h2>
-                    <h4 class="card-title text-center">Jumlah Siswa</h4>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">      
-                <div class="card-body">
-                    <h2 class="text-center">{{ $jumlah_tagihan }}</h2>
-                    <h4 class="card-title text-center">Tagihan Belum Lunas</h4>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                
-                <div class="card-body">
-                    <h2 class="text-center">{{ $jumlah_tagihan_lunas}}</h2>
-                    <h4 class="card-title text-center">Tagihan Lunas</h4>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card ">   
-                <div class="card-body">
-                    <h2 class="text-center">Rp{{ number_format($jumlah_pembayaran,0,",",".") }}</h2>
-                    <h4 class="card-title text-center ">Total Pembayaran</h4>
-                </div>
-            </div>
-        </div>
-    </div>  --}}
     <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
               <div class="card card-statistic-1">

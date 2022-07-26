@@ -89,7 +89,8 @@
                 </form>
                 </div>
             <div class="simple-footer">
-              Copyright &copy; SPP
+              Copyright &copy; 2022 <div class="bullet"></div> App Pembayaran SPP FA Sekolah Mode
+        
             </div>
           </div>
         </div>

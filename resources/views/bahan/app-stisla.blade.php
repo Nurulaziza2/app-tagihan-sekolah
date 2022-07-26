@@ -160,7 +160,7 @@
           Copyright &copy; 2022 <div class="bullet"></div> App Pembayaran SPP FA Sekolah Mode</a>
         </div>
         <div class="footer-right">
-          2.3.0
+        
         </div>
       </footer>
     </div>
