@@ -120,10 +120,10 @@
                 </a>
               </li>
               @endif
-              <li class="nav-item {{ Request::path() === 'kalkulator' ? 'active' : '' }}">
+              {{--  <li class="nav-item {{ Request::path() === 'kalkulator' ? 'active' : '' }}">
                 <a class="nav-link" href="/kalkulator"><i class="fas fa-calculator"></i> <span>Kalkulator</span>
                 </a>
-              </li>
+              </li>  --}}
               <li class="nav-item {{ Request::path() === 'laporan' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('laporan.index') }}"><i class="fas fa-file"></i> <span>Laporan</span>
                 </a>
