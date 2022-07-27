@@ -80,15 +80,14 @@
                             <thead>
                                 <tr>
                                     <th>NO</th>
-                                    <th>Kode Pembayaran</th>
-                                    <th>Nama</th>
                                     <th>NIS</th>
+                                    <th>Nama</th>
                                     <th>Jenis Biaya</th>
                                     <th>Jumlah</th>
                                     <th>Denda</th>
                                     <th>Total</th>
                                     <th>Tanggal Pembayaran</th>
-                                    {{--  <th>Keterangan</th>  --}}
+                                    <th>Keterangan</th>
                                     <th>Diterima Oleh</th>
                                 </tr>
                             </thead>
@@ -97,10 +96,7 @@
     
                                 <tr>
                                     <td>{{ $loop->iteration.'.' }}</td>
-    
-                                    <td>
-                                       {{ $item->id }}
-                                    </td> 
+ 
                                     <td>
                                        {{ $item->tagihan->siswa->nama }}
                                     </td> 
@@ -122,6 +118,12 @@
                                     <td>
                                         {{ $item->tanggal->translatedFormat('d F Y')  }}    
                                     </td>
+                                    <td>
+                                    @if ($item->tanggal->gt($item->tagihan->tanggal_jatuh_tempo))
+                                        Terlambat {{ $telatHari= $item->tanggal->diffInDays($item->tagihan->tanggal_jatuh_tempo)}} Hari
+                                    @else
+                                        Pembayaran Tepat Waktu
+                                    @endif
                                     <td>
                                         {{ $item->diterima_oleh }}
                                     </td>

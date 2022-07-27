@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <title>Laporan Belum Bayar SPP</title>
+    <title>Laporan Tagihan SPP Bulan {{ $bulanHuruf }} {{ $tahun }}</title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
@@ -63,32 +63,27 @@
 
     <div class="container">
         <h4 class="text-center p-3 mt-3">
-            Laporan Belum Bayar SPP pada Bulan {{ $bulanHuruf }} {{ request()->tahunPembayaran }}
+            Laporan Tagihan SPP pada Bulan {{ $bulanHuruf }} {{ $tahun }}
         </h4>
 
-        {{--  <div class="row ">
-            <div class="nomor col-md-12">
-                Periode Laporan :<b> {{ $bulanHuruf }} {{ request()->tahunPembayaran }}</b>
-            </div>
-        </div>  --}}
         <br>
 
             @if ($model->count() === 0)
-               <p class="text-center">Belum ada Pembayaran SPP pada bulan {{ $bulanHuruf }} {{ request()->tahunPembayaran }}</p>
+               <p class="text-center">Belum ada Pembayaran SPP pada bulan {{ $bulanHuruf }} {{ request()->tahunBelumBayar }}</p>
             @else
                 <table class="table ">
                             <thead>
                                 <tr>
                                     <th>NO</th>
-                                    <th>Nama</th>
                                     <th>NIS</th>
+                                    <th>Nama</th>
                                     <th>Jenis Tagihan</th>
                                     <th>Periode</th>
                                     <th>Jumlah</th>
                                     <th>Denda</th>
                                     <th>Total</th>
                                     <th>Tanggal Jatuh Tempo</th>
-                                    {{--  <th>Keterangan</th>  --}}
+                                    <th>Keterangan</th>
                                     
                                 </tr>
                             </thead>
@@ -98,10 +93,10 @@
                                 <tr>
                                     <td>{{ $loop->iteration.'.' }}</td>
                                     <td>
-                                       {{ $item->siswa->nama }}
+                                       {{ $item->siswa->nis }}
                                     </td> 
                                     <td>
-                                       {{ $item->siswa->nis }}
+                                       {{ $item->siswa->nama }}
                                     </td> 
                                     <td>
                                        {{ $item->nama }}
@@ -112,14 +107,31 @@
                                     <td>
                                         Rp{{ number_format($item->jumlah,0,",",".") }}
                                     </td>
-                                    <td>
-                                        Rp{{ number_format($item->denda,0,",",".") }}
+                                    <td>    
+                                    @php
+                                        $tglSekarang = \Carbon\Carbon::now();
+                                        if($tglSekarang->gt($item->tanggal_jatuh_tempo)){
+                                        $telatHari= $tglSekarang->diffInDays($item->tanggal_jatuh_tempo);
+                                        $jumlahDenda =  $telatHari * 2000;
+                                        }
+                                        else{
+                                            $jumlahDenda = 0;
+                                        }
+                                    @endphp
+                                        Rp{{ number_format($jumlahDenda,0,",",".") }}
                                     </td>
                                     <td>
-                                        
+                                        Rp{{ number_format($item->jumlah + $jumlahDenda,0,",",".") }}
                                     </td>
                                     <td>
                                         {{ $item->tanggal_jatuh_tempo->translatedFormat('d F Y')  }}    
+                                    </td>
+                                    <td>
+                                    @if ($tglSekarang->gt($item->tanggal_jatuh_tempo))
+                                        Terlambat {{ $telatHari= $tglSekarang->diffInDays($item->tanggal_jatuh_tempo)}} Hari
+                                    @else
+                                        Belum Jatuh Tempo
+                                    @endif
                                     </td>
                                     
                                 </tr>

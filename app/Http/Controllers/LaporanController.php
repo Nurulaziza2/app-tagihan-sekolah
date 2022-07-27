@@ -10,9 +10,10 @@ class LaporanController extends Controller
     public function index()
     {
         $data['routePembayaran'] = 'laporan.pembayaran';
-        $data['routeBelumBayar'] = 'laporan.belumbayar';
+        $data['routeTagihan'] = 'laporan.tagihan';
         return view('laporan',$data);
     }
+
     public function pembayaran(Request $request)
     {
         $requestData = $request->validate([
@@ -29,23 +30,25 @@ class LaporanController extends Controller
         $data['model'] = $model;
         return view('laporan_pembayaran',$data);
     }
-    public function belumbayar(Request $request)
+
+    public function tagihan(Request $request)
     {   
         $requestData = $request->validate([
-            'bulanBelumBayar' => 'required',
-            'tahunBelumBayar' => 'required',
+            'bulanTagihan' => 'required',
+            'tahunTagihan' => 'required',
         ]);
-        $bulanHuruf=Carbon::parse($request->tahunBelumBayar.'-'.$request->bulanBelumBayar.'-01')->translatedformat('F');
+        $bulanHuruf=Carbon::parse($request->tahunTagihan.'-'.$request->bulanTagihan.'-01')->translatedformat('F');
         $data['bulanHuruf']=$bulanHuruf;
-        $bulan = $request->bulanBelumBayar;
-        $tahun = $request->tahunBelumBayar;
-        $model = \App\Tagihan::whereMonth('tanggal_tagihan', $bulan)
+        $bulan = $request->bulanTagihan;
+        $tahun = $request->tahunTagihan;
+        $data['tahun']= $tahun;
+        $model = \App\Tagihan::query();
+        $model->whereMonth('tanggal_tagihan', $bulan)
             ->whereYear('tanggal_tagihan', $tahun)
-            ->where('status', 'Belum Bayar')
-            ->get();    
+            ->where('status', 'Belum Bayar');  
+        $model = $model->get();
         $data['model'] = $model;
-
         
-        return view('laporan_belumbayar',$data);
+        return view('laporan_tagihan',$data);
     }
 }

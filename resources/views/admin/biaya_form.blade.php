@@ -22,11 +22,6 @@
                     <span class="text-danger">{{ $errors->first('nominal') }} </span>
                 </div>
                 <div class="form-group">
-                    <label for="kelas_id">Kelas</label>
-                    {!! Form::select('kelas_id', $kelasList, null, ['class'=>'form-control','placeholder'=>'Pilih Kelas']) !!}
-                    <span class="text-danger">{{ $errors->first('kelas_id') }} </span>
-                </div>
-                <div class="form-group">
                     <label for="tahun">Tahun</label>
                     {!! Form::selectRange('tahun', 2020, date('Y'), null, ['class'=>'form-control']) !!}
                     <span class="text-danger">{{ $errors->first('tahun') }} </span>

@@ -52,7 +52,6 @@ class BiayaController extends Controller
             'nama' => 'required',
             'nominal' => 'required',
             'tahun' => 'required',
-            'kelas_id'=> 'required',
             'deskripsi' => 'nullable',
         ]);
         $requestData['nominal'] = str_replace(".", "", $requestData['nominal']);
