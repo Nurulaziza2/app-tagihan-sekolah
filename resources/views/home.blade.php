@@ -13,7 +13,41 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    @if (auth::user()->akses == 'admin')
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-primary">
+                  <i class="far fa-user"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Jumlah Operator</h4>
+                  </div>
+                  <div class="card-body">
+                    {{ $jumlah_operator }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-info">
+                  <i class="fas fa-wallet"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Jenis Biaya</h4>
+                  </div>
+                  <div class="card-body">
+                    {{ $jenis_biaya }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    @else
+        <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
               <div class="card card-statistic-1">
                 <div class="card-icon bg-primary">
@@ -75,6 +109,7 @@
               </div>
             </div>
           </div>
+    @endif
 
 
 
