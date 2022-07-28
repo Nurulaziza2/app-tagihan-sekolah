@@ -19,6 +19,7 @@ Route::get('logout', function () {
 
 // menggabungkan route, agar dapat diakses ketika user login
 Route::middleware(['auth'])->group(function(){
+    Route::get('/', 'HomeController@index')->name('Dashboard');
     Route::resource('user', 'UserController')->middleware('admin');
     Route::resource('siswa', 'SiswaController')->middleware('operator');
     Route::resource('kelas', 'KelasController')->middleware('operator');
@@ -38,21 +39,7 @@ Route::middleware(['auth'])->group(function(){
 
 
 
-Route::get('/', function (Request $request) {
-    $jumlah_siswa = \App\Siswa::count();
-        $jumlah_tagihan = \App\Tagihan::where('status', '=', 'Belum Bayar')->count();
-        $jumlah_tagihan_lunas = \App\Tagihan::where('status', '=', 'Lunas')->count();
-        $jumlah_pembayaran = \App\Pembayaran::sum('jumlah');
-        $jumlah_operator = \App\User::where('akses', '=', 'operator')->count();
-        $jenis_biaya = \App\Biaya::count();
-        $data['jumlah_operator'] = $jumlah_operator;
-        $data['jenis_biaya'] = $jenis_biaya;
-        $data['jumlah_siswa'] = $jumlah_siswa;
-        $data['jumlah_tagihan'] = $jumlah_tagihan;
-        $data['jumlah_tagihan_lunas'] = $jumlah_tagihan_lunas;
-        $data['jumlah_pembayaran'] = $jumlah_pembayaran;
-        return view('home',$data);
-})->middleware('auth')->name('Dashboard');
+
 
 // kalkulator
 Route::get('/kalkulator', function() {
