@@ -172,13 +172,7 @@ class TagihanController extends Controller
      */
     public function edit($id)
     {
-        // $model = Model::findOrFail($id);
-        // $data['model'] = $model;
-        // $data['method'] = 'PUT';
-        // $data['route'] = [$this->routePrefix . '.update', $id];
-        // // $data['kelas']= Kelas::pluck('nama','id');
-        // $data['namaTombol']= 'Update';
-        // return view($this->viewPrefix . '_form', $data);
+       
     }
 
     /**
@@ -191,28 +185,7 @@ class TagihanController extends Controller
     public function update(Request $request, $id)
     {
         
-        // $requestData = $request->validate([
-        //     'nama' => 'required',
-        //     'nis' => 'required|unique:tagihan,nis,' . $id,
-        //     'email'=> 'required|email|unique:tagihan',
-        //     'jk' => 'required',
-        //     // 'kelas_id'=> 'nullable',
-        //     'tgl_masuk' => 'required',
-        // ]);
-        // if ($request->hasFile('gambar')){
-        //     $requestData['gambar'] = $request->file('gambar')->store('public/images');
-        //     $model = Model::findOrFail($id);
-
-        //     if($model->gambar != null) {
-        //         \Storage::delete($model->gambar);
-        //     }
-        // }
-
-        // $requestData['user_id'] = Auth::user()->id;
-        
-        // Model::where('id', $id)->update($requestData);
-        // flash("Data berhasil diupdate");
-        // return back();
+       
     }
 
     /**

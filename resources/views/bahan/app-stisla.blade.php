@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <link rel="shortcut icon" href="{{ asset('stisla') }}/assets/img/favicon.ico" type="image/x-icon">
   <title>APP Pembayaran SPP{{ $namaHalaman ?? '' }}</title>
 
   <!-- General CSS Files -->
@@ -45,7 +46,7 @@
         </form>
         <ul class="navbar-nav navbar-right">
           
-          <li class="dropdown dropdown-list-toggle"><a href="{{ asset('stisla') }}/#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+          {{-- <li class="dropdown dropdown-list-toggle"><a href="{{ asset('stisla') }}/#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
               <div class="dropdown-header">Notifications
                 <div class="float-right">
@@ -67,7 +68,7 @@
                 <a href="{{ asset('stisla') }}/#">View All <i class="fas fa-chevron-right"></i></a>
               </div>
             </div>
-          </li>
+          </li> --}}
           <li class="dropdown"><a href="{{ asset('stisla') }}/#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="{{ asset('stisla') }}/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div></a>

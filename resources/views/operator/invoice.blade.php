@@ -144,20 +144,25 @@
                                 <td>{{ $model->nama }}</td>
                                 <td>{{ $model->getJumlahRupiah() }}</td>
                             </tr>
+                            @if ($tanggalSekarang->gt($model->tgl_jatuh_tempo))
                             <tr>
                                 <td scope="row">2</td>
-                                <td>Denda ( telat {{ $telatHari }} hari )</td>
-                                <td>Rp{{ number_format($jumlahDenda,0,",",".") }}</td>
+                                    <td>Denda ( telat {{ $telatHari }} hari )</td>
+                                    <td>Rp{{ number_format($jumlahDenda,0,",",".") }}</td>
                             </tr>
+                            @else
+
+                            @endif
                             <tr>    
                                 <td colspan="2">Total</td>
                                 <td><b>Rp{{ number_format($total,0,",",".") }}</b></td>
                             </tr>
                         </tbody>
                     </table>
+                    <div class="col-5 m-0 p-0"><b>*Tanggal Jatuh Tempo {{ $model->tanggal_jatuh_tempo->translatedFormat('d F Y') }}</b></div>
                 </div>
             </div>
-                <br>
+                
                 <br>
                 <div class="row">
                     <div class="terbilang col-md-9">
