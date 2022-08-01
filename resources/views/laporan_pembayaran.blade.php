@@ -98,10 +98,10 @@
                                     <td>{{ $loop->iteration.'.' }}</td>
  
                                     <td>
-                                       {{ $item->tagihan->siswa->nama }}
+                                       {{ $item->tagihan->siswa->nis }}
                                     </td> 
                                     <td>
-                                       {{ $item->tagihan->siswa->nis }}
+                                       {{ $item->tagihan->siswa->nama }}
                                     </td> 
                                     <td>
                                        {{ $item->tagihan->nama }}
