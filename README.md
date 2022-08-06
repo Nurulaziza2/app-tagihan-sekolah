@@ -28,3 +28,10 @@ Framework Laravel 6
 11. Buka di browser `http://localhost:8000/`
 12. Login menggunakan email `admin@mail.com` dan password `1` atau `operator@mail.com` `1`
 13. Selesai, Anda berhasil login 
+
+
+##Kontributor
+Project ini dikembangkan oleh mahasiswa Universitas Dinamika Bangsa Jurusan Teknik Informatika yaitu :
+1. Surya Maulana Saputra 8020190049
+2. Nurul Azizah 8020190279
+3. Yuda Anugrah 8020190325
