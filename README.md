@@ -25,6 +25,6 @@ Framework Laravel 6
 8. `$ php artisan migrate --seed`
 9. `$ php artisan storage:link`
 10. `$ php artisan serve`
-11. Buka di browser `http://localhost:8000/app-install`
-12. Login menggunakan email `admin@mail.com` dan password `1` atau 'operator@mail.com' '1'
+11. Buka di browser `http://localhost:8000/`
+12. Login menggunakan email `admin@mail.com` dan password `1` atau `operator@mail.com` `1`
 13. Selesai, Anda berhasil login 
