@@ -30,7 +30,7 @@ Framework Laravel 6
 13. Selesai, Anda berhasil login 
 
 
-##Kontributor
+## Kontributor
 Project ini dikembangkan oleh mahasiswa Universitas Dinamika Bangsa Jurusan Teknik Informatika yaitu :
 1. Surya Maulana Saputra 8020190049
 2. Nurul Azizah 8020190279
