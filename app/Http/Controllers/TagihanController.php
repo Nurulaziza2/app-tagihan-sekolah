@@ -116,7 +116,7 @@ class TagihanController extends Controller
         }
 
         flash('Tagihan berhasil dibuat')->success();
-        return redirect()->route($this->routePrefix .'.index' );
+        return back();
 
     }
 
