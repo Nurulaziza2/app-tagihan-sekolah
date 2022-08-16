@@ -1,28 +1,33 @@
-@extends('bahan.app-stisla',['title'=>'Profil Siswa'])
+@extends('bahan.app-stisla', ['title' => 'Profil Siswa'])
 
 @section('content')
-
-<style>
-    body {
-        font-weight: bold
-    }
-</style>
+    <style>
+        body {
+            font-weight: bold
+        }
+    </style>
     <!-- Main content -->
     <div class="col-lg-12">
-    
-            <div class="card">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img src="{{ \Storage::url($model->gambar ?? 'images/no-image.png') }}" alt="gbr" width="100%" class="mt-3 rounded">
-                            <a href="{{ url('siswa', []) }}" class="ml-2 mt-2 btn-secondary btn">Kembali</a>
-                        </div>
 
-                        <div class="col">
-                            <div class="card-header">Data Siswa : {{ strtoupper($model->nama) }}</div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-responsive table-bordered table-md">
+        <div class="card">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        @if ($model->gambar == null)
+                            <img src="{{ url('stisla/assets/img/avatar/avatar-3.png') }}" alt="gbr" width="100%"
+                                class="mt-3 rounded">
+                        @else
+                            <img src="{{ \Storage::url($model->gambar) }}" alt="gbr" width="100%"
+                                class="mt-3 rounded">
+                        @endif
+                        <a href="{{ url('siswa', []) }}" class="ml-2 mt-2 btn-secondary btn">Kembali</a>
+                    </div>
+
+                    <div class="col">
+                        <div class="card-header">Data Siswa : {{ strtoupper($model->nama) }}</div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-responsive table-bordered table-md">
                                     <thead>
                                         <tr>
                                             <td width='50%'>ID</td>
@@ -50,11 +55,11 @@
                                         </tr>
                                         <tr>
                                             <td>Program Kursus</td>
-                                            <td>:  {{ $model->kelas->nama }} {{$model->durasi  }}</td>
+                                            <td>: {{ $model->kelas->nama }} {{ $model->durasi }}</td>
                                         </tr>
                                         <tr>
                                             <td>Tanggal Masuk</td>
-                                            <td>:  {{ $model->tgl_masuk->translatedFormat('d F Y') }}</td>
+                                            <td>: {{ $model->tgl_masuk->translatedFormat('d F Y') }}</td>
                                         </tr>
                                         <tr>
                                             <td>Dibuat Oleh</td>
@@ -62,14 +67,14 @@
                                         </tr>
                                     </thead>
                                 </table>
-                            
 
-                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
+
+        </div>
         <!-- /.content -->
-@endsection
+    @endsection

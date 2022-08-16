@@ -32,10 +32,9 @@
 
         header .logo img {
             width: 100px;
-            border-radius: 50%;
             position: absolute;
-            top: 2px;
-            left: 2%;
+            top: 5px;
+            left: 5%;
         }
 
         header ul li {
@@ -61,7 +60,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="{{ asset('stisla') }}/assets/img/logo.jpeg" alt="">
+            <img src="{{ asset('stisla') }}/assets/img/logo.png" alt="">
         </div>
 
         <ul>
