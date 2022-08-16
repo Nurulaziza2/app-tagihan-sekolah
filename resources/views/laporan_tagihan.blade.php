@@ -78,18 +78,28 @@
                                     <th>NIS</th>
                                     <th>Nama</th>
                                     <th>Jenis Tagihan</th>
-                                    <th>Periode</th>
+                                    {{--  <th>Periode</th>  --}}
+                                    <th>Tanggal Jatuh Tempo</th>                                
+                                    <th>Keterangan</th>
                                     <th>Jumlah</th>
                                     <th>Denda</th>
                                     <th>Total</th>
-                                    <th>Tanggal Jatuh Tempo</th>
-                                    <th>Keterangan</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
                              @foreach ($model as $item)
-    
+                             @php
+                             $tglSekarang = \Carbon\Carbon::now();
+                             if($tglSekarang->gt($item->tanggal_jatuh_tempo)){
+                             $telatHari= $tglSekarang->diffInDays($item->tanggal_jatuh_tempo);
+                             $jumlahDenda = $telatHari * 2000;
+                             }
+                             else{
+                             $jumlahDenda = 0;
+                             }
+                             @endphp
+
                                 <tr>
                                     <td>{{ $loop->iteration.'.' }}</td>
                                     <td>
@@ -101,28 +111,10 @@
                                     <td>
                                        {{ $item->nama }}
                                     </td> 
-                                    <td>
-                                        {{ $item->tanggal_tagihan->translatedFormat('F Y') }}
-                                    </td>
-                                    <td>
-                                        Rp{{ number_format($item->jumlah,0,",",".") }}
-                                    </td>
-                                    <td>    
-                                    @php
-                                        $tglSekarang = \Carbon\Carbon::now();
-                                        if($tglSekarang->gt($item->tanggal_jatuh_tempo)){
-                                        $telatHari= $tglSekarang->diffInDays($item->tanggal_jatuh_tempo);
-                                        $jumlahDenda =  $telatHari * 2000;
-                                        }
-                                        else{
-                                            $jumlahDenda = 0;
-                                        }
-                                    @endphp
-                                        Rp{{ number_format($jumlahDenda,0,",",".") }}
-                                    </td>
-                                    <td>
-                                        Rp{{ number_format($item->jumlah + $jumlahDenda,0,",",".") }}
-                                    </td>
+                                     {{--  <td>
+                                         {{ $item->tanggal_tagihan->translatedFormat('F Y') }}
+                                     </td>  --}}
+
                                     <td>
                                         {{ $item->tanggal_jatuh_tempo->translatedFormat('d F Y')  }}    
                                     </td>
@@ -133,9 +125,29 @@
                                         Belum Jatuh Tempo
                                     @endif
                                     </td>
+                                    <td>
+                                        Rp{{ number_format($item->jumlah,0,",",".") }}
+                                    </td>
+                                    <td>
+                                        Rp{{ number_format($jumlahDenda,0,",",".") }}
+                                    </td>
+                                    <td>
+                                        Rp{{ number_format($item->jumlah + $jumlahDenda,0,",",".") }}
+                                    </td>
+
                                     
                                 </tr>
                                 @endforeach
+                                <tr>
+                                    <td colspan="8" class="text-right">
+                                        <b>Total Keseluruhan Jumlah Tagihan</b>
+                                    </td>
+                                    <td>
+                                        <b>Rp{{ number_format($model->sum('jumlah') + $model->sum('jumlah_denda'),0,",",".") }}</b>
+
+                                    </td>
+                                    <td colspan="3"></td>
+                                </tr>
     
                             </tbody>
                         </table>

@@ -16,6 +16,7 @@ class CreateTagihanTable extends Migration
         Schema::create('tagihan', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('siswa_id');
+            $table->string('nama');
             $table->date('tanggal_tagihan');
             $table->date('tanggal_jatuh_tempo');
             $table->double('jumlah');

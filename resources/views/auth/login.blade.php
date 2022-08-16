@@ -58,13 +58,6 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                    <div class="float-left">
-                                  @if (Route::has('password.request'))
-                                  <a class="btn btn-link" href="{{ route('password.request') }}">
-                                      {{ __('Forgot Your Password?') }}
-                                  </a>
-                                  @endif
-                    </div>
                     <div class="invalid-feedback">
                       please fill in your password
                     </div>
