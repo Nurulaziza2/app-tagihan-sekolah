@@ -51,8 +51,7 @@ class TagihanController extends Controller
     {
         $model = new Tagihan();
         $data['model'] = $model;
-        $data['biayaList']= Biaya::get()->pluck('nama_biaya','id');
-        $data['kelasList']= Kelas::get()->pluck('nama','id');
+        $data['kelasList']= Kelas::get()->pluck('kelas_biaya','id');
         $data['method'] = 'POST';
         $data['route'] = $this->routePrefix .'.store';
         $data['namaTombol']= 'Buat Tagihan';
@@ -69,22 +68,35 @@ class TagihanController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->validate([
-            'biaya_id' => 'required',
-            'tanggal_tagihan' => 'required',
-            'tanggal_jatuh_tempo' => 'required',
+            'bulan_tagihan' => 'required',
+            'tahun_tagihan' => 'required',
+            // 'tanggal_jatuh_tempo' => 'required',
             'kelas'=> 'required',
+            
 
         ]);
-        $biaya = Biaya::findOrFail($request->biaya_id);
+        $biaya = Kelas::findOrFail($request->kelas);
+        if ($request->bulan_tagihan < '10') {
+            $bulanTagihan = '0'.$request->bulan_tagihan;
+        }
+        else{
+            $bulanTagihan = $request->bulan_tagihan;
+        }
+        
+        $tanggalTagihan = \Carbon\Carbon::parse($request->tahun_tagihan.'-'.$bulanTagihan.'-01');
+        $tanggalJatuhTempo = \Carbon\Carbon::parse($request->tahun_tagihan.'-'.$bulanTagihan.'-10')->format('Y-m-d');
+        $nbulanTagihan = $tanggalTagihan->translatedFormat('F');        
+        $tahunTagihan = $tanggalTagihan->format('Y');
+
         $siswa = Siswa::query();
         $siswa->where('kelas_id',$request->kelas)->
-        whereDate('tgl_masuk', '<=', $request->tanggal_tagihan)->
+        whereDate('tgl_masuk', '<=', $tanggalTagihan->format('Y-m-d'))->
         where('jumlah_tagihan', '>', 0);
         $siswa = $siswa->get();
-        $tanggalTagihan = \Carbon\Carbon::parse($request->tanggal_tagihan);
-        $bulanTagihan = $tanggalTagihan->format('m');
-        $nbulanTagihan = $tanggalTagihan->translatedformat('F');
-        $tahunTagihan = $tanggalTagihan->format('Y');
+        if ($siswa->count() == 0) {   
+            flash('Tidak Ada Siswa '.$biaya->nama.' Yang Terdaftar Pada Bulan '.$nbulanTagihan.' '.$tahunTagihan.'')->error();
+            return back();
+        }
         foreach ($siswa as $item){
             $cekTagihan = Tagihan::whereMonth('tanggal_tagihan',$bulanTagihan)
                 ->whereYear('tanggal_tagihan',$tahunTagihan)
@@ -94,28 +106,25 @@ class TagihanController extends Controller
             if($cekTagihan == null){
             $tagihan = new Tagihan();
             $tagihan->siswa_id = $item->id;
-            $tagihan->tanggal_tagihan = $request->tanggal_tagihan;
-            $tagihan->tanggal_jatuh_tempo = $request->tanggal_jatuh_tempo;
+            $tagihan->tanggal_tagihan = $tanggalTagihan->format('Y-m-d');
+            $tagihan->tanggal_jatuh_tempo = $tanggalJatuhTempo;
             $tagihan->nama = $biaya->nama;
-            $tagihan->jumlah = $biaya->nominal;
+            $tagihan->jumlah = $biaya->biaya->nominal;
             $tagihan->status ='Belum Bayar';
             $tagihan->dibuat_oleh = Auth::user()->name;
             $tagihan->save();
             $siswa = Siswa::findOrFail($item->id);
             $siswa->jumlah_tagihan = $siswa->jumlah_tagihan  -1;
-            // if($siswa->jumlah_tagihan === 0){
-            //     $siswa->status = "lunas";
-            // }
             $siswa->save();
             }
             else {
-                flash('Tagihan untuk siswa kelas '.$item->kelas->nama.' pada bulan '.$nbulanTagihan.' '.$tahunTagihan.' sudah ada')->error();
+                flash('Tagihan Untuk Siswa Kelas '.$item->kelas->nama.' Pada Bulan '.$nbulanTagihan.' '.$tahunTagihan.'
+                Sudah Ada')->error();
                 return back();
             }
 
-        }
-
-        flash('Tagihan berhasil dibuat')->success();
+        }        
+        flash('Tagihan berhasil dibuat')->success();    
         return back();
 
     }

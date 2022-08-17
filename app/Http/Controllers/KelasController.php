@@ -34,6 +34,8 @@ class KelasController extends Controller
         $data['model'] = $model;
         $data['method'] = 'POST';
         $data['route'] = $this->routePrefix .'.store';
+        $biayaList = \App\Biaya::get()->pluck('nama_biaya','id');
+        $data['biayaList'] = $biayaList;
         $data['namaTombol']= 'Simpan';
         return view($this->viewPrefix . '_form', $data);
 
@@ -50,6 +52,7 @@ class KelasController extends Controller
         $requestData = $request->validate([
             'nama' => 'required',
             'detail'=>'nullable',
+            'biaya_id' => 'required',
             
         ]);
         // $requestData['kelas_id'] = Auth::kelas()->id;
@@ -85,6 +88,8 @@ class KelasController extends Controller
         $data['model'] = $model;
         $data['method'] = 'PUT';
         $data['route'] = [$this->routePrefix . '.update', $id];
+        $biayaList = \App\Biaya::get()->pluck('nama_biaya','id');
+        $data['biayaList'] = $biayaList;
         $data['namaTombol']= 'Update';
         return view($this->viewPrefix . '_form', $data);
     }
@@ -102,6 +107,7 @@ class KelasController extends Controller
         $requestData = $request->validate([
             'nama' => 'required',
             'detail'=>'nullable',
+            'biaya_id' => 'required',
         ]);
         
         $requestData['user_id'] = Auth::user()->id;
