@@ -35,24 +35,24 @@ class Tagihan extends Model
         return number_format($this->jumlah,0,',','.');
     }
     public function terbilang($x) {
-        $angka = ["", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas"];
+        $angka = ["", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas"];
       
         if ($x < 12)
           return " " . $angka[$x];
         elseif ($x < 20)
-          return $this->terbilang($x - 10) . " belas";
+          return $this->terbilang($x - 10) . " Belas";
         elseif ($x < 100)
-          return $this->terbilang($x / 10) . " puluh" . $this->terbilang($x % 10);
+          return $this->terbilang($x / 10) . " Puluh" . $this->terbilang($x % 10);
         elseif ($x < 200)
           return "Seratus" . $this->terbilang($x - 100);
         elseif ($x < 1000)
-          return $this->terbilang($x / 100) . " ratus" . $this->terbilang($x % 100);
+          return $this->terbilang($x / 100) . " Ratus" . $this->terbilang($x % 100);
         elseif ($x < 2000)
           return "Seribu" . $this->terbilang($x - 1000);
         elseif ($x < 1000000)
           return $this->terbilang($x / 1000) . " Ribu" . $this->terbilang($x % 1000);
         elseif ($x < 1000000000)
-          return $this->terbilang($x / 1000000) . " juta" . $this->terbilang($x % 1000000);
+          return $this->terbilang($x / 1000000) . " Juta" . $this->terbilang($x % 1000000);
     }
     public function getJumlahTerbilang(){
         return $this->terbilang($this->jumlah). 'Rupiah';
@@ -63,5 +63,3 @@ class Tagihan extends Model
     }
 
 }
-
-

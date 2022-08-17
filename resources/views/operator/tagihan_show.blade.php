@@ -120,6 +120,7 @@
 
                         <div class="form-group">
                             <label for="tanggal">Tanggal Pembayaran</label>
+                            {{-- {!! Form::date('tanggal', \Carbon\Carbon::parse('2022-07-12'), ['class' => 'form-control']) !!} --}}
                             {!! Form::date('tanggal', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
                             <span class="text-danger">{{ $errors->first('tanggal') }}</span>
                         </div>

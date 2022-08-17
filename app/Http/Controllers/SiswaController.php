@@ -19,9 +19,9 @@ class SiswaController extends Controller
     public function index()
     {
         if(request()->filled('q')) {
-            $models = Model::search(request('q'))->paginate(10);
+            $models = Model::search(request('q'))->paginate(20);
         } else {
-            $models = Model::orderBy('id', 'desc')->paginate(10);
+            $models = Model::orderBy('id', 'desc')->paginate(20);
         }
         // $data['programKursus'] = Kelas::findOrFail($request->biaya_id);
         $data['models'] = $models;

@@ -105,9 +105,11 @@
                     @foreach ($model as $item)
                         @php
                             $tglSekarang = \Carbon\Carbon::now();
+                            $totalJumlahDenda = [];
                             if ($tglSekarang->gt($item->tanggal_jatuh_tempo)) {
                                 $telatHari = $tglSekarang->diffInDays($item->tanggal_jatuh_tempo);
                                 $jumlahDenda = $telatHari * 2000;
+                                array_push($totalJumlahDenda, $jumlahDenda);
                             } else {
                                 $jumlahDenda = 0;
                             }
@@ -157,7 +159,10 @@
                             <b>Total Keseluruhan Jumlah Tagihan</b>
                         </td>
                         <td>
-                            <b>Rp{{ number_format($model->sum('jumlah') + $model->sum('jumlah_denda'), 0, ',', '.') }}</b>
+                            @php
+                                $totalDenda = array_sum($totalJumlahDenda);
+                            @endphp
+                            <b>Rp{{ number_format($model->sum('jumlah') + $totalDenda, 0, ',', '.') }}</b>
 
                         </td>
                         <td colspan="3"></td>

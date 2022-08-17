@@ -18,6 +18,7 @@
                     <label for="bulan_tagihan">Bulan Tagihan</label>
                     {!! Form::selectMonth('bulan_tagihan', null, ['class' => 'form-control']) !!}
                     <span class="text-danger">{{ $errors->first('bulan_tagihan') }} </span>
+                    * Jatuh Tempo Pada Tanggal 10 Setiap Bulan
                 </div>
                 <div class="form-group">
                     <label for="tahun_tagihan">Tahun Tagihan</label>
