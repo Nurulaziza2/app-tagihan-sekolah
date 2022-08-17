@@ -86,7 +86,6 @@ class BiayaController extends Controller
         $model = Model::findOrFail($id);
         $data['model'] = $model;
         $data['method'] = 'PUT';
-        $data['kelasList'] =\App\Kelas::pluck('nama', 'id');
         $data['route'] = [$this->routePrefix . '.update', $id];
         $data['namaTombol']= 'Update';
         return view($this->viewPrefix . '_form', $data);
@@ -106,7 +105,7 @@ class BiayaController extends Controller
             'nama' => 'required',
             'nominal' => 'required',
             'deskripsi' => 'nullable',
-            'kelas_id'=> 'required',
+            'tahun' => 'required',            
         ]);
         $requestData['nominal'] = str_replace(".", "", $requestData['nominal']);
         $requestData['user_id'] = Auth::user()->id;
