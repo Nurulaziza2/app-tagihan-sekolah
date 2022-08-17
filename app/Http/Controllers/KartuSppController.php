@@ -8,7 +8,8 @@ class KartuSppController extends Controller
 {
     public function show($id){
         $model = \App\Tagihan::with('pembayaran')->findOrFail($id);
-
+        $tanggalSekarang = \Carbon\Carbon::now();
+        $data['tanggalSekarang'] = $tanggalSekarang;
         $kartuTagihan = \App\Tagihan::with('pembayaran')
         ->whereYear('tanggal_tagihan',$model->tanggal_tagihan->format('Y'))
         ->where('siswa_id',$model->siswa_id)

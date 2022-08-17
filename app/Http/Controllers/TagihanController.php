@@ -108,7 +108,7 @@ class TagihanController extends Controller
             $tagihan->siswa_id = $item->id;
             $tagihan->tanggal_tagihan = $tanggalTagihan->format('Y-m-d');
             $tagihan->tanggal_jatuh_tempo = $tanggalJatuhTempo;
-            $tagihan->nama = $biaya->nama;
+            $tagihan->nama = $biaya->biaya->nama;
             $tagihan->jumlah = $biaya->biaya->nominal;
             $tagihan->status ='Belum Bayar';
             $tagihan->dibuat_oleh = Auth::user()->name;
@@ -140,6 +140,8 @@ class TagihanController extends Controller
         $model = \App\Tagihan::with('pembayaran')->findOrFail($id);
 
         //munculkan denda 
+        
+        // $tglSekarang = \Carbon\Carbon::parse('2022-07-12');
         $tglSekarang = \Carbon\Carbon::now();
         if($tglSekarang->gt($model->tanggal_jatuh_tempo)){
             $telatHari= $tglSekarang->diffInDays($model->tanggal_jatuh_tempo);

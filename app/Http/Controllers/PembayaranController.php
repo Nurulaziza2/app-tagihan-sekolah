@@ -47,6 +47,7 @@ class PembayaranController extends Controller
         $tagihan = Tagihan::findOrFail($requestData['tagihan_id']);
         //cek denda
         $tglSekarang = \Carbon\Carbon::now();
+        // $tglSekarang = \Carbon\Carbon::parse('2022-07-12');
         if($tglSekarang->gt($tagihan->tanggal_jatuh_tempo)){
             $telatHari= $tglSekarang->diffInDays($tagihan->tanggal_jatuh_tempo);
             $denda =  $telatHari * 2000;
