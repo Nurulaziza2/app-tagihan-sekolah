@@ -19,8 +19,13 @@
                     <table class="tabel ">
                         <tr>
                             <td rowspan="6" width="250">
-                                <img src="{{ \Storage::url($model->siswa->gambar ?? 'images/no-image.png') }}"
-                                    alt="gbr" width="250" class="mt-3 rounded">
+                                @if ($model->siswa->gambar == null)
+                                    <img src="{{ url('stisla/assets/img/avatar/avatar-3.png') }}" alt="gbr"
+                                        width="100%" class="mt-3 rounded">
+                                @else
+                                    <img src="{{ \Storage::url($model->siswa->gambar) }}" alt="gbr" width="100%"
+                                        class="mt-3 rounded">
+                                @endif
                             </td>
                         </tr>
                         <tr>
@@ -79,24 +84,24 @@
                             Rp{{ $model->getJumlahRupiah() }}
                         </div>
                     </div>
-                    @if ($jumlahDenda>0)
-                    <div class="row">
-                        <div class="col-md-8">
-                            <b>Denda ( telat {{ $telatHari }} hari )</b>
+                    @if ($jumlahDenda > 0)
+                        <div class="row">
+                            <div class="col-md-8">
+                                <b>Denda ( telat {{ $telatHari }} hari )</b>
+                            </div>
+                            <div class="col-md-4">
+                                Rp{{ number_format($jumlahDenda, 0, ',', '.') }}
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            Rp{{ number_format($jumlahDenda,0,",",".") }}
-                        </div>
-                    </div>
                     @else
-                    <div class="row">
-                        <div class="col-md-8">
-                            <b>Denda </b>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <b>Denda </b>
+                            </div>
+                            <div class="col-md-4">
+                                Rp{{ number_format($jumlahDenda, 0, ',', '.') }}
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            Rp{{ number_format($jumlahDenda,0,",",".") }}
-                        </div>
-                    </div>
                     @endif
                     <hr>
                     <div class="row">
@@ -104,40 +109,42 @@
                             SubTotal
                         </div>
                         <div class="col-md-4">
-                            <b>Rp{{ number_format($total,0,",",".") }}</b>
+                            <b>Rp{{ number_format($total, 0, ',', '.') }}</b>
                         </div>
                     </div>
-                    @if ($model->status !== "Lunas")
-                    <br>
-                    <h5>Form Pembayaran</h5>
-                    {!! Form::model($modelPembayaran, ['route' => $route, 'method' => $method]) !!}
-                    {!! Form::hidden('tagihan_id', $model->id, []) !!}
-                   
-                    <div class="form-group">
-                      <label for="tanggal">Tanggal Pembayaran</label>
-                      {!! Form::date('tanggal', \Carbon\Carbon::now(), ['class'=>'form-control']) !!}
-                      <span class="text-danger">{{ $errors->first('tanggal') }}</span>
-                    </div>
-                    <div class="form-group">
-                      <label for="jumlah">Jumlah Pembayaran</label>
-                      {!! Form::text('jumlah', $total, ['class'=>'form-control format-rupiah']) !!}
-                      <span class="text-danger">{{ $errors->first('jumlah') }}</span>
-                    </div>
-                    {!! Form::submit('Buat Pembayaran', ['class'=>'btn btn-primary']) !!}
+                    @if ($model->status !== 'Lunas')
+                        <br>
+                        <h5>Form Pembayaran</h5>
+                        {!! Form::model($modelPembayaran, ['route' => $route, 'method' => $method]) !!}
+                        {!! Form::hidden('tagihan_id', $model->id, []) !!}
+
+                        <div class="form-group">
+                            <label for="tanggal">Tanggal Pembayaran</label>
+                            {!! Form::date('tanggal', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
+                            <span class="text-danger">{{ $errors->first('tanggal') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="jumlah">Jumlah Pembayaran</label>
+                            {!! Form::text('jumlah', $total, ['class' => 'form-control format-rupiah']) !!}
+                            <span class="text-danger">{{ $errors->first('jumlah') }}</span>
+                        </div>
+                        {!! Form::submit('Buat Pembayaran', ['class' => 'btn btn-primary']) !!}
                     @else
-                    <div class="lunas text-center"><u><h4>Tagihan Sudah Lunas</h4></u></div>
-                    <div class="lunas">
-                        <h5>Dibayar pada : {{ $dataPembayaran[0]->tanggal->translatedFormat('d F Y') }}</h5>
-                        <h5>Pembayaran diterima oleh : {{ $dataPembayaran[0]->diterima_oleh }}</h5>
-                    </div>
+                        <div class="lunas text-center"><u>
+                                <h4>Tagihan Sudah Lunas</h4>
+                            </u></div>
+                        <div class="lunas">
+                            <h5>Dibayar pada : {{ $dataPembayaran[0]->tanggal->translatedFormat('d F Y') }}</h5>
+                            <h5>Pembayaran diterima oleh : {{ $dataPembayaran[0]->diterima_oleh }}</h5>
+                        </div>
                     @endif
                     {!! Form::close() !!}
-                    
+
                 </div>
             </div>
         </div>
 
-        {{--  KartuSPP  --}}
+        {{-- KartuSPP --}}
         <div class="col-sm-7">
             <div class="card">
                 <div class="card-body">
@@ -146,7 +153,9 @@
                             <h4 class="card-title">Kartu SPP </h4>
                         </div>
                         <div class="col-sm-2">
-                           <div class="cetak"> <a href="{{ route('kartuspp.show', [$model->id]) }}" class="btn btn-primary" alt="Cetak Kartu SPP" target="blank"><i class="fas fa-print" ></i></a></div>
+                            <div class="cetak"> <a href="{{ route('kartuspp.show', [$model->id]) }}"
+                                    class="btn btn-primary" alt="Cetak Kartu SPP" target="blank"><i
+                                        class="fas fa-print"></i></a></div>
                         </div>
                     </div>
 
@@ -161,41 +170,46 @@
                             </tr>
                         </thead>
                         <tbody>
-                         @foreach ($kartuTagihan as $item)
+                            @foreach ($kartuTagihan as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration . '.' }}</td>
 
-                            <tr>
-                                <td>{{ $loop->iteration.'.' }}</td>
+                                    <td>{{ $item->tanggal_tagihan->translatedFormat('F Y') }}
 
-                                <td>{{ $item->tanggal_tagihan->translatedFormat('F Y')  }}
-                                    
                                     </td>
 
-                                <td>
-                                    Rp{{ number_format($item->jumlah,0,",",".") }}
-                                </td>
+                                    <td>
+                                        Rp{{ number_format($item->jumlah, 0, ',', '.') }}
+                                    </td>
 
-                                <td>
-                                    <a href={{ route('tagihan.show', $item->id) }} ><div class="badge {{ $item->status ==='Lunas' ? 'badge-success' : 'badge-danger' }}">{{ $item->status }}</div></a>
-                                </td>
-                                <td>
-                                    @if ($item->status !=='Lunas')
-                                        <a href={{ route('invoice.show',$item->id) }} target="blank" class="btn btn-info"><i class="fas fa-print"></i></a>
-                                    @else
-                                        <a href={{ route('kwitansi.show',$item->id) }} target="blank" class="btn btn-info"><i class="fas fa-print"></i></a>
-                                    @endif
-                                </td>
-                                
+                                    <td>
+                                        <a href={{ route('tagihan.show', $item->id) }}>
+                                            <div
+                                                class="badge {{ $item->status === 'Lunas' ? 'badge-success' : 'badge-danger' }}">
+                                                {{ $item->status }}</div>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @if ($item->status !== 'Lunas')
+                                            <a href={{ route('invoice.show', $item->id) }} target="blank"
+                                                class="btn btn-info"><i class="fas fa-print"></i></a>
+                                        @else
+                                            <a href={{ route('kwitansi.show', $item->id) }} target="blank"
+                                                class="btn btn-info"><i class="fas fa-print"></i></a>
+                                        @endif
+                                    </td>
 
-                            </tr>
+
+                                </tr>
                             @endforeach
 
                         </tbody>
                     </table>
-                    </div>
                 </div>
             </div>
-            <a href="{{ url('tagihan', []) }}" class="ml-3 mt-2 btn-primary btn">Kembali</a>
         </div>
+        <a href="{{ url('tagihan', []) }}" class="ml-3 mt-2 btn-primary btn">Kembali</a>
+    </div>
     </div>
 
     <!-- /.content -->
