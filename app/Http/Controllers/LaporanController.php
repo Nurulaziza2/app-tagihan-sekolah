@@ -11,7 +11,10 @@ class LaporanController extends Controller
     {
         $data['routePembayaran'] = 'laporan.pembayaran';
         $data['routeTagihan'] = 'laporan.tagihan';
-        return view('laporan',$data);
+
+        $kelasList = \App\Kelas::get()->pluck('nama', 'id');
+        $data['kelasList'] = $kelasList;
+        return view('laporan', $data);
     }
 
     public function pembayaran(Request $request)
@@ -19,36 +22,63 @@ class LaporanController extends Controller
         $requestData = $request->validate([
             'bulanPembayaran' => 'required',
             'tahunPembayaran' => 'required',
+            'kelasPembayaran' => 'nullable',
         ]);
-        $bulanHuruf=Carbon::parse($request->tahunPembayaran.'-'.$request->bulanPembayaran.'-01')->translatedformat('F');
-        $data['bulanHuruf']=$bulanHuruf;
+        $bulanHuruf = Carbon::parse($request->tahunPembayaran . '-' . $request->bulanPembayaran . '-01')->translatedformat('F');
+        $data['bulanHuruf'] = $bulanHuruf;
         $bulan = $request->bulanPembayaran;
         $tahun = $request->tahunPembayaran;
-        $model = \App\Pembayaran::whereMonth('tanggal', $bulan)
+        $kelasId = $request->kelasPembayaran;
+
+        if ($request->filled('kelasPembayaran')) {
+            
+            $model = \App\Pembayaran::whereMonth('tanggal', $bulan)
+            ->whereYear('tanggal', $tahun)
+            ->where('kelas_id', $kelasId)
+            ->get();
+        }
+        
+        else {
+            $model = \App\Pembayaran::whereMonth('tanggal', $bulan)
             ->whereYear('tanggal', $tahun)
             ->get();
+        }
         $data['model'] = $model;
-        return view('laporan_pembayaran',$data);
+        return view('laporan_pembayaran', $data);
     }
 
     public function tagihan(Request $request)
-    {   
+    {
         $requestData = $request->validate([
             'bulanTagihan' => 'required',
             'tahunTagihan' => 'required',
+            'kelasTagihan' => 'nullable',
         ]);
-        $bulanHuruf=Carbon::parse($request->tahunTagihan.'-'.$request->bulanTagihan.'-01')->translatedformat('F');
-        $data['bulanHuruf']=$bulanHuruf;
+        $bulanHuruf = Carbon::parse($request->tahunTagihan . '-' . $request->bulanTagihan . '-01')->translatedformat('F');
+        $data['bulanHuruf'] = $bulanHuruf;
         $bulan = $request->bulanTagihan;
         $tahun = $request->tahunTagihan;
-        $data['tahun']= $tahun;
-        $model = \App\Tagihan::query();
-        $model->whereMonth('tanggal_tagihan', $bulan)
+        $data['tahun'] = $tahun;
+        $kelasId = $request->kelasTagihan;
+
+        if ($request->filled('kelasTagihan')) {
+            $model = \App\Tagihan::query();
+            $model
+            ->whereMonth('tanggal_tagihan', $bulan)
             ->whereYear('tanggal_tagihan', $tahun)
-            ->where('status', 'Belum Bayar');  
-        $model = $model->get();
+            ->where('status', 'Belum Bayar')
+            ->where('kelas_id',$kelasId);
+            $model = $model->get();
+        }
+        else {
+            $model = \App\Tagihan::query();
+            $model
+            ->whereMonth('tanggal_tagihan', $bulan)
+            ->whereYear('tanggal_tagihan', $tahun)
+            ->where('status', 'Belum Bayar');
+            $model = $model->get(); 
+        }
         $data['model'] = $model;
-        
-        return view('laporan_tagihan',$data);
+        return view('laporan_tagihan', $data);
     }
 }

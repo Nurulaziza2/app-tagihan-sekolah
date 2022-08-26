@@ -35,6 +35,11 @@ class HomeController extends Controller
         $data['jumlah_tagihan'] = $jumlah_tagihan;
         $data['jumlah_tagihan_lunas'] = $jumlah_tagihan_lunas;
         $data['jumlah_pembayaran'] = $jumlah_pembayaran;
-        return view('home',$data);
+
+        //Data untuk Chart
+        $dataTagihan = [];
+        $tagihan = \App\Tagihan::all();
+
+        return view('home', $data);
     }
 }
